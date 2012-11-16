@@ -13,8 +13,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>file_reader.c</itemPath>
+      <itemPath>competitors.c</itemPath>
+      <itemPath>course.c</itemPath>
+      <itemPath>event.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>nodes.c</itemPath>
+      <itemPath>tracks.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"

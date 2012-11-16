@@ -35,8 +35,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/file_reader.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/course.o \
+	${OBJECTDIR}/competitors.o \
+	${OBJECTDIR}/nodes.o \
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/event.o \
+	${OBJECTDIR}/tracks.o
 
 
 # C Compiler Flags
@@ -63,15 +67,35 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cs23710_assignment: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cs23710_assignment ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
-${OBJECTDIR}/file_reader.o: file_reader.c 
+${OBJECTDIR}/course.o: course.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/file_reader.o file_reader.c
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/course.o course.c
+
+${OBJECTDIR}/competitors.o: competitors.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/competitors.o competitors.c
+
+${OBJECTDIR}/nodes.o: nodes.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/nodes.o nodes.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
+
+${OBJECTDIR}/event.o: event.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/event.o event.c
+
+${OBJECTDIR}/tracks.o: tracks.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/tracks.o tracks.c
 
 # Subprojects
 .build-subprojects:
