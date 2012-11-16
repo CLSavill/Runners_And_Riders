@@ -21,6 +21,12 @@
 #define ENTRANTS_FILE "entrants.txt"
 ///////////////////////////////////////////////////////////////////////////
 
+/* Enumaration Definition*/
+enum type {
+    CP, // Timed checkpoint
+    JN, // Junction
+    MP // Medical checkpoint
+};
 // Structure used to encapsulate attributes of a 24-hour clock.
 
 typedef struct time {
@@ -42,7 +48,7 @@ typedef struct event {
 
 typedef struct node {
     int number; // int used to store the node number.
-    char type[2]; // char array of size 2 used to store the type of the node.
+    enum type type; // enum used to represent node type.
 } node;
 ///////////////////////////////////////////////////////////////////////////
 
@@ -76,12 +82,14 @@ typedef struct course {
 } course;
 ///////////////////////////////////////////////////////////////////////////
 
+// Type Definitions
 typedef event * event_ptr; // Type definition for a pointer to an event struct.
 typedef node * node_ptr;
 typedef track * track_ptr;
 typedef course * course_ptr;
 typedef competitor * competitor_ptr;
+///////////////////////////////////////////////////////////////////////////
 
-
-
+// Method Prototypes
 event_ptr event_file_load(event_ptr event);
+///////////////////////////////////////////////////////////////////////////
