@@ -98,13 +98,15 @@ typedef event *event_ptr; // Type definition for a pointer to an event struct.
 ///////////////////////////////////////////////////////////////////////////
 
 // Method Prototypes
-event_ptr loader(event_ptr event);
-event_ptr event_read_cycle(event_ptr event);
-event_ptr event_file_load(char* file_name, event_ptr event);
-event_ptr nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr);
+int loader(event_ptr event);
+int event_read_cycle(event_ptr event);
+int event_file_load(char* file_name, event_ptr event);
+int nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr);
 int get_number_of_nodes(char* file_name, int* number_of_nodes_ptr);
-event_ptr nodes_file_load(event_ptr event, char* file_name, int* number_of_nodes_ptr);
+int nodes_file_load(event_ptr event, char* file_name, int* number_of_nodes_ptr);
 enum type determine_type(char* type_input);
-event_ptr get_number_of_tracks(char* file_name);
-event_ptr tracks_file_load(event_ptr event, char* file_name, int* number_of_nodes_ptr, int number_of_tracks);
+int tracks_read_cycle(event_ptr event, int* number_of_nodes_ptr, int* number_of_tracks_ptr);
+int get_number_of_tracks(char* file_name, int* number_of_tracks_ptr);
+int tracks_file_load(event_ptr event, char* file_name, int* number_of_tracks);
+node* node_match(node* node, int node_number);
 ///////////////////////////////////////////////////////////////////////////
