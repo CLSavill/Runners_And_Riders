@@ -12,34 +12,41 @@
  * 
  */
 int main(int argc, char** argv) {
-    int load_success;
+    event_ptr event;
+    event = malloc(sizeof (struct event));
 
     printf("Event Monitoring Program Launching...\n");
-    load_success = loader();
+    event = loader(event);
+
+    node *current_node;
+    current_node = event->node_head;
+
+    int counter = 0;
+    printf("Testing phase...\n\n");
+    printf("Node Number: %d, Node Type: %d\n", current_node->number,
+            current_node->type);
+    current_node = current_node->next_node;
+    for (counter; counter < 12; counter++) {
+        printf("Node Number: %d, Node Type: %d, Previous Node: %d\n", current_node->number,
+                current_node->type, current_node->previous_node->number);
+        current_node = current_node->next_node;
+    }
     return (EXIT_SUCCESS);
 }
 
-int loader() {
-    int file_read;
-    event_ptr event;
-    node *node_array; // Declares a pointer to a node array.
-    int number_of_nodes;
+event_ptr loader(event_ptr event) {
+    int number_of_nodes = 0;
     int *number_of_nodes_ptr = &number_of_nodes;
-    *number_of_nodes_ptr = 0;
-    track *track_array;
+    printf("%d\n", *number_of_nodes_ptr);
     int number_of_tracks = 0;
     int *number_of_tracks_ptr = &number_of_tracks;
-    event = (event_ptr) malloc(sizeof (struct event));
 
-    file_read = event_read_cycle(event);
+    event = event_read_cycle(event);
+    event = nodes_read_cycle(event, number_of_nodes_ptr);
 
-    if (file_read == FILE_LOAD_SUCCESS) {
-        file_read = nodes_read_cycle(node_array, number_of_nodes_ptr);
-    }
-
-    if (file_read == FILE_LOAD_SUCCESS) {
-        file_read = tracks_read_cycle(node_array, number_of_nodes_ptr, track_array, number_of_tracks_ptr);
-    }
+    /*if (file_read == FILE_LOAD_SUCCESS) {
+        file_read = tracks_read_cycle(event);
+    }*/
 
 
 
@@ -67,66 +74,50 @@ int loader() {
      }
  }*/
 
-    return FILE_LOAD_SUCCESS;
+    return event;
 }
 
-int event_read_cycle(event_ptr event) {
+event_ptr event_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
     printf("\nPlease enter in the file path and name of the event file: ");
     scanf("%s", file_name);
 
     event = event_file_load(file_name, event);
 
-    if (event != NULL) {
-        printf("\n%s\n%s\n%02d:%d", event -> name, event -> date, event -> start_time.hours, event -> start_time.minutes);
-        return FILE_LOAD_SUCCESS;
-    } else {
-        printf("\nError: File containing event details failed to load.");
-        return FILE_LOAD_FAILURE;
-    }
+    printf("\n%s\n%s\n%02d:%d\n", event -> name, event -> date, event -> start_time.hours, event -> start_time.minutes);
+    return event;
 }
 
-int nodes_read_cycle(node* node_array, int* number_of_nodes_ptr) {
+event_ptr nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr) {
     char file_name[MAX_PATH_LENGTH];
     int file_read;
-
     printf("\n\nPlease enter in the file path and name of the nodes file: ");
     scanf("%s", file_name);
 
-    *number_of_nodes_ptr = get_number_of_nodes(file_name, number_of_nodes_ptr);
-   //node_array = (node*) calloc((*number_of_nodes_ptr), sizeof (struct node));
-    node_array = (node*) malloc((*number_of_nodes_ptr) * sizeof (struct node));
+    file_read = get_number_of_nodes(file_name, number_of_nodes_ptr);
 
     if ((*number_of_nodes_ptr) != 0) {
-        printf("Number of Nodes: %d\n", (*number_of_nodes_ptr));
-        file_read = nodes_file_load(file_name, node_array, number_of_nodes_ptr);
-        printf("Node Number: %d, Node Type: %d", node_array[1].number, node_array[1].type);
+        printf("Number of Nodes: %d\n", *number_of_nodes_ptr);
 
-        if (file_read == FILE_LOAD_SUCCESS) {
-            return FILE_LOAD_SUCCESS;
-        } else {
-            printf("\nError: File containing node details failed to load.");
-        }
+        event = nodes_file_load(event, file_name, number_of_nodes_ptr);
     }
 
-    return FILE_LOAD_FAILURE;
+    return event;
 }
 
-int tracks_read_cycle(node* node_array, int* number_of_nodes_ptr, track* track_array, int* number_of_tracks_ptr) {
+/*int tracks_read_cycle(event_ptr event, int number_of_nodes) {
     char file_name[MAX_PATH_LENGTH];
     int file_read;
+    int number_of_tracks;
     
-    printf("Node Number: %d, Node Type: %d", node_array[1].number, node_array[1].type);
     printf("\n\nPlease enter in the file path and name of the tracks file: ");
     scanf("%s", file_name);
 
-    *number_of_tracks_ptr = get_number_of_tracks(file_name);
-    //track_array = (track*) calloc((*number_of_tracks_ptr), sizeof (struct track));
-    track_array = (track*) malloc((*number_of_tracks_ptr) * sizeof (struct track)); // Allocates memory for the whole array of tracks.
+    number_of_tracks = get_number_of_tracks(file_name);
 
-    if ((*number_of_tracks_ptr) != 0) {
-        printf("Number of Tracks: %d\n", (*number_of_tracks_ptr));
-        file_read = tracks_file_load(file_name, track_array, number_of_tracks_ptr, node_array, number_of_nodes_ptr);
+    if (number_of_tracks != 0) {
+        printf("Number of Tracks: %d\n", number_of_tracks);
+        file_read = tracks_file_load(event, file_name, number_of_nodes, number_of_tracks);
 
         if (file_read == FILE_LOAD_SUCCESS) {
             return FILE_LOAD_SUCCESS;
@@ -136,4 +127,4 @@ int tracks_read_cycle(node* node_array, int* number_of_nodes_ptr, track* track_a
 
         return FILE_LOAD_FAILURE;
     }
-}
+}*/
