@@ -76,7 +76,11 @@ typedef struct competitor {
 // Structure used to encapsulate attributes for  a course.
 
 typedef struct course {
-    int number_of_tracks; // int used to store the number of tracks in the course.
+    char id;
+    int number_of_nodes; // int used to store the number of nodes in the course.
+    int *course_nodes;
+    struct course *next_course;
+    struct course *previous_course;
 } course;
 ///////////////////////////////////////////////////////////////////////////
 
@@ -88,7 +92,7 @@ typedef struct event {
     struct time start_time; // time struct used to store the start time of the event.
     struct node *node_head;
     struct track *track_head;
-    struct course course;
+    struct course *course_head;
     struct competitor *competitor_head;
 } event;
 ///////////////////////////////////////////////////////////////////////////
@@ -105,8 +109,12 @@ int nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr);
 int get_number_of_nodes(char* file_name, int* number_of_nodes_ptr);
 int nodes_file_load(event_ptr event, char* file_name, int* number_of_nodes_ptr);
 enum type determine_type(char* type_input);
-int tracks_read_cycle(event_ptr event, int* number_of_nodes_ptr, int* number_of_tracks_ptr);
+int tracks_read_cycle(event_ptr event, int* number_of_tracks_ptr);
 int get_number_of_tracks(char* file_name, int* number_of_tracks_ptr);
 int tracks_file_load(event_ptr event, char* file_name, int* number_of_tracks);
 node* node_match(node* node, int node_number);
+int courses_read_cycle(event_ptr event, int* number_of_courses_ptr);
+int get_number_of_courses(char* file_name, int* number_of_courses_ptr);
+int courses_file_load(event_ptr event, char* file_name, int* number_of_courses_ptr);
+int* read_course_nodes(int* course_nodes, FILE* courses_file, int number_of_course_nodes);
 ///////////////////////////////////////////////////////////////////////////
