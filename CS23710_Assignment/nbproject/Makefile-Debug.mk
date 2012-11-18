@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/loader.o \
 	${OBJECTDIR}/course.o \
 	${OBJECTDIR}/competitors.o \
 	${OBJECTDIR}/test.o \
@@ -67,6 +68,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cs23710_assignment: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cs23710_assignment ${OBJECTFILES} ${LDLIBSOPTIONS} 
+
+${OBJECTDIR}/loader.o: loader.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/loader.o loader.c
 
 ${OBJECTDIR}/course.o: course.c 
 	${MKDIR} -p ${OBJECTDIR}

@@ -17,6 +17,7 @@
       <itemPath>competitors.c</itemPath>
       <itemPath>course.c</itemPath>
       <itemPath>event.c</itemPath>
+      <itemPath>loader.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>nodes.c</itemPath>
       <itemPath>test.c</itemPath>

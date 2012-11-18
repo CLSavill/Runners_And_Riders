@@ -14,6 +14,9 @@ void test_print_cycle(event_ptr event) {
 
     printf("\nPrinting Courses...\n\n");
     test_courses(event->course_head);
+
+    printf("\nPrinting Competitors...\n\n");
+    test_competitors(event->competitor_head);
 }
 
 void test_nodes(node* head_node) {
@@ -62,8 +65,6 @@ void test_courses(course* head_course) {
             current_course->id,
             current_course->number_of_nodes);
 
-    counter = 0;
-
     for (counter; counter < current_course->number_of_nodes; counter++) {
         if (counter != (current_course->number_of_nodes - 1)) {
             printf("%d,", current_course->course_nodes[counter]);
@@ -92,4 +93,22 @@ void test_courses(course* head_course) {
         }
         current_course = current_course->next_course;
     }
+}
+
+void test_competitors(competitor* head_competitor) {
+    competitor *current_competitor;
+    current_competitor = head_competitor;
+
+    printf("Head Competitor: Number: %d, Course: %c, Name: %s\n", current_competitor->number,
+            current_competitor->course, current_competitor->name);
+    current_competitor = current_competitor->next_competitor;
+
+    while (current_competitor->next_competitor != NULL) {
+        printf("Competitor: Number: %d, Course: %c, Name: %s, Previous: %d\n", current_competitor->number,
+                current_competitor->course,
+                current_competitor->name,
+                current_competitor->previous_competitor->number);
+        current_competitor = current_competitor->next_competitor;
+    }
+
 }

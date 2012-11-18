@@ -15,7 +15,7 @@ int event_file_load(char* file_name, event_ptr event) {
     int load_status;
     event_file = fopen(file_name, "r");
     load_status = fscanf(event_file, "%[a-zA-Z -]", event->name);
-    
+
     if (load_status == EOF) {
         printf("Error reading in Event Date.\n");
         fclose(event_file);

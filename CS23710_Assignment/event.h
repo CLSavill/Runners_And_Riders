@@ -90,9 +90,13 @@ typedef struct event {
     char name[MAX_EVENT_LENGTH]; // char array used to store the name of the event.
     char date[MAX_DATE_LENGTH]; // char array used to store the date of the event.
     struct time start_time; // time struct used to store the start time of the event.
+    int number_of_nodes;
     struct node *node_head;
+    int number_of_tracks;
     struct track *track_head;
+    int number_of_courses;
     struct course *course_head;
+    int number_of_competitors;
     struct competitor *competitor_head;
 } event;
 ///////////////////////////////////////////////////////////////////////////
@@ -105,16 +109,19 @@ typedef event *event_ptr; // Type definition for a pointer to an event struct.
 int loader(event_ptr event);
 int event_read_cycle(event_ptr event);
 int event_file_load(char* file_name, event_ptr event);
-int nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr);
-int get_number_of_nodes(char* file_name, int* number_of_nodes_ptr);
-int nodes_file_load(event_ptr event, char* file_name, int* number_of_nodes_ptr);
+int nodes_read_cycle(event_ptr event);
+int get_number_of_nodes(char* file_name, int number_of_nodes);
+int nodes_file_load(event_ptr event, char* file_name);
 enum type determine_type(char* type_input);
-int tracks_read_cycle(event_ptr event, int* number_of_tracks_ptr);
-int get_number_of_tracks(char* file_name, int* number_of_tracks_ptr);
-int tracks_file_load(event_ptr event, char* file_name, int* number_of_tracks);
+int tracks_read_cycle(event_ptr event);
+int get_number_of_tracks(char* file_name, int number_of_tracks);
+int tracks_file_load(event_ptr event, char* file_name);
 node* node_match(node* node, int node_number);
-int courses_read_cycle(event_ptr event, int* number_of_courses_ptr);
-int get_number_of_courses(char* file_name, int* number_of_courses_ptr);
-int courses_file_load(event_ptr event, char* file_name, int* number_of_courses_ptr);
+int courses_read_cycle(event_ptr event);
+int get_number_of_courses(char* file_name, int number_of_courses);
+int courses_file_load(event_ptr event, char* file_name);
 int* read_course_nodes(int* course_nodes, FILE* courses_file, int number_of_course_nodes);
+int competitors_read_cycle(event_ptr event);
+int get_number_of_competitors(char* file_name, int number_of_competitors);
+int competitors_file_load(event_ptr event, char* file_name);
 ///////////////////////////////////////////////////////////////////////////

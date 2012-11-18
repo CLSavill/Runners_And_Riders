@@ -10,24 +10,24 @@
 
 // Method to get the number of nodes from a file supplied (probably named "tracks.txt").
 
-int get_number_of_tracks(char* file_name, int* number_of_tracks_ptr) {
+int get_number_of_tracks(char* file_name, int number_of_tracks) {
     FILE *tracks_file; // File pointer.
-    char line_input[18]; // Size 18 used just incase a large number of tracks are contained in a course.
+    char line_input[18]; // Size 18 to buffer the input.
 
     tracks_file = fopen(file_name, "r"); // Open file with read permissions only.
 
     while (fgets(line_input, sizeof (line_input), tracks_file)) { // While end of file has not been reached.
-        (*number_of_tracks_ptr)++; // Counts the number of tracks.
+        number_of_tracks++; // Counts the number of tracks.
     }
 
     fclose(tracks_file); // Closes file as no longer needed.
-    return (*number_of_tracks_ptr);
+    return number_of_tracks;
 }
 ///////////////////////////////////////////////////////////////////////////
 
 // Method to get the number of tracks from a file supplied (probably named "tracks.txt").
 
-int tracks_file_load(event_ptr event, char* file_name, int* number_of_tracks_ptr) {
+int tracks_file_load(event_ptr event, char* file_name) {
     FILE *tracks_file; // File pointer.
     int load_status = 0;
     int counter = 0;
@@ -41,7 +41,7 @@ int tracks_file_load(event_ptr event, char* file_name, int* number_of_tracks_ptr
 
     tracks_file = fopen(file_name, "r"); // Open file with read permissions only. 
 
-    for (counter; counter < (*number_of_tracks_ptr); counter++) {
+    for (counter; counter < event->number_of_tracks; counter++) {
         load_status = fscanf(tracks_file, " %d %d %d %d", &track_number,
                 &track_start_number,
                 &track_end_number,
