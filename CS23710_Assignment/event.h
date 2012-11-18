@@ -9,8 +9,8 @@
 #define MAX_EVENT_LENGTH 51     // Max length of event name string including /0.
 #define MAX_DATE_LENGTH 20      // Max length of date string including /0.
 #define MAX_NAME_LENGTH 41      // Max length of name string including /0.
-#define FILE_LOAD_SUCCESS 1
-#define FILE_LOAD_FAILURE 0
+#define SUCCESS 1
+#define FAILURE 0
 ///////////////////////////////////////////////////////////////////////////
 
 // Define file constants

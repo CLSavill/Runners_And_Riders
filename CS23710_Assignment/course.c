@@ -101,7 +101,7 @@ int courses_file_load(event_ptr event, char* file_name, int* number_of_courses_p
 
     printf("\nCourses file loaded in successfully.\n");
     fclose(courses_file); // Closes file as no longer needed.
-    return FILE_LOAD_SUCCESS;
+    return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
 

@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "event.h"
+#include "test.h"
 
 /*
  * 
@@ -18,43 +19,9 @@ int main(int argc, char** argv) {
 
     printf("Event Monitoring Program Launching...\n");
 
-    if (file_read = loader(event) == FILE_LOAD_SUCCESS) {
+    if (file_read = loader(event) == SUCCESS) {
         printf("Loading Cycle Finished.");
-    }
-
-    printf("\nNode Memory Check Phase\n");
-    node* current_node;
-    current_node = event->node_head;
-
-    printf("Head Node: Number: %d, Type: %d\n", current_node->number,
-            current_node->type);
-    current_node = current_node->next_node;
-
-    while (current_node->next_node != NULL) {
-        printf("Node: Number: %d, Type: %d, Previous: %d\n", current_node->number,
-                current_node->type, current_node->previous_node->number);
-        current_node = current_node->next_node;
-    }
-
-    printf("\nTrack Memory Check Phase\n");
-    track* current_track;
-    current_track = event->track_head;
-
-    printf("Head Track: Number: %d, Start: %d, End: %d, Max Time: %d\n",
-            current_track->number,
-            current_track->track_start->number,
-            current_track->track_end->number,
-            current_track->max_time);
-    current_track = current_track->next_track;
-
-    while (current_track->next_track != NULL) {
-        printf("Track: Number: %d, Start: %d, End: %d, Max Time: %d, Previous: %d\n",
-                current_track->number,
-                current_track->track_start->number,
-                current_track->track_end->number,
-                current_track->max_time,
-                current_track->previous_track->number);
-        current_track = current_track->next_track;
+        test_print_cycle(event);
     }
 
     return (EXIT_SUCCESS);
@@ -69,15 +36,15 @@ int loader(event_ptr event) {
     int number_of_courses = 0;
     int *number_of_courses_ptr = &number_of_courses;
 
-    if (file_read = event_read_cycle(event) == FILE_LOAD_SUCCESS) {
+    if (file_read = event_read_cycle(event) == SUCCESS) {
         printf("Event loading finished.\n");
-        if (file_read = nodes_read_cycle(event, number_of_nodes_ptr) == FILE_LOAD_SUCCESS) {
+        if (file_read = nodes_read_cycle(event, number_of_nodes_ptr) == SUCCESS) {
             printf("Node loading finished.\n");
-            if (file_read = tracks_read_cycle(event, number_of_tracks_ptr) == FILE_LOAD_SUCCESS) {
+            if (file_read = tracks_read_cycle(event, number_of_tracks_ptr) == SUCCESS) {
                 printf("Track loading finished.\n");
-                if (file_read = courses_read_cycle(event, number_of_courses_ptr) == FILE_LOAD_SUCCESS) {
+                if (file_read = courses_read_cycle(event, number_of_courses_ptr) == SUCCESS) {
                     printf("Course loading finished.\n");
-                    return FILE_LOAD_SUCCESS;
+                    return SUCCESS;
                 }
 
             }
@@ -85,7 +52,7 @@ int loader(event_ptr event) {
     }
 
     printf("\nLoading Cycle Failed.\n");
-    return FILE_LOAD_FAILURE;
+    return FAILURE;
 }
 
 int event_read_cycle(event_ptr event) {
@@ -94,12 +61,12 @@ int event_read_cycle(event_ptr event) {
     printf("\nPlease enter in the file path and name of the event file: ");
     scanf("%s", file_name);
 
-    if (file_read = event_file_load(file_name, event) == FILE_LOAD_SUCCESS) {
+    if (file_read = event_file_load(file_name, event) == SUCCESS) {
         printf("\n%s\n%s\n%02d:%d\n", event -> name, event -> date, event -> start_time.hours, event -> start_time.minutes);
-        return FILE_LOAD_SUCCESS;
+        return SUCCESS;
     }
 
-    return FILE_LOAD_FAILURE;
+    return FAILURE;
 }
 
 int nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr) {
@@ -113,13 +80,13 @@ int nodes_read_cycle(event_ptr event, int* number_of_nodes_ptr) {
     if ((*number_of_nodes_ptr) != 0) {
         printf("Number of Nodes: %d\n", *number_of_nodes_ptr);
 
-        if (file_read = nodes_file_load(event, file_name, number_of_nodes_ptr) == FILE_LOAD_SUCCESS) {
-            return FILE_LOAD_SUCCESS;
+        if (file_read = nodes_file_load(event, file_name, number_of_nodes_ptr) == SUCCESS) {
+            return SUCCESS;
         }
     }
 
     printf("\nError: File containing node details failed to load.\n");
-    return FILE_LOAD_FAILURE;
+    return FAILURE;
 }
 
 int tracks_read_cycle(event_ptr event, int* number_of_tracks_ptr) {
@@ -134,12 +101,12 @@ int tracks_read_cycle(event_ptr event, int* number_of_tracks_ptr) {
     if ((*number_of_tracks_ptr) != 0) {
         printf("Number of Tracks: %d\n", *number_of_tracks_ptr);
 
-        if (file_read = tracks_file_load(event, file_name, number_of_tracks_ptr) == FILE_LOAD_SUCCESS) {
-            return FILE_LOAD_SUCCESS;
+        if (file_read = tracks_file_load(event, file_name, number_of_tracks_ptr) == SUCCESS) {
+            return SUCCESS;
         }
 
         printf("\nError: File containing track details failed to load.\n");
-        return FILE_LOAD_FAILURE;
+        return FAILURE;
     }
 }
 
@@ -155,11 +122,11 @@ int courses_read_cycle(event_ptr event, int* number_of_courses_ptr) {
     if ((*number_of_courses_ptr) != 0) {
         printf("Number of Courses: %d\n", *number_of_courses_ptr);
 
-        if (file_read = courses_file_load(event, file_name, number_of_courses_ptr) == FILE_LOAD_SUCCESS) {
-            return FILE_LOAD_SUCCESS;
+        if (file_read = courses_file_load(event, file_name, number_of_courses_ptr) == SUCCESS) {
+            return SUCCESS;
         }
 
         printf("\nError: File containing track details failed to load.\n");
-        return FILE_LOAD_FAILURE;
+        return FAILURE;
     }
 }

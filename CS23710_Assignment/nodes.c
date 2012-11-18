@@ -69,7 +69,7 @@ int nodes_file_load(event_ptr event, char* file_name, int* number_of_nodes_ptr) 
 
     printf("\nNodes file loaded in successfully.\n");
     fclose(nodes_file); // Closes file as no longer needed.
-    return FILE_LOAD_SUCCESS;
+    return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
 

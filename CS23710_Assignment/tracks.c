@@ -82,7 +82,7 @@ int tracks_file_load(event_ptr event, char* file_name, int* number_of_tracks_ptr
 
     printf("\nTracks file loaded in successfully.\n");
     fclose(tracks_file); // Closes file as no longer needed.
-    return FILE_LOAD_SUCCESS;
+    return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
 

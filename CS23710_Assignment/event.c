@@ -19,13 +19,13 @@ int event_file_load(char* file_name, event_ptr event) {
     if (load_status == EOF) {
         printf("Error reading in Event Date.\n");
         fclose(event_file);
-        return FILE_LOAD_FAILURE;
+        return FAILURE;
     } else {
         load_status = fscanf(event_file, " %[a-zA-Z0-9 ]", event->date);
         if (load_status == EOF) {
             printf("Error reading in Event Start Time.\n");
             fclose(event_file);
-            return FILE_LOAD_FAILURE;
+            return FAILURE;
         } else {
             load_status = fscanf(event_file, " %d:%d",
                     &event->start_time.hours,
@@ -35,6 +35,6 @@ int event_file_load(char* file_name, event_ptr event) {
 
     printf("\nEvent file loaded in successfully.\n");
     fclose(event_file);
-    return FILE_LOAD_SUCCESS;
+    return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
