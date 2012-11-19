@@ -13,20 +13,28 @@
 #define FAILURE 0
 ///////////////////////////////////////////////////////////////////////////
 
-// Define file constants
-#define EVENT_FILE "name.txt"
-#define NODES_FILE "nodes.txt"
-#define TRACKS_FILE "tracks.txt"
-#define COURSES_FILE "courses.txt"
-#define ENTRANTS_FILE "entrants.txt"
-///////////////////////////////////////////////////////////////////////////
+// Enumeration Definition
 
-/* Enumaration Definition*/
 enum type {
     CP, // Timed checkpoint
     JN, // Junction
     MP // Medical checkpoint
 };
+///////////////////////////////////////////////////////////////////////////
+
+// Enumeration Definition
+
+enum location {
+    NS, // Not yet started
+    TC, // Time checkpoint
+    TN, // Track number
+    MC, // Medical checkpoint
+    CC, // Course completed
+    EI, // Excluded for taking an incorrect route
+    EM, // Excluded for medical safety reasons
+};
+///////////////////////////////////////////////////////////////////////////
+
 // Structure used to encapsulate attributes of a 24-hour clock.
 
 typedef struct time {
@@ -69,7 +77,7 @@ typedef struct competitor {
     time end_time; // time struct used to store the time at which the competitor finished their course.
     time medical_arrival_time; // time struct used to store the time at which the competitor arrived at a medical checkpoint.
     time medical_departure_time; // time struct used to store the time at which the competitor departed the medical checkpoint.
-    int location; // int used to store the current location of the competitor (#defined constant).
+    enum location location; // int used to store the current location of the competitor (#defined constant).
 } competitor;
 ///////////////////////////////////////////////////////////////////////////
 
@@ -112,7 +120,7 @@ int event_file_load(char* file_name, event_ptr event);
 int nodes_read_cycle(event_ptr event);
 int nodes_file_load(event_ptr event, char* file_name);
 enum type determine_type(char* type_input);
-int tracks_read_cycle(event_ptr event);;
+int tracks_read_cycle(event_ptr event);
 int tracks_file_load(event_ptr event, char* file_name);
 node* node_match(node* node, int node_number);
 int courses_read_cycle(event_ptr event);

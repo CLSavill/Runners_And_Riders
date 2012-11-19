@@ -32,6 +32,7 @@ int competitors_file_load(event_ptr event, char* file_name) {
 
         current_competitor->number = number;
         current_competitor->course = course;
+        current_competitor->location = NS;
         strcpy(current_competitor->name, name);
         current_competitor->next_competitor = NULL;
         current_competitor->previous_competitor = NULL;
@@ -60,3 +61,26 @@ int competitors_file_load(event_ptr event, char* file_name) {
     return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
+
+void print_not_started(event_ptr event) {
+    competitor *current_competitor;
+    current_competitor = event->competitor_head;
+    
+    printf("\n Printing competitors that have not yet started...\n\n");
+    printf("=================================================================================\n");
+    printf("| Number |                        Name                        | Course | Status |\n");
+    printf("=================================================================================\n");
+    
+    while (current_competitor->next_competitor != NULL) {
+        if (current_competitor->location == NS) {
+            printf("|   %2d   | %-50s |   %c    |  NS    |\n",
+                    current_competitor->number,
+                    current_competitor->name,
+                    current_competitor->course);
+        }
+        
+        current_competitor = current_competitor->next_competitor;
+    }
+    
+    printf("=================================================================================\n");
+}
