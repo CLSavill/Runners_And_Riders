@@ -9,17 +9,16 @@
 #include "event.h"
 
 int loader(event_ptr event) {
-    int file_read;
 
-    if (file_read = event_read_cycle(event) == SUCCESS) {
+    if (event_read_cycle(event) == SUCCESS) {
         printf("Event loading finished.\n");
-        if (file_read = nodes_read_cycle(event) == SUCCESS) {
+        if (nodes_read_cycle(event) == SUCCESS) {
             printf("Node loading finished.\n");
-            if (file_read = tracks_read_cycle(event) == SUCCESS) {
+            if (tracks_read_cycle(event) == SUCCESS) {
                 printf("Track loading finished.\n");
-                if (file_read = courses_read_cycle(event) == SUCCESS) {
+                if (courses_read_cycle(event) == SUCCESS) {
                     printf("Course loading finished.\n");
-                    if (file_read = competitors_read_cycle(event) == SUCCESS) {
+                    if (competitors_read_cycle(event) == SUCCESS) {
                         printf("Competitor loading finished");
                         return SUCCESS;
                     }
@@ -32,24 +31,28 @@ int loader(event_ptr event) {
     printf("\nLoading Cycle Failed.\n");
     return FAILURE;
 }
+///////////////////////////////////////////////////////////////////////////
 
 int event_read_cycle(event_ptr event) {
-    int file_read;
     char file_name[MAX_PATH_LENGTH];
+    
     printf("\nPlease enter in the file path and name of the event file: ");
     scanf("%s", file_name);
 
-    if (file_read = event_file_load(file_name, event) == SUCCESS) {
+    if (event_file_load(file_name, event) == SUCCESS) {
         printf("\n%s\n%s\n%02d:%d\n", event -> name, event -> date, event -> start_time.hours, event -> start_time.minutes);
         return SUCCESS;
     }
 
     return FAILURE;
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to cycle through the process of reading in the event's nodes.
 
 int nodes_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
-    int file_read;
+
     printf("\n\nPlease enter in the file path and name of the nodes file: ");
     scanf("%s", file_name);
 
@@ -58,7 +61,7 @@ int nodes_read_cycle(event_ptr event) {
     if (event->number_of_nodes != 0) {
         printf("Number of Nodes: %d\n", event->number_of_nodes);
 
-        if (file_read = nodes_file_load(event, file_name) == SUCCESS) {
+        if (nodes_file_load(event, file_name) == SUCCESS) {
             return SUCCESS;
         }
     }
@@ -66,20 +69,21 @@ int nodes_read_cycle(event_ptr event) {
     printf("\nError: File containing node details failed to load.\n");
     return FAILURE;
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to cycle through the process of reading in the event's tracks.
 
 int tracks_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
-    int file_read;
-
+    
     printf("\n\nPlease enter in the file path and name of the tracks file: ");
     scanf("%s", file_name);
-
     event->number_of_tracks = get_number_of_lines(file_name, event->number_of_tracks);
 
     if (event->number_of_tracks != 0) {
         printf("Number of Tracks: %d\n", event->number_of_tracks);
 
-        if (file_read = tracks_file_load(event, file_name) == SUCCESS) {
+        if (tracks_file_load(event, file_name) == SUCCESS) {
             return SUCCESS;
         }
 
@@ -87,10 +91,12 @@ int tracks_read_cycle(event_ptr event) {
         return FAILURE;
     }
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to cycle through the process of reading in the event's courses.
 
 int courses_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
-    int file_read;
 
     printf("\n\nPlease enter in the file path and name of the courses file: ");
     scanf("%s", file_name);
@@ -100,7 +106,7 @@ int courses_read_cycle(event_ptr event) {
     if (event->number_of_courses != 0) {
         printf("Number of Courses: %d\n", event->number_of_courses);
 
-        if (file_read = courses_file_load(event, file_name) == SUCCESS) {
+        if (courses_file_load(event, file_name) == SUCCESS) {
             return SUCCESS;
         }
 
@@ -108,10 +114,12 @@ int courses_read_cycle(event_ptr event) {
         return FAILURE;
     }
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to cycle through the process of reading in the event's competitors.
 
 int competitors_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
-    int file_read;
 
     printf("\n\nPlease enter in the file path and name of the competitors file: ");
     scanf("%s", file_name);
@@ -121,7 +129,7 @@ int competitors_read_cycle(event_ptr event) {
     if (event->number_of_competitors != 0) {
         printf("Number of Courses: %d\n", event->number_of_competitors);
 
-        if (file_read = competitors_file_load(event, file_name) == SUCCESS) {
+        if (competitors_file_load(event, file_name) == SUCCESS) {
             return SUCCESS;
         }
 
@@ -129,6 +137,7 @@ int competitors_read_cycle(event_ptr event) {
         return FAILURE;
     }
 }
+///////////////////////////////////////////////////////////////////////////
 
 // Method to get the number of lines from a file supplied.
 

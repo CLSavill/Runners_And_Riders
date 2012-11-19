@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=cs23710_assignment
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/cs23710_assignment
+CND_ARTIFACT_NAME_Debug=cs23710_main_mission
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/cs23710_main_mission
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=cs23710assignment.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/cs23710assignment.tar
+CND_PACKAGE_NAME_Debug=cs23710mainmission.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/cs23710mainmission.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=cs23710_assignment
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/cs23710_assignment
+CND_ARTIFACT_NAME_Release=cs23710_main_mission
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/cs23710_main_mission
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=cs23710assignment.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/cs23710assignment.tar
+CND_PACKAGE_NAME_Release=cs23710mainmission.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/cs23710mainmission.tar
 #
 # include compiler specific variables
 #
