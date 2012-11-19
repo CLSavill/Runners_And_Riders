@@ -53,7 +53,7 @@ int nodes_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the nodes file: ");
     scanf("%s", file_name);
 
-    event->number_of_nodes = get_number_of_nodes(file_name, event->number_of_nodes);
+    event->number_of_nodes = get_number_of_lines(file_name, event->number_of_nodes);
 
     if (event->number_of_nodes != 0) {
         printf("Number of Nodes: %d\n", event->number_of_nodes);
@@ -74,7 +74,7 @@ int tracks_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the tracks file: ");
     scanf("%s", file_name);
 
-    event->number_of_tracks = get_number_of_tracks(file_name, event->number_of_tracks);
+    event->number_of_tracks = get_number_of_lines(file_name, event->number_of_tracks);
 
     if (event->number_of_tracks != 0) {
         printf("Number of Tracks: %d\n", event->number_of_tracks);
@@ -95,7 +95,7 @@ int courses_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the courses file: ");
     scanf("%s", file_name);
 
-    event->number_of_courses = get_number_of_courses(file_name, event->number_of_courses);
+    event->number_of_courses = get_number_of_lines(file_name, event->number_of_courses);
 
     if (event->number_of_courses != 0) {
         printf("Number of Courses: %d\n", event->number_of_courses);
@@ -116,7 +116,7 @@ int competitors_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the competitors file: ");
     scanf("%s", file_name);
 
-    event->number_of_competitors = get_number_of_competitors(file_name, event->number_of_competitors);
+    event->number_of_competitors = get_number_of_lines(file_name, event->number_of_competitors);
 
     if (event->number_of_competitors != 0) {
         printf("Number of Courses: %d\n", event->number_of_competitors);
@@ -129,3 +129,20 @@ int competitors_read_cycle(event_ptr event) {
         return FAILURE;
     }
 }
+
+// Method to get the number of lines from a file supplied.
+
+int get_number_of_lines(char* file_name, int number_of_lines) {
+    FILE *number_file; // File pointer.
+    char line_input[60]; // Size 60 to buffer the input.
+
+    number_file = fopen(file_name, "r"); // Open file with read permissions only.
+
+    while (fgets(line_input, sizeof (line_input), number_file)) { // While end of file has not been reached.
+        number_of_lines++; // Counts the number of lines.
+    }
+
+    fclose(number_file); // Closes file as no longer needed.
+    return number_of_lines;
+}
+///////////////////////////////////////////////////////////////////////////

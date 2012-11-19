@@ -8,23 +8,6 @@
 #include <stdlib.h>
 #include "event.h"
 
-// Method to get the number of nodes from a file supplied (probably named "courses.txt").
-
-int get_number_of_courses(char* file_name, int number_of_courses) {
-    FILE *courses_file; // File pointer.
-    char line_input[40]; // Size 40 to buffer the input.
-
-    courses_file = fopen(file_name, "r"); // Open file with read permissions only.
-
-    while (fgets(line_input, sizeof (line_input), courses_file)) { // While end of file has not been reached.
-        number_of_courses++; // Counts the number of courses.
-    }
-
-    fclose(courses_file); // Closes file as no longer needed.
-    return number_of_courses;
-}
-///////////////////////////////////////////////////////////////////////////
-
 // Method to get the number of courses from a file supplied (probably named "courses.txt").
 
 int courses_file_load(event_ptr event, char* file_name) {

@@ -9,23 +9,6 @@
 #include <string.h>
 #include "event.h"
 
-// Method to get the number of competitors from a file supplied (probably named "entrants.txt").
-
-int get_number_of_competitors(char* file_name, int number_of_competitors) {
-    FILE *competitors_file; // File pointer.
-    char line_input[60]; // Size 60 to buffer the input.
-
-    competitors_file = fopen(file_name, "r"); // Open file with read permissions only.
-
-    while (fgets(line_input, sizeof (line_input), competitors_file)) { // While end of file has not been reached.
-        number_of_competitors++; // Counts the number of competitors.
-    }
-
-    fclose(competitors_file); // Closes file as no longer needed.
-    return number_of_competitors;
-}
-///////////////////////////////////////////////////////////////////////////
-
 // Method to load in all the competitors read from the file supplied (probably named "competitors.txt").
 
 int competitors_file_load(event_ptr event, char* file_name) {
