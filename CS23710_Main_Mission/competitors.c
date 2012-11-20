@@ -65,17 +65,9 @@ int competitors_file_load(event_ptr event, char* file_name) {
 }
 ///////////////////////////////////////////////////////////////////////////
 
-competitor* get_competitor(event_ptr event) {
-    int number = 0;
+competitor* get_competitor(event_ptr event, int number) {
     competitor *current_competitor;
     current_competitor = event->competitor_head;
-    
-    scanf("%d", &number);
-    
-    while (number < 1 || number > event->number_of_competitors) {
-        ("\nPlease enter in a valid competitor number between 1 and %d", event->number_of_competitors);
-        scanf("%d", &number);
-    }
 
     while (current_competitor->next_competitor != NULL) {
         if (current_competitor->number == number) {
@@ -88,11 +80,18 @@ competitor* get_competitor(event_ptr event) {
 
 void query_location(event_ptr event) {
     competitor *current_competitor;
+    int number;
 
     printf("\n Please enter in the competitor number you wish to query the location of (between 1 and %d): ",
             event->number_of_competitors);
+    scanf("%d", &number);
 
-    current_competitor = get_competitor(event);
+    while (number < 1 || number > event->number_of_competitors) {
+        ("\nPlease enter in a valid competitor number between 1 and %d", event->number_of_competitors);
+        scanf("%d", &number);
+    }
+
+    current_competitor = get_competitor(event, number);
 
     printf("\nCompetitor: %d, Name: %s, Location: ",
             current_competitor->number,
@@ -127,19 +126,22 @@ void print_location(event_ptr event, competitor* competitor) {
 }
 
 void update_competitor(event_ptr event) {
+    int checkpoint;
+    int hours;
+    int minutes;
     competitor *competitor;
+    int number;
 
     printf("\n Please enter in the competitor number you wish to update (between 1 and %d): ",
             event->number_of_competitors);
+    scanf("%d", &number);
 
-    competitor = get_competitor(event);
-    checkpoint_update(event, competitor);
-}
+    while (number < 1 || number > event->number_of_competitors) {
+        ("\nPlease enter in a valid competitor number between 1 and %d", event->number_of_competitors);
+        scanf("%d", &number);
+    }
 
-void checkpoint_update(event_ptr event, competitor* competitor) {
-    int checkpoint;
-    int time_hours;
-    int time_minutes;
+    competitor = get_competitor(event, number);
 
     printf("\nPlease enter in the checkpoint number (between 1 and %d): ",
             competitor->course_ptr->number_of_nodes);
@@ -151,25 +153,67 @@ void checkpoint_update(event_ptr event, competitor* competitor) {
         scanf("%d", &checkpoint);
     }
 
-    printf("\nPlease enter in the hour at which the competitor arrived (24 Hour): ");
-    scanf("%d", &time_hours);
-    printf("\nPlease enter in the minutes at which the competitor arrived: ");
-    scanf("%2d", &time_minutes);
+    printf("\nPlease enter in the hour at which the competitor arrived (between 00 and 23) for a 24-hour clock: ");
+    scanf("%d", &hours);
 
-    while (time_minutes > 60 || time_minutes < 00) {
-        printf("\nPlease enter in a valid number of minutes between (00 and 60): ");
-        scanf("%2d", &time_minutes);
+    while (hours > 23 || hours < 00) {
+        printf("\nPlease enter in a valid hour between 00 and 23 for a 24-hour clock: ");
+        scanf("%2d", &hours);
     }
 
-    competitor->status = TC;
-    competitor->location = checkpoint;
-    competitor->last_time_recored.hours = time_hours;
-    competitor->last_time_recored.minutes = time_minutes;
+    printf("\nPlease enter in the minutes at which the competitor arrived: ");
+    scanf("%2d", &minutes);
 
-    printf("Competitor %d- %s at Checkpoint %d updated with time %2d:%2d.\n",
+    while (minutes > 60 || minutes < 00) {
+        printf("\nPlease enter in a valid number of minutes between (00 and 60): ");
+        scanf("%2d", &minutes);
+    }
+
+    checkpoint_update(competitor, checkpoint, hours, minutes);
+}
+
+void checkpoint_update(competitor* competitor, int checkpoint, int hours, int minutes) {
+    char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
+
+    if (competitor->status == NS) {
+        competitor->start_time.hours = hours;
+        competitor->start_time.minutes = minutes;
+        competitor->status = TC;
+        competitor->location = checkpoint;
+        competitor->last_time_recored.hours = hours;
+        competitor->last_time_recored.minutes = minutes;
+    } else {
+        competitor->status = TC;
+        competitor->location = checkpoint;
+        competitor->last_time_recored.hours = hours;
+        competitor->last_time_recored.minutes = minutes;
+
+        if (checkpoint == competitor->course_ptr->course_nodes[competitor->course_ptr->number_of_nodes-1]) {
+            competitor->status = CC;
+            competitor->end_time.hours = hours;
+            competitor->end_time.minutes = minutes;
+        }
+    }
+
+    printf("Competitor %d- %s at %s %d updated with time %2d:%2d.\n",
             competitor->number,
             competitor->name,
+            status[competitor->status],
             competitor->location,
-            competitor->last_time_recored.hours = time_hours,
-            competitor->last_time_recored.minutes = time_minutes);
+            competitor->last_time_recored.hours = hours,
+            competitor->last_time_recored.minutes = minutes);
+}
+
+time get_time(competitor* competitor) {
+    time time;
+    
+    time.hours = competitor->end_time.hours - competitor->start_time.hours;
+    time.minutes = competitor->end_time.minutes - competitor->start_time.minutes;
+    
+    if (time.minutes < 0) {
+        time.hours--;
+        time.minutes = 60 + time.minutes;
+    }
+    
+    return time;    
 }

@@ -36,7 +36,7 @@ int loader(event_ptr event) {
 
 int event_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
-    
+
     printf("\nPlease enter in the file path and name of the event file: ");
     scanf("%s", file_name);
 
@@ -76,7 +76,7 @@ int nodes_read_cycle(event_ptr event) {
 
 int tracks_read_cycle(event_ptr event) {
     char file_name[MAX_PATH_LENGTH];
-    
+
     printf("\n\nPlease enter in the file path and name of the tracks file: ");
     scanf("%s", file_name);
     event->number_of_tracks = get_number_of_lines(file_name, event->number_of_tracks);
@@ -154,5 +154,38 @@ int get_number_of_lines(char* file_name, int number_of_lines) {
 
     fclose(number_file); // Closes file as no longer needed.
     return number_of_lines;
+}
+///////////////////////////////////////////////////////////////////////////
+
+// Method to read in a file of times.
+
+void read_times_file(event_ptr event) {
+    FILE *times_file; // File pointer.
+    char file_name[MAX_PATH_LENGTH];
+    int load_status;
+    char status;
+    int checkpoint;
+    int competitor_number;
+    int hours;
+    int minutes;
+    competitor *competitor;
+
+    printf("\n\nPlease enter in the file path and name of the time file to be loaded: ");
+    scanf("%s", file_name);
+
+    times_file = fopen(file_name, "r"); // Open file with read permissions only.
+
+    do {
+        if (load_status = fscanf(times_file, " %c %d %d %d:%d", &status, &checkpoint, &competitor_number, &hours, &minutes) == EOF) {
+            load_status = EOF;
+            printf("\nEnd of file reached.");
+        } else {
+            competitor = get_competitor(event, competitor_number);
+            checkpoint_update(competitor, checkpoint, hours, minutes);
+        }
+    } while (load_status != EOF);
+
+    fclose(times_file);
+    printf("\nLoading of times files complete.\n");
 }
 ///////////////////////////////////////////////////////////////////////////

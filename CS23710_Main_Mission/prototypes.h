@@ -16,6 +16,7 @@ int tracks_read_cycle(event_ptr event);
 int courses_read_cycle(event_ptr event);
 int competitors_read_cycle(event_ptr event);
 int get_number_of_lines(char* file_name, int number_of_lines);
+void read_times_file(event_ptr event);
 ///////////////////////////////////////////////////////////////////////////
 
 // event.c Method Prototypes
@@ -23,7 +24,7 @@ int event_file_load(char* file_name, event_ptr event);
 void print_not_started(event_ptr event);
 void print_out_on_course(event_ptr event);
 void print_finished(event_ptr event);
-
+void print_results(event_ptr event);
 ///////////////////////////////////////////////////////////////////////////
 
 // nodes.c Method Prototypes
@@ -44,9 +45,10 @@ course* get_course_ptr(event_ptr event, competitor* competitor);
 
 // competitors.c Method Prototypes
 int competitors_file_load(event_ptr event, char* file_name);
-competitor* get_competitor(event_ptr event);
+competitor* get_competitor(event_ptr event, int number);
 void query_location(event_ptr event);
 void print_location(event_ptr event, competitor* competitor);
 void update_competitor(event_ptr event);
-void checkpoint_update(event_ptr event, competitor* competitor);
+void checkpoint_update(competitor* competitor, int checkpoint, int hours, int minutes);
+time get_time(competitor* competitor);
 ///////////////////////////////////////////////////////////////////////////
