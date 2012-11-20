@@ -1,3 +1,5 @@
-build/Debug/GNU-Linux-x86/event.o: event.c event.h
+build/Debug/GNU-Linux-x86/event.o: event.c structs.h prototypes.h
 
-event.h:
+structs.h:
+
+prototypes.h:

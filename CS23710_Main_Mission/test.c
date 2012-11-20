@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 #include "test.h"
 
 void test_print_cycle(event_ptr event) {

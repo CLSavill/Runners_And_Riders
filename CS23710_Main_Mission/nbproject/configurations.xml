@@ -4,7 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>event.h</itemPath>
+      <itemPath>prototypes.h</itemPath>
+      <itemPath>structs.h</itemPath>
       <itemPath>test.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"

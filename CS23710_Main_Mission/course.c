@@ -6,7 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 
 // Method to get the number of courses from a file supplied (probably named "courses.txt").
 
@@ -97,4 +98,17 @@ int* read_course_nodes(int* course_nodes, FILE* courses_file, int number_of_cour
     }
 
     return course_nodes;
+}
+
+course* get_course_ptr(event_ptr event, competitor* competitor) {
+    course *current_course;
+    current_course = event->course_head;
+
+    while (current_course->next_course != NULL) {
+        if (competitor->course == current_course->id) {
+            return current_course;
+        } else {
+            current_course = current_course->next_course;
+        }
+    }
 }

@@ -7,7 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 
 // Method to load in all the competitors read from the file supplied (probably named "competitors.txt").
 
@@ -31,8 +32,10 @@ int competitors_file_load(event_ptr event, char* file_name) {
         }
 
         current_competitor->number = number;
-        current_competitor->course = course;
-        current_competitor->location = NS;
+        current_competitor->course = course;     
+        current_competitor->course_ptr = get_course_ptr(event, current_competitor);
+        current_competitor->status = NS;
+        current_competitor->location = 0;
         strcpy(current_competitor->name, name);
         current_competitor->next_competitor = NULL;
         current_competitor->previous_competitor = NULL;
@@ -62,25 +65,104 @@ int competitors_file_load(event_ptr event, char* file_name) {
 }
 ///////////////////////////////////////////////////////////////////////////
 
-void print_not_started(event_ptr event) {
+competitor* get_competitor(event_ptr event) {
+    int number;
     competitor *current_competitor;
     current_competitor = event->competitor_head;
-    
-    printf("\n Printing competitors that have not yet started...\n\n");
-    printf("=================================================================================\n");
-    printf("| Number |                        Name                        | Course | Status |\n");
-    printf("=================================================================================\n");
-    
+
+    while (number < 1 && number > event->number_of_competitors) {
+        scanf("%d", &number);
+    }
+
     while (current_competitor->next_competitor != NULL) {
-        if (current_competitor->location == NS) {
-            printf("|   %2d   | %-50s |   %c    |  NS    |\n",
-                    current_competitor->number,
-                    current_competitor->name,
-                    current_competitor->course);
+        if (current_competitor->number == number) {
+            return current_competitor;
+        } else {
+            current_competitor = current_competitor->next_competitor;
         }
-        
-        current_competitor = current_competitor->next_competitor;
+    }
+}
+
+void query_location(event_ptr event) {
+    competitor *current_competitor;
+
+    printf("\n Please enter in the competitor number you wish to query the location of: ");
+    
+    current_competitor = get_competitor(event);
+    
+    printf("\nCompetitor: %d, Name: %s, Location: ",
+            current_competitor->number,
+            current_competitor->name);
+    print_location(event, current_competitor);
+}
+
+void print_location(event_ptr event, competitor* competitor) {
+    switch (competitor->status) {
+        case NS:
+            printf("Not Yet Started.\n");
+            break;
+        case TC:
+            printf("At Time Checkpoint %d.\n", competitor->location);
+            break;
+        case TN:
+            printf("On Track Number %d.\n", competitor->location);
+            break;
+        case MC:
+            printf("At Medical Checkpoint %d.\n", competitor->location);
+            break;
+        case CC:
+            printf("Completed Course.\n");
+            break;
+        case EI:
+            printf("Excluded for taking an Incorrect Route.\n");
+            break;
+        case EM:
+            printf("Excluded for Medical Safety Reasons.\n");
+            break;
+    }
+}
+
+void update_competitor(event_ptr event) {
+    competitor *competitor;
+    
+    printf("\n Please enter in the competitor number you wish to update: ");
+    
+    competitor = get_competitor(event);
+    checkpoint_update(event, competitor);
+}
+
+void checkpoint_update(event_ptr event, competitor* competitor) {
+    int checkpoint;
+    int time_hours;
+    int time_minutes;
+    
+    printf("\nPlease enter in the checkpoint number: ");
+    scanf("%d", &checkpoint);
+    
+    while (checkpoint > event->number_of_nodes || checkpoint < 1) {
+        printf("\nPlease enter in a valid checkpoint number between 1 and %d: ",
+                competitor->course_ptr->course_nodes[competitor->course_ptr->number_of_nodes]);
+        scanf("%d", &checkpoint);
     }
     
-    printf("=================================================================================\n");
+    printf("\nPlease enter in the hour at which the competitor arrived (24 Hour): ");
+    scanf("%d", &time_hours);
+    printf("\nPlease enter in the minutes at which the competitor arrived: ");
+    scanf("%2d", &time_minutes);
+    
+    while (time_minutes > 60 || time_minutes < 00) {
+        printf("\nPlease enter in a valid number of minutes between (00 and 60): ");
+        scanf("%2d", &time_minutes);
+    }
+    
+    competitor->status = TC;
+    competitor->location = checkpoint;
+    competitor->last_time_recored.hours = time_hours;
+    competitor->last_time_recored.minutes = time_minutes;
+    
+    printf("Competitor %s at Checkpoint %d updated with time %2d:%2d.\n",
+            competitor->name,
+            competitor->location,
+            competitor->last_time_recored.hours = time_hours,
+            competitor->last_time_recored.minutes = time_minutes);
 }

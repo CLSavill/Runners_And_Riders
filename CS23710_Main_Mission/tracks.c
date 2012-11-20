@@ -6,7 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 
 // Method to get the number of tracks from a file supplied (probably named "tracks.txt").
 
@@ -68,16 +69,3 @@ int tracks_file_load(event_ptr event, char* file_name) {
     return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
-
-node* node_match(node* node, int node_number) {
-    int node_found = 0;
-    
-    while (node_found == 0) {
-        if (node_number == node->number) { // Evaluates if the two integer values match.               
-            return node; // Returns the node pointer.
-        }
-        else {
-            node = node->next_node;
-        }
-    }
-}

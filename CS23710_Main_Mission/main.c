@@ -6,7 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 #include "test.h"
 
 /*
@@ -54,8 +55,20 @@ int menu(event_ptr event) {
         scanf("%d", &option);
         
         switch (option) {
+            case 1:
+                query_location(event);
+                break;
             case 2: 
                 print_not_started(event);
+                break;
+            case 3:
+                print_out_on_course(event);
+                break;
+            case 4:
+                print_finished(event);
+                break;
+            case 5:
+                update_competitor(event);
                 break;
             case 8:
                 break;

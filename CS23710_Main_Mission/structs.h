@@ -1,5 +1,5 @@
 /* 
- * File: event.h
+ * File: structs.h
  * Author: Chris Savill - chs17
  * Description: File that defines the structures used in the event monitoring program.
  */
@@ -24,7 +24,7 @@ enum type {
 
 // Enumeration Definition
 
-enum location {
+enum status {
     NS, // Not yet started
     TC, // Time checkpoint
     TN, // Track number
@@ -73,11 +73,14 @@ typedef struct competitor {
     int number; // int used to store the competitor's number.
     char name[MAX_NAME_LENGTH]; // char array used to store the entrants name.
     char course; // char used to store the course the entrant has entered.
+    struct course *course_ptr;
     time start_time; // time struct used to store the time at which the competitor started on their course.
     time end_time; // time struct used to store the time at which the competitor finished their course.
+    time last_time_recored;
     time medical_arrival_time; // time struct used to store the time at which the competitor arrived at a medical checkpoint.
     time medical_departure_time; // time struct used to store the time at which the competitor departed the medical checkpoint.
-    enum location location; // int used to store the current location of the competitor (#defined constant).
+    enum status status; // int used to store the current location of the competitor (#defined constant).
+    int location;
 } competitor;
 ///////////////////////////////////////////////////////////////////////////
 
@@ -111,22 +114,4 @@ typedef struct event {
 
 // Type Definitions
 typedef event *event_ptr; // Type definition for a pointer to an event struct.
-///////////////////////////////////////////////////////////////////////////
-
-// Method Prototypes
-int loader(event_ptr event);
-int event_read_cycle(event_ptr event);
-int event_file_load(char* file_name, event_ptr event);
-int nodes_read_cycle(event_ptr event);
-int nodes_file_load(event_ptr event, char* file_name);
-enum type determine_type(char* type_input);
-int tracks_read_cycle(event_ptr event);
-int tracks_file_load(event_ptr event, char* file_name);
-node* node_match(node* node, int node_number);
-int courses_read_cycle(event_ptr event);
-int courses_file_load(event_ptr event, char* file_name);
-int* read_course_nodes(int* course_nodes, FILE* courses_file, int number_of_course_nodes);
-int competitors_read_cycle(event_ptr event);
-int competitors_file_load(event_ptr event, char* file_name);
-int get_number_of_lines(char* file_name, int number_of_lines);
 ///////////////////////////////////////////////////////////////////////////

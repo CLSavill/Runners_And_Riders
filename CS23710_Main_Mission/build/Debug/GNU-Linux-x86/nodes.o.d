@@ -1,3 +1,5 @@
-build/Debug/GNU-Linux-x86/nodes.o: nodes.c event.h
+build/Debug/GNU-Linux-x86/nodes.o: nodes.c structs.h prototypes.h
 
-event.h:
+structs.h:
+
+prototypes.h:

@@ -6,7 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 
 int loader(event_ptr event) {
 

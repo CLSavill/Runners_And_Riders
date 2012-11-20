@@ -1,3 +1,6 @@
-build/Debug/GNU-Linux-x86/competitors.o: competitors.c event.h
+build/Debug/GNU-Linux-x86/competitors.o: competitors.c structs.h \
+ prototypes.h
 
-event.h:
+structs.h:
+
+prototypes.h:

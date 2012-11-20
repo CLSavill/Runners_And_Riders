@@ -6,7 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "event.h"
+#include "structs.h"
+#include "prototypes.h"
 
 // Method to load in all the nodes read from the file supplied (probably named "nodes.txt").
 
@@ -63,5 +64,18 @@ enum type determine_type(char* type_input) {
         return JN;
     } else if (strcmp(type_input, "MP") == 0) { // Evaluates input and assigns corresponding enum value.
         return MP;
+    }
+}
+
+node* node_match(node* node, int node_number) {
+    int node_found = 0;
+    
+    while (node_found == 0) {
+        if (node_number == node->number) { // Evaluates if the two integer values match.               
+            return node; // Returns the node pointer.
+        }
+        else {
+            node = node->next_node;
+        }
     }
 }

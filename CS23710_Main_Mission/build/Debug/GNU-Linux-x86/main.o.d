@@ -1,5 +1,7 @@
-build/Debug/GNU-Linux-x86/main.o: main.c event.h test.h
+build/Debug/GNU-Linux-x86/main.o: main.c structs.h prototypes.h test.h
 
-event.h:
+structs.h:
+
+prototypes.h:
 
 test.h:
