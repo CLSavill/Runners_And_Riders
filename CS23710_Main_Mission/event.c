@@ -41,7 +41,7 @@ int event_file_load(char* file_name, event_ptr event) {
 ///////////////////////////////////////////////////////////////////////////
 
 void print_not_started(event_ptr event) {
-    char* location[] = {"NS", "TC - ", "TN - " , "MC", "CC", "EI", "EM"};
+    char* status[] = {"NS", "TC - ", "TN - " , "MC", "CC", "EI", "EM"};
     competitor *current_competitor;
     current_competitor = event->competitor_head;
     
@@ -56,7 +56,7 @@ void print_not_started(event_ptr event) {
                     current_competitor->number,
                     current_competitor->name,
                     current_competitor->course,
-                    location[current_competitor->location]);
+                    status[current_competitor->status]);
         }
         
         current_competitor = current_competitor->next_competitor;
@@ -66,7 +66,7 @@ void print_not_started(event_ptr event) {
 }
 
 void print_out_on_course(event_ptr event) {
-    char* location[] = {"NS", "TC - ", "TN - " , "MC", "CC", "EI", "EM"};
+    char* status[] = {"NS", "TC - ", "TN - " , "MC - ", "CC", "EI", "EM"};
     competitor *current_competitor;
     current_competitor = event->competitor_head;
     
@@ -76,12 +76,12 @@ void print_out_on_course(event_ptr event) {
     printf("===================================================================================\n");
     
     while (current_competitor->next_competitor != NULL) {
-        if (current_competitor->location == TC || current_competitor->location == TN || current_competitor->location == MC) {
-            printf("|   %2d   | %-50s |   %c    |  %5s%d  |\n",
+        if (current_competitor->status == TC || current_competitor->location == TN || current_competitor->location == MC) {
+            printf("|   %2d   | %-50s |   %c    |  %5s%d |\n",
                     current_competitor->number,
                     current_competitor->name,
                     current_competitor->course,
-                    location[current_competitor->location],
+                    status[current_competitor->status],
                     current_competitor->location);
         }
         
@@ -92,7 +92,7 @@ void print_out_on_course(event_ptr event) {
 }
 
 void print_finished(event_ptr event) {
-    char* location[] = {"NS", "TC", "TN" , "MC", "CC", "EI", "EM"};
+    char* status[] = {"NS", "TC", "TN" , "MC", "CC", "EI", "EM"};
     competitor *current_competitor;
     current_competitor = event->competitor_head;
     
@@ -107,7 +107,7 @@ void print_finished(event_ptr event) {
                     current_competitor->number,
                     current_competitor->name,
                     current_competitor->course,
-                    location[current_competitor->location]);
+                    status[current_competitor->status]);
         }
         
         current_competitor = current_competitor->next_competitor;
