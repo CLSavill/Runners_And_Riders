@@ -9,6 +9,7 @@
 #define MAX_EVENT_LENGTH 51     // Max length of event name string including /0.
 #define MAX_DATE_LENGTH 20      // Max length of date string including /0.
 #define MAX_NAME_LENGTH 41      // Max length of name string including /0.
+#define NOT_SET 100
 #define SUCCESS 1
 #define FAILURE 0
 ///////////////////////////////////////////////////////////////////////////
@@ -47,7 +48,6 @@ typedef struct time {
 
 typedef struct node {
     struct node *next_node;
-    struct node *previous_node;
     int number; // int used to store the node number.
     enum type type; // enum used to represent node type.
 } node;
@@ -57,7 +57,6 @@ typedef struct node {
 
 typedef struct track {
     struct track *next_track;
-    struct track *previous_track;
     int number; // int used to store the track number.
     struct node *track_start; // Pointer to a node struct used to point to the node that the track leads from.
     struct node *track_end; // Pointer to a node struct used to point to the node that the track leads to.
@@ -69,7 +68,6 @@ typedef struct track {
 
 typedef struct competitor {
     struct competitor *next_competitor;
-    struct competitor *previous_competitor;
     int number; // int used to store the competitor's number.
     char name[MAX_NAME_LENGTH]; // char array used to store the entrants name.
     char course; // char used to store the course the entrant has entered.
@@ -77,6 +75,7 @@ typedef struct competitor {
     time start_time; // time struct used to store the time at which the competitor started on their course.
     time end_time; // time struct used to store the time at which the competitor finished their course.
     time last_time_recored;
+    int last_checkpoint;
     time medical_arrival_time; // time struct used to store the time at which the competitor arrived at a medical checkpoint.
     time medical_departure_time; // time struct used to store the time at which the competitor departed the medical checkpoint.
     enum status status; // int used to store the current location of the competitor (#defined constant).
@@ -89,9 +88,8 @@ typedef struct competitor {
 typedef struct course {
     char id;
     int number_of_nodes; // int used to store the number of nodes in the course.
-    int *course_nodes;
+    node **course_nodes;
     struct course *next_course;
-    struct course *previous_course;
 } course;
 ///////////////////////////////////////////////////////////////////////////
 
@@ -101,6 +99,7 @@ typedef struct event {
     char name[MAX_EVENT_LENGTH]; // char array used to store the name of the event.
     char date[MAX_DATE_LENGTH]; // char array used to store the date of the event.
     struct time start_time; // time struct used to store the start time of the event.
+    struct time current_time;
     int number_of_nodes;
     struct node *node_head;
     int number_of_tracks;

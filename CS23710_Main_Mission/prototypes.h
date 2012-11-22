@@ -31,16 +31,19 @@ void print_results(event_ptr event);
 int nodes_file_load(event_ptr event, char* file_name);
 enum type determine_type(char* type_input);
 node* node_match(node* node, int node_number);
+node* get_node(node* node_head, int number);
 ///////////////////////////////////////////////////////////////////////////
 
 // tracks.c Method Prototypes
 int tracks_file_load(event_ptr event, char* file_name);
+track* get_track(track* track_head, int node1, int node2);
 ///////////////////////////////////////////////////////////////////////////
 
 // courses.c Method Prototypes
 int courses_file_load(event_ptr event, char* file_name);
-int* read_course_nodes(int* course_nodes, FILE* courses_file, int number_of_course_nodes);
+node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int number_of_course_nodes);
 course* get_course_ptr(event_ptr event, competitor* competitor);
+int get_next_course_node_number(course* course_ptr, int node_number);
 ///////////////////////////////////////////////////////////////////////////
 
 // competitors.c Method Prototypes
@@ -49,6 +52,8 @@ competitor* get_competitor(event_ptr event, int number);
 void query_location(event_ptr event);
 void print_location(event_ptr event, competitor* competitor);
 void update_competitor(event_ptr event);
-void checkpoint_update(competitor* competitor, int checkpoint, int hours, int minutes);
+void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes);
 time get_time(competitor* competitor);
+void update_statuses(event_ptr event);
+int estimate_location(event_ptr event, competitor* competitor);
 ///////////////////////////////////////////////////////////////////////////

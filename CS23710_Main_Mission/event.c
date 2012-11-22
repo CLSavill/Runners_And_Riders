@@ -16,6 +16,9 @@ int event_file_load(char* file_name, event_ptr event) {
     int load_status;
     event_file = fopen(file_name, "r");
     load_status = fscanf(event_file, "%[a-zA-Z -]", event->name);
+    
+    event->start_time.hours = NOT_SET;
+    event->start_time.minutes = NOT_SET;
 
     if (load_status == EOF) {
         printf("Error reading in Event Date.\n");
@@ -52,8 +55,8 @@ void print_not_started(event_ptr event) {
     printf("===================================================================================\n");
 
     while (current_competitor->next_competitor != NULL) {
-        if (current_competitor->location == NS) {
-            printf("|   %2d   | %-50s |   %c    |    %2s    |\n",
+        if (current_competitor->status == NS) {
+            printf("|   %02d   | %-50s |   %c    |    %2s    |\n",
                     current_competitor->number,
                     current_competitor->name,
                     current_competitor->course,
@@ -74,13 +77,13 @@ void print_out_on_course(event_ptr event) {
     current_competitor = event->competitor_head;
 
     printf("\n Printing competitors that are out on a course...\n\n");
-    printf("===================================================================================\n");
-    printf("| Number |                        Name                        | Course | Location |\n");
-    printf("===================================================================================\n");
+    printf("============================================================================================\n");
+    printf("| Number |                        Name                        | Course | Presumed Location |\n");
+    printf("============================================================================================\n");
 
     while (current_competitor->next_competitor != NULL) {
         if (current_competitor->status == TC || current_competitor->status == TN || current_competitor->status == MC) {
-            printf("|   %2d   | %-50s |   %c    |  %5s%d |\n",
+            printf("|   %02d   | %-50s |   %c    |      %5s%2d      |\n",
                     current_competitor->number,
                     current_competitor->name,
                     current_competitor->course,
@@ -91,7 +94,7 @@ void print_out_on_course(event_ptr event) {
         current_competitor = current_competitor->next_competitor;
     }
 
-    printf("===================================================================================\n");
+    printf("============================================================================================\n");
 }
 
 void print_finished(event_ptr event) {
@@ -106,7 +109,7 @@ void print_finished(event_ptr event) {
 
     while (current_competitor->next_competitor != NULL) {
         if (current_competitor->status == CC) {
-            printf("|   %2d   | %-50s |   %c    |    %2s    |\n",
+            printf("|   %02d   | %-50s |   %c    |    %2s    |\n",
                     current_competitor->number,
                     current_competitor->name,
                     current_competitor->course,
@@ -134,7 +137,7 @@ void print_results(event_ptr event) {
         if (current_competitor->status == CC) {
             time = get_time(current_competitor);
             
-            printf("|   %2d   | %-50s |   %2s   |   %2d:%2d  |\n",
+            printf("|   %02d   | %-50s |   %2s   |   %02d:%02d  |\n",
                     current_competitor->number,
                     current_competitor->name,
                     status[current_competitor->status],

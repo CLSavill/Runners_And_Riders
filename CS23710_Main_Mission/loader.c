@@ -181,10 +181,10 @@ void read_times_file(event_ptr event) {
             printf("\nEnd of file reached.");
         } else {
             competitor = get_competitor(event, competitor_number);
-            checkpoint_update(competitor, checkpoint, hours, minutes);
+            checkpoint_update(event, competitor, checkpoint, hours, minutes);
         }
     } while (load_status != EOF);
-
+    
     fclose(times_file);
     printf("\nLoading of times files complete.\n");
 }

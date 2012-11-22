@@ -17,7 +17,7 @@ int nodes_file_load(event_ptr event, char* file_name) {
     int counter = 0;
     char type_input[3];
     int number;
-    node *current_node, *previous_node;
+    node *current_node;
     event->node_head = NULL;
 
     nodes_file = fopen(file_name, "r"); // Open file with read permissions only.
@@ -32,21 +32,17 @@ int nodes_file_load(event_ptr event, char* file_name) {
         current_node->number = number;
         current_node->type = determine_type(type_input);
         current_node->next_node = NULL;
-        current_node->previous_node = NULL;
 
         if (event->node_head == NULL) {
             event->node_head = current_node;
             printf("Head Node: Number: %d, Type: %d = %2s\n", current_node->number,
                     current_node->type, type_input);
-            previous_node = current_node;
             current_node->next_node = malloc(sizeof (struct node));
             current_node = current_node->next_node;
         } else {
-            current_node->previous_node = previous_node;
-            previous_node = current_node;
             current_node->next_node = malloc(sizeof (struct node));
-            printf("Node: Number: %d, Type: %d = %2s, Previous: %d\n", current_node->number,
-                    current_node->type, type_input, current_node->previous_node->number);
+            printf("Node: Number: %d, Type: %d = %2s\n", current_node->number,
+                    current_node->type, type_input);
             current_node = current_node->next_node;
         }
     }
@@ -67,15 +63,27 @@ enum type determine_type(char* type_input) {
     }
 }
 
-node* node_match(node* node, int node_number) {
+node* node_match(node* node, int number) {
     int node_found = 0;
-    
+
     while (node_found == 0) {
-        if (node_number == node->number) { // Evaluates if the two integer values match.               
+        if (number == node->number) { // Evaluates if the two integer values match.               
             return node; // Returns the node pointer.
-        }
-        else {
+        } else {
             node = node->next_node;
+        }
+    }
+}
+
+node* get_node(node* node_head, int number) {
+    node* current_node;
+    current_node = node_head;
+    
+    while (current_node->next_node != NULL) {
+        if (current_node->number == number) {
+            return current_node;
+        } else {
+            current_node = current_node->next_node;
         }
     }
 }

@@ -19,7 +19,7 @@ int tracks_file_load(event_ptr event, char* file_name) {
     int track_start_number;
     int track_end_number;
     int track_max_time;
-    track *current_track, *previous_track;
+    track *current_track;
     current_track = event->track_head;
     event->track_head = NULL;
 
@@ -47,19 +47,15 @@ int tracks_file_load(event_ptr event, char* file_name) {
                     current_track->track_start->number,
                     current_track->track_end->number,
                     current_track->max_time);
-            previous_track = current_track;
             current_track->next_track = malloc(sizeof (struct track));
             current_track = current_track->next_track;
         } else {
-            current_track->previous_track = previous_track;
-            previous_track = current_track;
             current_track->next_track = malloc(sizeof (struct track));
-            printf("Track: Number: %d, Start: %d, End: %d, Max Time: %d, Previous: %d\n",
+            printf("Track: Number: %d, Start: %d, End: %d, Max Time: %d\n",
                     current_track->number,
                     current_track->track_start->number,
                     current_track->track_end->number,
-                    current_track->max_time,
-                    current_track->previous_track->number);
+                    current_track->max_time);
             current_track = current_track->next_track;
         }
     }
@@ -69,3 +65,16 @@ int tracks_file_load(event_ptr event, char* file_name) {
     return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
+
+track* get_track(track* track_head, int node1, int node2) {
+    track *current_track;
+    current_track = track_head;
+
+    while (current_track->next_track != NULL) {
+        if (current_track->track_start->number == node1 && current_track->track_end->number == node2) {
+            return current_track;
+        } else {
+            current_track = current_track->next_track;
+        }
+    }
+}
