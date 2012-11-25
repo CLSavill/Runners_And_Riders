@@ -8,21 +8,19 @@
 #include <stdlib.h>
 #include "structs.h"
 #include "prototypes.h"
-#include "test.h"
 
 /*
  * 
  */
 int main(int argc, char** argv) {
     event_ptr event;
-    event = malloc(sizeof (struct event));
-    int file_read;
+    event = malloc(sizeof (struct event)); // Allocates memory for an event struct.
 
     printf("Event Monitoring Program Launching...\n");
 
-    if (file_read = loader(event) == SUCCESS) {
+    if (loader(event) == SUCCESS) {
         printf("Loading Cycle Finished.");
-        test_print_cycle(event);
+
         if (menu(event) == SUCCESS) {
             printf("\n\nExiting Program...\n");
         }
@@ -37,7 +35,7 @@ int menu(event_ptr event) {
     do {
         printf("\nPress enter to continue.\n");
         getchar(); // Consumes \n.
-        getchar(); // Pauses program until a new character is entered.
+        getchar(); // Pauses program until enter is entered.
 
         printf("\n===================================== MAIN MENU =====================================");
         printf("\n|                                                                                   |");

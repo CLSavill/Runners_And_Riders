@@ -20,7 +20,7 @@ int loader(event_ptr event) {
                 if (courses_read_cycle(event) == SUCCESS) {
                     printf("Course loading finished.\n");
                     if (competitors_read_cycle(event) == SUCCESS) {
-                        printf("Competitor loading finished");
+                        printf("Competitor loading finished.\n");
                         return SUCCESS;
                     }
                 }
@@ -128,7 +128,7 @@ int competitors_read_cycle(event_ptr event) {
     event->number_of_competitors = get_number_of_lines(file_name, event->number_of_competitors);
 
     if (event->number_of_competitors != 0) {
-        printf("Number of Courses: %d\n", event->number_of_competitors);
+        printf("Number of Competitors: %d\n", event->number_of_competitors);
 
         if (competitors_file_load(event, file_name) == SUCCESS) {
             return SUCCESS;

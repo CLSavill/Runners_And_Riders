@@ -10,7 +10,7 @@
 #include "structs.h"
 #include "prototypes.h"
 
-// Method to load in all the competitors read from the file supplied (probably named "competitors.txt").
+// Method to load in all the competitors read from the file supplied (probably named "entrants.txt").
 
 int competitors_file_load(event_ptr event, char* file_name) {
     FILE *competitors_file; // File pointer.
@@ -18,7 +18,7 @@ int competitors_file_load(event_ptr event, char* file_name) {
     int number;
     char course;
     char name[MAX_NAME_LENGTH];
-    competitor *current_competitor;
+    competitor *new_competitor;
     event->competitor_head = NULL;
 
     competitors_file = fopen(file_name, "r"); // Open file with read permissions only.
@@ -27,33 +27,35 @@ int competitors_file_load(event_ptr event, char* file_name) {
         fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name);
 
         if (counter == 0) {
-            current_competitor = malloc(sizeof (struct competitor));
+            new_competitor = malloc(sizeof (struct competitor));
         }
 
         // Initialising the new competitor:
-        current_competitor->number = number;
-        current_competitor->course = course;
-        current_competitor->course_ptr = get_course_ptr(event, current_competitor);
-        current_competitor->status = NS;
-        current_competitor->location = NS;
-        current_competitor->last_checkpoint = NS;
-        strcpy(current_competitor->name, name);
-        current_competitor->next_competitor = NULL;
+        new_competitor->number = number;
+        new_competitor->course = course;
+        new_competitor->course_ptr = get_course_ptr(event, new_competitor);
+        new_competitor->status = NS;
+        new_competitor->location = NS;
+        new_competitor->last_checkpoint = NS;
+        strcpy(new_competitor->name, name);
+        new_competitor->next_competitor = NULL;
         ///////////////////////////////////////////////////////////////////////////
 
         // Adding the new competitor to the linked list:
         if (event->competitor_head == NULL) {
-            event->competitor_head = current_competitor;
-            printf("Head Competitor: Number: %d, Course: %c, Name: %s\n", current_competitor->number,
-                    current_competitor->course, current_competitor->name);
-            current_competitor->next_competitor = malloc(sizeof (struct competitor));
-            current_competitor = current_competitor->next_competitor;
+            event->competitor_head = new_competitor;
+            printf("Head Competitor: Number: %d, Course: %c, Name: %s\n", new_competitor->number,
+                    new_competitor->course, new_competitor->name);
+
         } else {
-            current_competitor->next_competitor = malloc(sizeof (struct competitor));
-            printf("Competitor: Number: %d, Course: %c, Name: %s\n", current_competitor->number,
-                    current_competitor->course,
-                    current_competitor->name,
-                    current_competitor = current_competitor->next_competitor);
+            printf("Competitor: Number: %d, Course: %c, Name: %s\n", new_competitor->number,
+                    new_competitor->course,
+                    new_competitor->name);
+        }
+
+        if (counter != event->number_of_competitors) {
+            new_competitor->next_competitor = malloc(sizeof (struct competitor)); // Allocates memory for the next competitor.
+            new_competitor = new_competitor->next_competitor;
         }
         ///////////////////////////////////////////////////////////////////////////
     }
@@ -96,7 +98,6 @@ void query_location(event_ptr event) {
     }
 
     current_competitor = get_competitor(event, number);
-
     print_location(event, current_competitor);
 }
 ///////////////////////////////////////////////////////////////////////////
@@ -205,12 +206,12 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
     } else if (competitor->status == TC || competitor->status == TN) {
         competitor->status = TC;
         competitor->location = checkpoint;
-        competitor->last_checkpoint = get_next_course_node_number(competitor->course_ptr, checkpoint);
+        competitor->last_checkpoint = checkpoint;
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
 
         // Checks if the competitor has reached the final checkpoint of the course/finished.
-        if (checkpoint == competitor->course_ptr->course_nodes[competitor->course_ptr->number_of_nodes - 1]->number) {
+        if (competitor->last_checkpoint == competitor->course_ptr->course_nodes[competitor->course_ptr->number_of_nodes - 1]->number) {
             competitor->status = CC;
             competitor->end_time.hours = hours;
             competitor->end_time.minutes = minutes;
@@ -233,11 +234,11 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
             competitor->location,
             competitor->last_time_recored.hours = hours,
             competitor->last_time_recored.minutes = minutes);
-    printf("Current event time updated to %d:%d.\n",
+    printf("Current event time updated to %02d:%02d.\n\n",
             event->current_time.hours,
             event->current_time.minutes);
 
-    update_statuses(event); // Call to function that updates all the competitors' statuses.
+    update_statuses(event); // Call to function that updates all the competitors statuses.
 }
 ///////////////////////////////////////////////////////////////////////////
 
@@ -251,7 +252,6 @@ time get_time(competitor* competitor) {
 
     // Checks if minutes are negative and if so then adjust time accordingly.
     if (time.minutes < 0) {
-
         time.hours--;
         time.minutes = 60 + time.minutes;
     }
@@ -261,12 +261,14 @@ time get_time(competitor* competitor) {
 }
 ///////////////////////////////////////////////////////////////////////////
 
+// Method to update the statuses of all the competitors.
+
 void update_statuses(event_ptr event) {
     competitor *current_competitor;
     current_competitor = event->competitor_head;
 
     while (current_competitor->next_competitor != NULL) { // Checks if no more competitors present in linked list.
-        if (current_competitor->status == TC || current_competitor->status == TN) {
+        if (current_competitor->status == TC || current_competitor->status == TN) { // If competitor is on a course.
             if ((current_competitor->last_time_recored.hours) < (event->current_time.hours)) {
                 current_competitor->status = TN;
                 current_competitor->location = estimate_location(event, current_competitor);
@@ -280,10 +282,13 @@ void update_statuses(event_ptr event) {
         current_competitor = current_competitor->next_competitor;
     }
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to estimate the current location of a competitor.
 
 int estimate_location(event_ptr event, competitor* competitor) {
-    node* node1;
-    node* node2;
+    node* nodeA;
+    node* nodeB;
     node* next_node;
     int next_node_number;
     int est_arrival_time = 0;
@@ -294,35 +299,35 @@ int estimate_location(event_ptr event, competitor* competitor) {
     if (competitor->status == NS) {
         return NS;
     } else {
-        node1 = get_node(event->node_head, competitor->last_checkpoint);
-        next_node_number = get_next_course_node_number(competitor->course_ptr, node1->number);
-        node2 = get_node(event->node_head, next_node_number);
-        track = get_track(event->track_head, node1->number, node2->number);
+        nodeA = get_node(event->node_head, competitor->last_checkpoint);
+        next_node_number = get_next_course_node_number(competitor->course_ptr, nodeA->number); // Gets node number of the next node on the course.
+        nodeB = get_node(event->node_head, next_node_number);
+        track = get_track(event->track_head, nodeA->number, nodeB->number); // Retrieves track that lies between nodeA and nodeB.
 
         current_competitor_time = (competitor->last_time_recored.hours * 60) + competitor->last_time_recored.minutes;
         event_time = (event->current_time.hours * 60) + event->current_time.minutes;
         est_arrival_time = current_competitor_time;
-
-        while (node2->type == JN) {
-            track = get_track(event->track_head, node1->number, node2->number);
-            est_arrival_time += track->max_time;
+        
+        while (nodeB->type == JN) { // While the second node is a junction node.
+            track = get_track(event->track_head, nodeA->number, nodeB->number); // Obtain track.
+            est_arrival_time += track->max_time; // Increase estimated arrival time for competitor at end of track.
 
             if (event_time > est_arrival_time) {
-                next_node_number = get_next_course_node_number(competitor->course_ptr, node2->number);
+                next_node_number = get_next_course_node_number(competitor->course_ptr, nodeB->number);
                 next_node = get_node(event->node_head, next_node_number);
-                node1 = node2;
-                node2 = next_node;
+                nodeA = nodeB;
+                nodeB = next_node;
 
-                if (node2->type != JN) {
-                    track = get_track(event->track_head, node1->number, node2->number);
+                if (nodeB->type != JN) { // If the new nodeB is not a junction node.
+                    track = get_track(event->track_head, nodeA->number, nodeB->number);
                     return track->number;
                 }
             } else {
                 return track->number;
             }
-        }
+        }      
+        return track->number;
     }
-
-    return track->number;
 }
+///////////////////////////////////////////////////////////////////////////
 

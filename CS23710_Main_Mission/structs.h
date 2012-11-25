@@ -58,8 +58,8 @@ typedef struct node {
 typedef struct track {
     struct track *next_track;
     int number; // int used to store the track number.
-    struct node *track_start; // Pointer to a node struct used to point to the node that the track leads from.
-    struct node *track_end; // Pointer to a node struct used to point to the node that the track leads to.
+    struct node *nodeA; // Pointer to a node struct used to point to the node that the track leads from.
+    struct node *nodeB; // Pointer to a node struct used to point to the node that the track leads to.
     int max_time; // int use to store the maximum time it should take for a competitor to get across the track.
 } track;
 ///////////////////////////////////////////////////////////////////////////

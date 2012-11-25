@@ -43,8 +43,9 @@ int event_file_load(char* file_name, event_ptr event) {
 }
 ///////////////////////////////////////////////////////////////////////////
 
+// Method to display a table of the competitors who have not started and the number.
+
 void print_not_started(event_ptr event) {
-    char* status[] = {"NS", "TC - ", "TN - ", "MC", "CC", "EI", "EM"};
     competitor *current_competitor;
     current_competitor = event->competitor_head;
     int counter = 0;
@@ -56,11 +57,10 @@ void print_not_started(event_ptr event) {
 
     while (current_competitor->next_competitor != NULL) {
         if (current_competitor->status == NS) {
-            printf("|   %02d   | %-50s |   %c    |    %2s    |\n",
+            printf("|   %02d   | %-50s |   %c    |    NS    |\n",
                     current_competitor->number,
                     current_competitor->name,
-                    current_competitor->course,
-                    status[current_competitor->status]);
+                    current_competitor->course);
             counter++;
         }
 
@@ -70,6 +70,9 @@ void print_not_started(event_ptr event) {
     printf("===================================================================================\n");
     printf("\nNumber of Competitors not started yet: %d\n", counter);
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to display a table of the competitors who are out on their course.
 
 void print_out_on_course(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - ", "MC - ", "CC", "EI", "EM"};
@@ -96,6 +99,9 @@ void print_out_on_course(event_ptr event) {
 
     printf("============================================================================================\n");
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to display a table of the competitors who have finished their course.
 
 void print_finished(event_ptr event) {
     char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
@@ -121,9 +127,11 @@ void print_finished(event_ptr event) {
 
     printf("===================================================================================\n");
 }
+///////////////////////////////////////////////////////////////////////////
+
+// Method to display a table of the result times for the competitors.
 
 void print_results(event_ptr event) {
-    char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
     competitor *current_competitor;
     current_competitor = event->competitor_head;
     time time;
@@ -137,10 +145,9 @@ void print_results(event_ptr event) {
         if (current_competitor->status == CC) {
             time = get_time(current_competitor);
             
-            printf("|   %02d   | %-50s |   %2s   |   %02d:%02d  |\n",
+            printf("|   %02d   | %-50s |   CC   |   %02d:%02d  |\n",
                     current_competitor->number,
                     current_competitor->name,
-                    status[current_competitor->status],
                     time.hours,
                     time.minutes);
         }
@@ -150,3 +157,4 @@ void print_results(event_ptr event) {
 
     printf("===================================================================================\n");
 }
+///////////////////////////////////////////////////////////////////////////

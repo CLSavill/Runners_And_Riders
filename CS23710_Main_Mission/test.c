@@ -41,16 +41,16 @@ void test_tracks(track* head_track) {
 
     printf("Head Track: Number: %d, Start: %d, End: %d, Max Time: %d\n",
             current_track->number,
-            current_track->track_start->number,
-            current_track->track_end->number,
+            current_track->nodeA->number,
+            current_track->nodeB->number,
             current_track->max_time);
     current_track = current_track->next_track;
 
     while (current_track->next_track != NULL) {
         printf("Track: Number: %d, Start: %d, End: %d, Max Time: %d\n",
                 current_track->number,
-                current_track->track_start->number,
-                current_track->track_end->number,
+                current_track->nodeA->number,
+                current_track->nodeB->number,
                 current_track->max_time);
         current_track = current_track->next_track;
     }

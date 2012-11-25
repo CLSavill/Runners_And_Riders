@@ -13,37 +13,41 @@
 
 int nodes_file_load(event_ptr event, char* file_name) {
     FILE *nodes_file; // File pointer.
-    int load_status = 0;
     int counter = 0;
     char type_input[3];
     int number;
-    node *current_node;
+    node *new_node;
     event->node_head = NULL;
 
     nodes_file = fopen(file_name, "r"); // Open file with read permissions only.
 
     for (counter; counter < event->number_of_nodes; counter++) {
-        load_status = fscanf(nodes_file, " %d %2s", &number, type_input);
+        fscanf(nodes_file, " %d %2s", &number, type_input);
 
         if (counter == 0) {
-            current_node = malloc(sizeof (struct node));
+            new_node = malloc(sizeof (struct node)); // Allocates memory for a new node.
         }
 
-        current_node->number = number;
-        current_node->type = determine_type(type_input);
-        current_node->next_node = NULL;
+        // Initialises new node:
+        new_node->number = number;
+        new_node->type = determine_type(type_input);
+        new_node->next_node = NULL;
+        ///////////////////////////////////////////////////////////////////////////
 
+        // Adds new node to linked list:
         if (event->node_head == NULL) {
-            event->node_head = current_node;
-            printf("Head Node: Number: %d, Type: %d = %2s\n", current_node->number,
-                    current_node->type, type_input);
-            current_node->next_node = malloc(sizeof (struct node));
-            current_node = current_node->next_node;
+            event->node_head = new_node;
+            printf("Head Node: Number: %d, Type: %d = %2s\n", new_node->number,
+                    new_node->type, type_input);
         } else {
-            current_node->next_node = malloc(sizeof (struct node));
-            printf("Node: Number: %d, Type: %d = %2s\n", current_node->number,
-                    current_node->type, type_input);
-            current_node = current_node->next_node;
+            printf("Node: Number: %d, Type: %d = %2s\n", new_node->number,
+                    new_node->type, type_input);
+        }
+        ///////////////////////////////////////////////////////////////////////////
+
+        if (counter != event->number_of_nodes) {
+            new_node->next_node = malloc(sizeof (struct node)); // Allocates memory for the next node.
+            new_node = new_node->next_node;
         }
     }
 
@@ -52,6 +56,8 @@ int nodes_file_load(event_ptr event, char* file_name) {
     return SUCCESS;
 }
 ///////////////////////////////////////////////////////////////////////////
+
+// Method to determine the enum type of a node.
 
 enum type determine_type(char* type_input) {
     if (strcmp(type_input, "CP") == 0) { // Evaluates input and assigns corresponding enum value.
@@ -62,23 +68,14 @@ enum type determine_type(char* type_input) {
         return MP;
     }
 }
+///////////////////////////////////////////////////////////////////////////
 
-node* node_match(node* node, int number) {
-    int node_found = 0;
-
-    while (node_found == 0) {
-        if (number == node->number) { // Evaluates if the two integer values match.               
-            return node; // Returns the node pointer.
-        } else {
-            node = node->next_node;
-        }
-    }
-}
+// Method that finds a node that matches a number passed in an returns the corresponding node pointer.
 
 node* get_node(node* node_head, int number) {
     node* current_node;
     current_node = node_head;
-    
+
     while (current_node->next_node != NULL) {
         if (current_node->number == number) {
             return current_node;
@@ -87,3 +84,4 @@ node* get_node(node* node_head, int number) {
         }
     }
 }
+///////////////////////////////////////////////////////////////////////////

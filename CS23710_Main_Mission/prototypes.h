@@ -30,7 +30,6 @@ void print_results(event_ptr event);
 // nodes.c Method Prototypes
 int nodes_file_load(event_ptr event, char* file_name);
 enum type determine_type(char* type_input);
-node* node_match(node* node, int node_number);
 node* get_node(node* node_head, int number);
 ///////////////////////////////////////////////////////////////////////////
 
