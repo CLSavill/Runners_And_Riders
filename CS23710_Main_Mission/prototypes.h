@@ -42,7 +42,8 @@ track* get_track(track* track_head, int node1, int node2);
 int courses_file_load(event_ptr event, char* file_name);
 node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int number_of_course_nodes);
 course* get_course_ptr(event_ptr event, competitor* competitor);
-int get_next_course_node_number(course* course_ptr, int node_number);
+int get_course_node_number(course* course_ptr, int index);
+int get_course_node_index(course* course_ptr, int node_number, int last_index);
 ///////////////////////////////////////////////////////////////////////////
 
 // competitors.c Method Prototypes

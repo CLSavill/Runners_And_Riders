@@ -118,12 +118,19 @@ course* get_course_ptr(event_ptr event, competitor* competitor) {
 
 // Method to return the node number of the next node in the course.
 
-int get_next_course_node_number(course* course_ptr, int node_number) {
+int get_course_node_number(course* course_ptr, int index) {
+    return course_ptr->course_nodes[index]->number; // Returns the course node index.
+}
+///////////////////////////////////////////////////////////////////////////
+
+// Method to return the node index of a node within the array of course_nodes.
+
+int get_course_node_index(course* course_ptr, int node_number, int last_index) {
     int counter = 0;
 
     for (counter; counter < course_ptr->number_of_nodes; counter++) {
-        if (course_ptr->course_nodes[counter]->number == node_number) {
-            return course_ptr->course_nodes[counter + 1]->number; // Returns the next node number.
+        if (course_ptr->course_nodes[counter]->number == node_number && counter > last_index) {
+            return counter;
         }
     }
 }

@@ -75,7 +75,7 @@ typedef struct competitor {
     time start_time; // time struct used to store the time at which the competitor started on their course.
     time end_time; // time struct used to store the time at which the competitor finished their course.
     time last_time_recored;
-    int last_checkpoint;
+    int last_checkpoint_index;
     time medical_arrival_time; // time struct used to store the time at which the competitor arrived at a medical checkpoint.
     time medical_departure_time; // time struct used to store the time at which the competitor departed the medical checkpoint.
     enum status status; // int used to store the current location of the competitor (#defined constant).

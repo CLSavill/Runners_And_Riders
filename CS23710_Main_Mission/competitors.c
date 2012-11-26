@@ -36,7 +36,7 @@ int competitors_file_load(event_ptr event, char* file_name) {
         new_competitor->course_ptr = get_course_ptr(event, new_competitor);
         new_competitor->status = NS;
         new_competitor->location = NS;
-        new_competitor->last_checkpoint = NS;
+        new_competitor->last_checkpoint_index = NS;
         strcpy(new_competitor->name, name);
         new_competitor->next_competitor = NULL;
         ///////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,7 @@ void print_location(event_ptr event, competitor* competitor) {
                     competitor->location);
             break;
         case TN:
-            printf("Last Recorded Location: Time Checkpoint %d.\n", competitor->last_checkpoint);
+            printf("Last Recorded Location: Time Checkpoint %d.\n", competitor->last_checkpoint_index);
             printf("Assumed To Be On Track Number %d.\n", competitor->location);
             break;
         case MC:
@@ -182,11 +182,11 @@ void update_competitor(event_ptr event) {
     }
 
     if (competitor->status == NS) {
-        competitor->last_checkpoint = competitor->course_ptr->course_nodes[0]->number;
+        competitor->last_checkpoint_index = 0;
         printf("\nCompetitor %d has now started\n", competitor->number);
     }
 
-    checkpoint_update(event, competitor, competitor->last_checkpoint, hours, minutes); // Call to function that does the updating.
+    checkpoint_update(event, competitor, competitor->last_checkpoint_index, hours, minutes); // Call to function that does the updating.
 }
 ///////////////////////////////////////////////////////////////////////////
 
@@ -200,18 +200,18 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
         competitor->start_time.minutes = minutes;
         competitor->status = TC;
         competitor->location = checkpoint;
-        competitor->last_checkpoint = checkpoint;
+        competitor->last_checkpoint_index = checkpoint;
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
     } else if (competitor->status == TC || competitor->status == TN) {
         competitor->status = TC;
         competitor->location = checkpoint;
-        competitor->last_checkpoint = checkpoint;
+        competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
 
         // Checks if the competitor has reached the final checkpoint of the course/finished.
-        if (competitor->last_checkpoint == competitor->course_ptr->course_nodes[competitor->course_ptr->number_of_nodes - 1]->number) {
+        if (competitor->last_checkpoint_index == competitor->course_ptr->number_of_nodes-1) {
             competitor->status = CC;
             competitor->end_time.hours = hours;
             competitor->end_time.minutes = minutes;
@@ -291,6 +291,7 @@ int estimate_location(event_ptr event, competitor* competitor) {
     node* nodeB;
     node* next_node;
     int next_node_number;
+    int node_index;
     int est_arrival_time = 0;
     int current_competitor_time;
     int event_time;
@@ -299,8 +300,10 @@ int estimate_location(event_ptr event, competitor* competitor) {
     if (competitor->status == NS) {
         return NS;
     } else {
-        nodeA = get_node(event->node_head, competitor->last_checkpoint);
-        next_node_number = get_next_course_node_number(competitor->course_ptr, nodeA->number); // Gets node number of the next node on the course.
+        node_index = competitor->last_checkpoint_index;
+        nodeA = get_node(event->node_head, get_course_node_number(competitor->course_ptr, node_index));
+        node_index += 1;
+        next_node_number = get_course_node_number(competitor->course_ptr, node_index); // Gets node number of the next node on the course.
         nodeB = get_node(event->node_head, next_node_number);
         track = get_track(event->track_head, nodeA->number, nodeB->number); // Retrieves track that lies between nodeA and nodeB.
 
@@ -313,7 +316,8 @@ int estimate_location(event_ptr event, competitor* competitor) {
             est_arrival_time += track->max_time; // Increase estimated arrival time for competitor at end of track.
 
             if (event_time > est_arrival_time) {
-                next_node_number = get_next_course_node_number(competitor->course_ptr, nodeB->number);
+                node_index += 1;
+                next_node_number = get_course_node_number(competitor->course_ptr, node_index);          
                 next_node = get_node(event->node_head, next_node_number);
                 nodeA = nodeB;
                 nodeB = next_node;
