@@ -126,10 +126,26 @@ int get_course_node_number(course* course_ptr, int index) {
 // Method to return the node index of a node within the array of course_nodes.
 
 int get_course_node_index(course* course_ptr, int node_number, int last_index) {
-    int counter = 0;
+    int counter = last_index;
 
     for (counter; counter < course_ptr->number_of_nodes; counter++) {
-        if (course_ptr->course_nodes[counter]->number == node_number && counter > last_index) {
+        if (course_ptr->course_nodes[counter]->type != JN && course_ptr->course_nodes[counter]->number == node_number && counter > last_index) {
+            return counter;
+        } else if (course_ptr->course_nodes[counter]->type == JN && course_ptr->course_nodes[counter]->number == node_number && counter > last_index) {
+            counter = get_next_checkpoint_index(course_ptr, last_index);
+            return counter;
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////
+
+// Method to return the node index of a checkpoint node within an array of course_nodes.
+
+int get_next_checkpoint_index(course* course_ptr, int last_index) {
+    int counter = last_index;
+
+    for (counter; counter < course_ptr->number_of_nodes; counter++) {
+        if (course_ptr->course_nodes[counter]->type != JN) {
             return counter;
         }
     }
