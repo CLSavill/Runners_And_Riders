@@ -34,6 +34,8 @@ int event_file_load(char* file_name, event_ptr event) {
             load_status = fscanf(event_file, " %d:%d",
                     &event->start_time.hours,
                     &event->start_time.minutes);
+            event->current_time.hours = event->start_time.hours;
+            event->current_time.minutes = event->start_time.minutes;
         }
     }
 
