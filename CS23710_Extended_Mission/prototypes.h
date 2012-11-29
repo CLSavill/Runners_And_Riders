@@ -57,4 +57,5 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 time get_time(competitor* competitor);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
+void evaluate_status(event_ptr event, competitor* competitor, int status, int checkpoint, int hours, int minutes);
 /*-----------------------------------------------------------------------*/

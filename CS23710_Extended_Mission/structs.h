@@ -12,6 +12,8 @@
 #define NOT_SET 100
 #define SUCCESS 1
 #define FAILURE 0
+#define TRUE 1
+#define FALSE 0
 /*-----------------------------------------------------------------------*/
 
 /* Enumeration Definition */
@@ -29,7 +31,8 @@ enum status {
     NS, /* Not yet started */
     TC, /* Time checkpoint */
     TN, /* Track number */
-    MC, /* Medical checkpoint */
+    A, /* Medical checkpoint */
+    D, /* Departed Medical checkpoint */
     CC, /* Course completed */
     EI, /* Excluded for taking an incorrect route */
     EM, /* Excluded for medical safety reasons */
@@ -78,6 +81,7 @@ typedef struct competitor {
     int last_checkpoint_index;
     time medical_arrival_time; /* time struct used to store the time at which the competitor arrived at a medical checkpoint. */
     time medical_departure_time; /* time struct used to store the time at which the competitor departed the medical checkpoint. */
+    int medical_passed; /* int used to act as a boolean for if the competitor has passed a medical checkpoint. */
     enum status status; /* int used to store the current location of the competitor (#defined constant). */
     int location;
 } competitor;

@@ -38,7 +38,7 @@ int loader(event_ptr event) {
     do {
         load_status = competitors_read_cycle(event);
     } while (load_status != SUCCESS);
-    
+
     printf("Competitor loading finished.\n");
     return SUCCESS;
 }
@@ -193,7 +193,7 @@ void read_times_file(event_ptr event) {
             printf("\nEnd of file reached.");
         } else {
             competitor = get_competitor(event, competitor_number);
-            checkpoint_update(event, competitor, checkpoint, hours, minutes);
+            evaluate_status(event, competitor, status, checkpoint, hours, minutes);
         }
     } while (load_status != EOF);
 

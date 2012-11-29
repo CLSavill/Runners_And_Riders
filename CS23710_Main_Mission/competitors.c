@@ -124,24 +124,8 @@ void print_location(event_ptr event, competitor* competitor) {
             printf("Last Recorded Location: Time Checkpoint %d.\n", competitor->last_checkpoint_index);
             printf("Assumed To Be On Track Number %d.\n", competitor->location);
             break;
-        case MC:
-            printf("\nCompetitor: %d, Name: %s, Location: Medical Checkpoint %d.\n",
-                    competitor->number,
-                    competitor->name,
-                    competitor->location);
-            break;
         case CC:
             printf("\nCompetitor: %d, Name: %s, Completed Course.\n",
-                    competitor->number,
-                    competitor->name);
-            break;
-        case EI:
-            printf("\nCompetitor: %d, Name: %s, Excluded for taking an Incorrect Route.\n",
-                    competitor->number,
-                    competitor->name);
-            break;
-        case EM:
-            printf("\nCompetitor: %d, Name: %s, Excluded for Medical Safety Reasons.\n",
                     competitor->number,
                     competitor->name);
             break;
@@ -203,7 +187,7 @@ void update_competitor(event_ptr event) {
 /* Method to update a competitor's status and location. */
 
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes) {
-    char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
+    char* status[] = {"NS", "TC", "TN", "CC"};
 
     if (competitor->status == NS) {
         competitor->start_time.hours = hours;
