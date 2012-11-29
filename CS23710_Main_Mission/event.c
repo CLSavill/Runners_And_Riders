@@ -14,12 +14,12 @@
 int event_file_load(char* file_name, event_ptr event) {
     FILE *event_file; /* File pointer. */
     int load_status;
-    
+
     if ((event_file = fopen(file_name, "r")) == NULL) { /* Open file with read permissions only and check file opened. */
         printf("Please enter in a valid file path and name.\n");
         return FAILURE;
     }
-    
+
     load_status = fscanf(event_file, "%[a-zA-Z -]", event->name);
 
     event->start_time.hours = NOT_SET;
@@ -76,6 +76,7 @@ void print_not_started(event_ptr event) {
 
     printf("===================================================================================\n");
     printf("\nNumber of Competitors not started yet: %d\n", counter);
+    printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
 
@@ -106,6 +107,7 @@ void print_out_on_course(event_ptr event) {
     }
 
     printf("=======================================================================================================================\n");
+    printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
 
@@ -134,6 +136,7 @@ void print_finished(event_ptr event) {
     }
 
     printf("===================================================================================\n");
+    printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
 
@@ -159,12 +162,13 @@ void print_results(event_ptr event) {
                     current_competitor->name,
                     status[current_competitor->status],
                     time.hours,
-                    time.minutes);         
+                    time.minutes);
         }
-        
+
         current_competitor = current_competitor->next_competitor;
     }
 
     printf("===================================================================================\n");
+    printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/

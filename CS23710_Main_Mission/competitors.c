@@ -156,6 +156,7 @@ void update_competitor(event_ptr event) {
     int minutes;
     competitor *competitor;
     int number;
+    int checkpoint;
 
     printf("\nPlease enter in the competitor number you wish to update (between 1 and %d): ",
             event->number_of_competitors);
@@ -185,10 +186,17 @@ void update_competitor(event_ptr event) {
     }
 
     if (competitor->status == NS) {
+        checkpoint = -1;
         printf("\nCompetitor %d has now started\n", competitor->number);
+        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
+    } else if (competitor->status == TC || competitor->status == TN) {
+        checkpoint = get_course_node_number(competitor->course_ptr, competitor->last_checkpoint_index + 1);
+        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
+    } else {
+        printf("\nCompetitor unable to to be updated, may of already completed course or been excluded.\n");
     }
 
-    checkpoint_update(event, competitor, competitor->last_checkpoint_index, hours, minutes); /* Call to function that does the updating. */
+
 }
 /*-----------------------------------------------------------------------*/
 
@@ -199,6 +207,7 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 
     if (competitor->status == NS) {
         competitor->start_time.hours = hours;
+        checkpoint;
         competitor->start_time.minutes = minutes;
         competitor->status = TC;
 
@@ -214,8 +223,8 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
         competitor->last_time_recored.minutes = minutes;
     } else if (competitor->status == TC || competitor->status == TN) {
         competitor->status = TC;
-        competitor->location = checkpoint;
         competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
+        competitor->location = get_course_node_number(competitor->course_ptr, competitor->last_checkpoint_index);
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
 

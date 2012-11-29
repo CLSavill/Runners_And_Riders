@@ -38,8 +38,8 @@ int competitors_file_load(event_ptr event, char* file_name) {
         new_competitor->course = course;
         new_competitor->course_ptr = get_course_ptr(event, new_competitor);
         new_competitor->status = NS;
-        new_competitor->location = NS;
-        new_competitor->last_checkpoint_index = NS;
+        new_competitor->location = -1;
+        new_competitor->last_checkpoint_index = -1;
         strcpy(new_competitor->name, name);
         new_competitor->next_competitor = NULL;
         /*-----------------------------------------------------------------------*/
@@ -105,7 +105,6 @@ void query_location(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-
 /* Method to print out the status and location of the competitor passed in. */
 
 void print_location(event_ptr event, competitor* competitor) {
@@ -157,6 +156,7 @@ void update_competitor(event_ptr event) {
     int minutes;
     competitor *competitor;
     int number;
+    int checkpoint;
 
     printf("\nPlease enter in the competitor number you wish to update (between 1 and %d): ",
             event->number_of_competitors);
@@ -186,11 +186,17 @@ void update_competitor(event_ptr event) {
     }
 
     if (competitor->status == NS) {
-        competitor->last_checkpoint_index = 0;
+        checkpoint = -1;
         printf("\nCompetitor %d has now started\n", competitor->number);
+        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
+    } else if (competitor->status == TC || competitor->status == TN) {
+        checkpoint = get_course_node_number(competitor->course_ptr, competitor->last_checkpoint_index + 1);
+        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
+    } else {
+        printf("\nCompetitor unable to to be updated, may of already completed course or been excluded.\n");
     }
 
-    checkpoint_update(event, competitor, competitor->last_checkpoint_index, hours, minutes); /* Call to function that does the updating. */
+
 }
 /*-----------------------------------------------------------------------*/
 
@@ -201,21 +207,29 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 
     if (competitor->status == NS) {
         competitor->start_time.hours = hours;
+        checkpoint;
         competitor->start_time.minutes = minutes;
         competitor->status = TC;
-        competitor->location = checkpoint;
-        competitor->last_checkpoint_index = checkpoint;
+
+        if (checkpoint == -1) {
+            competitor->location = get_course_node_number(competitor->course_ptr, 0);
+            competitor->last_checkpoint_index = 0;
+        } else {
+            competitor->location = checkpoint;
+            competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
+        }
+
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
     } else if (competitor->status == TC || competitor->status == TN) {
         competitor->status = TC;
-        competitor->location = checkpoint;
         competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
+        competitor->location = get_course_node_number(competitor->course_ptr, competitor->last_checkpoint_index);
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
 
         /* Checks if the competitor has reached the final checkpoint of the course/finished. */
-        if (competitor->last_checkpoint_index == competitor->course_ptr->number_of_nodes-1) {
+        if (competitor->last_checkpoint_index == competitor->course_ptr->number_of_nodes - 1) {
             competitor->status = CC;
             competitor->end_time.hours = hours;
             competitor->end_time.minutes = minutes;
@@ -314,14 +328,14 @@ int estimate_location(event_ptr event, competitor* competitor) {
         current_competitor_time = (competitor->last_time_recored.hours * 60) + competitor->last_time_recored.minutes;
         event_time = (event->current_time.hours * 60) + event->current_time.minutes;
         est_arrival_time = current_competitor_time;
-        
+
         while (nodeB->type == JN) { /* While the second node is a junction node. */
             track = get_track(event->track_head, nodeA->number, nodeB->number); /* Obtain track. */
             est_arrival_time += track->max_time; /* Increase estimated arrival time for competitor at end of track. */
 
             if (event_time > est_arrival_time) {
                 node_index += 1;
-                next_node_number = get_course_node_number(competitor->course_ptr, node_index);          
+                next_node_number = get_course_node_number(competitor->course_ptr, node_index);
                 next_node = get_node(event->node_head, next_node_number);
                 nodeA = nodeB;
                 nodeB = next_node;
@@ -333,7 +347,7 @@ int estimate_location(event_ptr event, competitor* competitor) {
             } else {
                 return track->number;
             }
-        }      
+        }
         return track->number;
     }
 }
