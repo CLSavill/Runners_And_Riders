@@ -14,7 +14,7 @@
  */
 int main(int argc, char** argv) {
     event_ptr event;
-    event = malloc(sizeof (struct event)); // Allocates memory for an event struct.
+    event = malloc(sizeof (struct event)); /* Allocates memory for an event struct. */
 
     printf("Event Monitoring Program Launching...\n");
 
@@ -34,8 +34,8 @@ int menu(event_ptr event) {
 
     do {
         printf("\nPress enter to continue.\n");
-        getchar(); // Consumes \n.
-        getchar(); // Pauses program until enter is entered.
+        getchar(); /* Consumes \n. */
+        getchar(); /* Pauses program until enter is entered. */
 
         printf("\n===================================== MAIN MENU =====================================");
         printf("\n|                                                                                   |");

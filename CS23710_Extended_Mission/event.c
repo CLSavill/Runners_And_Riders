@@ -9,12 +9,17 @@
 #include "structs.h"
 #include "prototypes.h"
 
-// Method to load in the details of the event from the file supplied (probably named "name.txt").
+/* Method to load in the details of the event from the file supplied (probably named "name.txt"). */
 
 int event_file_load(char* file_name, event_ptr event) {
-    FILE *event_file = NULL; // File pointer.
+    FILE *event_file; /* File pointer. */
     int load_status;
-    event_file = fopen(file_name, "r");
+    
+    if ((event_file = fopen(file_name, "r")) == NULL) { /* Open file with read permissions only and check file opened. */
+        printf("Please enter in a valid file path and name.\n");
+        return FAILURE;
+    }
+    
     load_status = fscanf(event_file, "%[a-zA-Z -]", event->name);
 
     event->start_time.hours = NOT_SET;
@@ -43,9 +48,9 @@ int event_file_load(char* file_name, event_ptr event) {
     fclose(event_file);
     return SUCCESS;
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to display a table of the competitors who have not started and the number.
+/* Method to display a table of the competitors who have not started and the number. */
 
 void print_not_started(event_ptr event) {
     competitor *current_competitor;
@@ -72,9 +77,9 @@ void print_not_started(event_ptr event) {
     printf("===================================================================================\n");
     printf("\nNumber of Competitors not started yet: %d\n", counter);
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to display a table of the competitors who are out on their course.
+/* Method to display a table of the competitors who are out on their course. */
 
 void print_out_on_course(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - ", "MC - ", "CC", "EI", "EM"};
@@ -102,9 +107,9 @@ void print_out_on_course(event_ptr event) {
 
     printf("=======================================================================================================================\n");
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to display a table of the competitors who have finished their course.
+/* Method to display a table of the competitors who have finished their course. */
 
 void print_finished(event_ptr event) {
     char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
@@ -130,9 +135,9 @@ void print_finished(event_ptr event) {
 
     printf("===================================================================================\n");
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to display a table of the result times for the competitors.
+/* Method to display a table of the result times for the competitors. */
 
 void print_results(event_ptr event) {
     char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
@@ -162,4 +167,4 @@ void print_results(event_ptr event) {
 
     printf("===================================================================================\n");
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/

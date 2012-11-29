@@ -9,10 +9,10 @@
 #include "structs.h"
 #include "prototypes.h"
 
-// Method to get the number of courses from a file supplied (probably named "courses.txt").
+/* Method to get the number of courses from a file supplied (probably named "courses.txt"). */
 
 int courses_file_load(event_ptr event, char* file_name) {
-    FILE *courses_file; // File pointer.
+    FILE *courses_file; /* File pointer. */
     int counter = 0, counter2 = 0;
     char course_id;
     int number_of_course_nodes;
@@ -20,24 +20,27 @@ int courses_file_load(event_ptr event, char* file_name) {
     new_course = event->course_head;
     event->course_head = NULL;
 
-    courses_file = fopen(file_name, "r"); // Open file with read permissions only. 
+    if ((courses_file = fopen(file_name, "r")) == NULL) { /* Open file with read permissions only and check file opened. */
+        printf("Please enter in a valid file path and name.\n");
+        return FAILURE;
+    }
 
     for (counter; counter < event->number_of_courses; counter++) {
         fscanf(courses_file, " %c %d", &course_id, &number_of_course_nodes);
 
 
         if (counter == 0) {
-            new_course = malloc(sizeof (struct course)); // Allocates memory for a course struct.
+            new_course = malloc(sizeof (struct course)); /* Allocates memory for a course struct. */
         }
 
-        // Initialises the new course:
-        new_course->course_nodes = malloc(number_of_course_nodes * (sizeof (node*))); // Allocation memory for an array of node pointers.
+        /* Initialises the new course: */
+        new_course->course_nodes = malloc(number_of_course_nodes * (sizeof (node*))); /* Allocation memory for an array of node pointers. */
         new_course->id = course_id;
         new_course->number_of_nodes = number_of_course_nodes;
         new_course->course_nodes = read_course_nodes(event, new_course->course_nodes, courses_file, number_of_course_nodes);
-        ///////////////////////////////////////////////////////////////////////////
+        /*-----------------------------------------------------------------------*/
 
-        // Adding the new course to the linked list:
+        /* Adding the new course to the linked list: */
         if (event->course_head == NULL) {
             event->course_head = new_course;
 
@@ -71,21 +74,21 @@ int courses_file_load(event_ptr event, char* file_name) {
                 }
             }
         }
-        ///////////////////////////////////////////////////////////////////////////
+        /*-----------------------------------------------------------------------*/
 
         if (counter != event->number_of_courses) {
-            new_course->next_course = malloc(sizeof (struct course)); // Allocates memory for the next course.
+            new_course->next_course = malloc(sizeof (struct course)); /* Allocates memory for the next course. */
             new_course = new_course->next_course;
         }
     }
 
     printf("\nCourses file loaded in successfully.\n");
-    fclose(courses_file); // Closes file as no longer needed.
+    fclose(courses_file); /* Closes file as no longer needed. */
     return SUCCESS;
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to read the nodes of a course and assign pointers to the nodes.
+/* Method to read the nodes of a course and assign pointers to the nodes. */
 
 node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int number_of_course_nodes) {
     int counter = 0;
@@ -98,9 +101,9 @@ node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_fil
 
     return course_nodes;
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to return a pointer to the relevant course for a competitor.
+/* Method to return a pointer to the relevant course for a competitor. */
 
 course* get_course_ptr(event_ptr event, competitor* competitor) {
     course *current_course;
@@ -114,16 +117,16 @@ course* get_course_ptr(event_ptr event, competitor* competitor) {
         }
     }
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to return the node number of the next node in the course.
+/* Method to return the node number of the next node in the course. */
 
 int get_course_node_number(course* course_ptr, int index) {
-    return course_ptr->course_nodes[index]->number; // Returns the course node index.
+    return course_ptr->course_nodes[index]->number; /* Returns the course node index. */
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to return the node index of a node within the array of course_nodes.
+/* Method to return the node index of a node within the array of course_nodes. */
 
 int get_course_node_index(course* course_ptr, int node_number, int last_index) {
     int counter = last_index;
@@ -137,9 +140,9 @@ int get_course_node_index(course* course_ptr, int node_number, int last_index) {
         }
     }
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
 
-// Method to return the node index of a checkpoint node within an array of course_nodes.
+/* Method to return the node index of a checkpoint node within an array of course_nodes. */
 
 int get_next_checkpoint_index(course* course_ptr, int last_index) {
     int counter = last_index;
@@ -150,4 +153,4 @@ int get_next_checkpoint_index(course* course_ptr, int last_index) {
         }
     }
 }
-///////////////////////////////////////////////////////////////////////////
+/*-----------------------------------------------------------------------*/
