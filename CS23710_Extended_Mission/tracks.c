@@ -13,7 +13,7 @@
 
 int tracks_file_load(event_ptr event, char* file_name) {
     FILE *tracks_file; /* File pointer. */
-    int counter = 0;
+    int load_status;
     int track_number;
     int track_start_number;
     int track_end_number;
@@ -25,16 +25,17 @@ int tracks_file_load(event_ptr event, char* file_name) {
     if ((tracks_file = fopen(file_name, "r")) == NULL) { /* Open file with read permissions only and check file opened. */
         printf("Please enter in a valid file path and name.\n");
         return FAILURE;
-    } 
+    }
 
-    for (counter; counter < event->number_of_tracks; counter++) {
-        fscanf(tracks_file, " %d %d %d %d", &track_number,
-                &track_start_number,
-                &track_end_number,
-                &track_max_time);
+    while ((load_status = fscanf(tracks_file, " %d %d %d %d", &track_number, &track_start_number,
+            &track_end_number, &track_max_time)) != EOF) {
 
-        if (counter == 0) {
+
+        if (event->number_of_tracks == 0) {
             new_track = malloc(sizeof (struct track));
+        } else {
+            new_track->next_track = malloc(sizeof (struct track)); /* Allocates memory for the next track. */
+            new_track = new_track->next_track;
         }
 
         /* Initialise new track: */
@@ -42,6 +43,7 @@ int tracks_file_load(event_ptr event, char* file_name) {
         new_track->max_time = track_max_time;
         new_track->nodeA = get_node(event->node_head, track_start_number); /* Assigns the address of the start node. */
         new_track->nodeB = get_node(event->node_head, track_end_number); /* Assigns the address of the end node. */
+        new_track->next_track = NULL;
         /*-----------------------------------------------------------------------*/
 
         /* Adds new track to linked list: */
@@ -61,10 +63,7 @@ int tracks_file_load(event_ptr event, char* file_name) {
         }
         /*-----------------------------------------------------------------------*/
 
-        if (counter != event->number_of_tracks) {
-            new_track->next_track = malloc(sizeof (struct track)); /* Allocates memory for the next track. */
-            new_track = new_track->next_track;
-        }
+        event->number_of_tracks++;
     }
 
     printf("\nTracks file loaded in successfully.\n");

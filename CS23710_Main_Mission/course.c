@@ -13,7 +13,8 @@
 
 int courses_file_load(event_ptr event, char* file_name) {
     FILE *courses_file; /* File pointer. */
-    int counter = 0, counter2 = 0;
+    int load_status;
+    int counter = 0;
     char course_id;
     int number_of_course_nodes;
     course *new_course;
@@ -25,36 +26,36 @@ int courses_file_load(event_ptr event, char* file_name) {
         return FAILURE;
     }
 
-    for (counter; counter < event->number_of_courses; counter++) {
-        fscanf(courses_file, " %c %d", &course_id, &number_of_course_nodes);
-
-
-        if (counter == 0) {
+    while ((load_status = fscanf(courses_file, " %c %d", &course_id, &number_of_course_nodes)) != EOF) {
+        if (event->number_of_courses == 0) {
             new_course = malloc(sizeof (struct course)); /* Allocates memory for a course struct. */
+        } else {
+            new_course->next_course = malloc(sizeof (struct course)); /* Allocates memory for the next course. */
+            new_course = new_course->next_course;
         }
 
         /* Initialises the new course: */
         new_course->course_nodes = malloc(number_of_course_nodes * (sizeof (node*))); /* Allocation memory for an array of node pointers. */
         new_course->id = course_id;
         new_course->number_of_nodes = number_of_course_nodes;
-        new_course->course_nodes = read_course_nodes(event, new_course->course_nodes, courses_file, number_of_course_nodes);
+        new_course->course_nodes = read_course_nodes(event, new_course->course_nodes, courses_file, &load_status, number_of_course_nodes);
+        new_course->next_course = NULL;
         /*-----------------------------------------------------------------------*/
 
         /* Adding the new course to the linked list: */
         if (event->course_head == NULL) {
             event->course_head = new_course;
-
             printf("\nHead Course: ID: %c, Number of Nodes: %d,  Nodes: [",
                     new_course->id,
                     new_course->number_of_nodes);
 
-            counter2 = 0;
+            counter = 0;
 
-            for (counter2; counter2 < number_of_course_nodes; counter2++) {
-                if (counter2 != (number_of_course_nodes - 1)) {
-                    printf("%d,", new_course->course_nodes[counter2]->number);
+            for (counter; counter < number_of_course_nodes; counter++) {
+                if (counter != (number_of_course_nodes - 1)) {
+                    printf("%d,", new_course->course_nodes[counter]->number);
                 } else {
-                    printf("%d]", new_course->course_nodes[counter2]->number);
+                    printf("%d]", new_course->course_nodes[counter]->number);
                     printf("\n");
                 }
             }
@@ -64,22 +65,19 @@ int courses_file_load(event_ptr event, char* file_name) {
                     new_course->id,
                     new_course->number_of_nodes);
 
-            counter2 = 0;
+            counter = 0;
 
-            for (counter2; counter2 < number_of_course_nodes; counter2++) {
-                if (counter2 != (number_of_course_nodes - 1)) {
-                    printf("%d,", new_course->course_nodes[counter2]->number);
+            for (counter; counter < number_of_course_nodes; counter++) {
+                if (counter != (number_of_course_nodes - 1)) {
+                    printf("%d,", new_course->course_nodes[counter]->number);
                 } else {
-                    printf("%d]\n", new_course->course_nodes[counter2]->number);
+                    printf("%d]\n", new_course->course_nodes[counter]->number);
                 }
             }
         }
         /*-----------------------------------------------------------------------*/
 
-        if (counter != event->number_of_courses) {
-            new_course->next_course = malloc(sizeof (struct course)); /* Allocates memory for the next course. */
-            new_course = new_course->next_course;
-        }
+        event->number_of_courses++;
     }
 
     printf("\nCourses file loaded in successfully.\n");
@@ -90,12 +88,12 @@ int courses_file_load(event_ptr event, char* file_name) {
 
 /* Method to read the nodes of a course and assign pointers to the nodes. */
 
-node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int number_of_course_nodes) {
+node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int* load_status, int number_of_course_nodes) {
     int counter = 0;
     int node_number;
 
     for (counter; counter < number_of_course_nodes; counter++) {
-        fscanf(courses_file, " %d", &node_number);
+        *load_status = fscanf(courses_file, " %d", &node_number);
         course_nodes[counter] = get_node(event->node_head, node_number);
     }
 
@@ -109,7 +107,7 @@ course* get_course_ptr(event_ptr event, competitor* competitor) {
     course *current_course;
     current_course = event->course_head;
 
-    while (current_course->next_course != NULL) {
+    while (current_course != NULL) {
         if (competitor->course == current_course->id) {
             return current_course;
         } else {

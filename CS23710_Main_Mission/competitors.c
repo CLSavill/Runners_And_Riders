@@ -14,7 +14,7 @@
 
 int competitors_file_load(event_ptr event, char* file_name) {
     FILE *competitors_file; /* File pointer. */
-    int counter = 0;
+    int load_status;
     int number;
     char course;
     char name[MAX_NAME_LENGTH];
@@ -26,11 +26,12 @@ int competitors_file_load(event_ptr event, char* file_name) {
         return FAILURE;
     }
 
-    for (counter; counter < event->number_of_competitors; counter++) {
-        fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name);
-
-        if (counter == 0) {
+    while ((load_status = fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name)) != EOF) {
+        if (event->number_of_competitors == 0) {
             new_competitor = malloc(sizeof (struct competitor));
+        } else {
+            new_competitor->next_competitor = malloc(sizeof (struct competitor)); /* Allocates memory for the next competitor. */
+            new_competitor = new_competitor->next_competitor;
         }
 
         /* Initialising the new competitor: */
@@ -55,12 +56,9 @@ int competitors_file_load(event_ptr event, char* file_name) {
                     new_competitor->course,
                     new_competitor->name);
         }
-
-        if (counter != event->number_of_competitors) {
-            new_competitor->next_competitor = malloc(sizeof (struct competitor)); /* Allocates memory for the next competitor. */
-            new_competitor = new_competitor->next_competitor;
-        }
         /*-----------------------------------------------------------------------*/
+
+        event->number_of_competitors++;
     }
 
     printf("\nCompetitors file loaded in successfully.\n");
@@ -75,7 +73,7 @@ competitor* get_competitor(event_ptr event, int number) {
     competitor *current_competitor;
     current_competitor = event->competitor_head;
 
-    while (current_competitor->next_competitor != NULL) { /* Checks if no more competitors present in linked list. */
+    while (current_competitor != NULL) { /* Checks if no more competitors present in linked list. */
         if (current_competitor->number == number) {
             return current_competitor;
         } else {

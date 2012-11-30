@@ -38,7 +38,7 @@ int loader(event_ptr event) {
     do {
         load_status = competitors_read_cycle(event);
     } while (load_status != SUCCESS);
-    
+
     printf("Competitor loading finished.\n");
     return SUCCESS;
 }
@@ -69,12 +69,8 @@ int nodes_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the nodes file: ");
     scanf("%s", file_name);
 
-    if ((event->number_of_nodes = get_number_of_lines(file_name, event->number_of_nodes)) != FAILURE) {
-        printf("Number of Nodes: %d\n", event->number_of_nodes);
-
-        if (nodes_file_load(event, file_name) == SUCCESS) {
-            return SUCCESS;
-        }
+    if (nodes_file_load(event, file_name) == SUCCESS) {
+        return SUCCESS;
     }
 
     printf("\nError: File containing node details failed to load.\n");
@@ -90,12 +86,8 @@ int tracks_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the tracks file: ");
     scanf("%s", file_name);
 
-    if ((event->number_of_tracks = get_number_of_lines(file_name, event->number_of_tracks)) != FAILURE) {
-        printf("Number of Tracks: %d\n", event->number_of_tracks);
-
-        if (tracks_file_load(event, file_name) == SUCCESS) {
-            return SUCCESS;
-        }
+    if (tracks_file_load(event, file_name) == SUCCESS) {
+        return SUCCESS;
     }
 
     printf("\nError: File containing track details failed to load.\n");
@@ -111,12 +103,8 @@ int courses_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the courses file: ");
     scanf("%s", file_name);
 
-    if ((event->number_of_courses = get_number_of_lines(file_name, event->number_of_courses)) != FAILURE) {
-        printf("Number of Courses: %d\n", event->number_of_courses);
-
-        if (courses_file_load(event, file_name) == SUCCESS) {
-            return SUCCESS;
-        }
+    if (courses_file_load(event, file_name) == SUCCESS) {
+        return SUCCESS;
     }
 
     printf("\nError: File containing course details failed to load.\n");
@@ -132,36 +120,12 @@ int competitors_read_cycle(event_ptr event) {
     printf("\n\nPlease enter in the file path and name of the competitors file: ");
     scanf("%s", file_name);
 
-    if ((event->number_of_competitors = get_number_of_lines(file_name, event->number_of_competitors)) != FAILURE) {
-        printf("Number of Competitors: %d\n", event->number_of_competitors);
-
-        if (competitors_file_load(event, file_name) == SUCCESS) {
-            return SUCCESS;
-        }
+    if (competitors_file_load(event, file_name) == SUCCESS) {
+        return SUCCESS;
     }
 
     printf("\nError: File containing competitor details failed to load.\n");
     return FAILURE;
-}
-/*-----------------------------------------------------------------------*/
-
-/* Method to get the number of lines from a file supplied. */
-
-int get_number_of_lines(char* file_name, int number_of_lines) {
-    FILE *number_file; /* File pointer. */
-    char line_input[60]; /* Size 60 to buffer the input. */
-
-    if ((number_file = fopen(file_name, "r")) == NULL) { /* Open file with read permissions only and check file opened. */
-        printf("Please enter in a valid file path and name.\n");
-        return FAILURE;
-    }
-
-    while (fgets(line_input, sizeof (line_input), number_file)) { /* While end of file has not been reached. */
-        number_of_lines++; /* Counts the number of lines. */
-    }
-
-    fclose(number_file); /* Closes file as no longer needed. */
-    return number_of_lines;
 }
 /*-----------------------------------------------------------------------*/
 

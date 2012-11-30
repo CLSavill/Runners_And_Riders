@@ -24,6 +24,10 @@ int event_file_load(char* file_name, event_ptr event) {
 
     event->start_time.hours = NOT_SET;
     event->start_time.minutes = NOT_SET;
+    event->number_of_nodes = 0;
+    event->number_of_tracks = 0;
+    event->number_of_courses = 0;
+    event->number_of_competitors = 0;
 
     if (load_status == EOF) {
         printf("Error reading in Event Date.\n");
@@ -94,7 +98,7 @@ void print_out_on_course(event_ptr event) {
     printf("=======================================================================================================================\n");
 
     while (current_competitor->next_competitor != NULL) {
-        if (current_competitor->status == TC || current_competitor->status == TN || current_competitor->status == MC) {
+        if (current_competitor->status == TC || current_competitor->status == TN) {
             printf("|   %02d   | %-50s |   %c    |          %02d              |     %5s%02d       |\n",
                     current_competitor->number,
                     current_competitor->name,
