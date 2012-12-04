@@ -50,7 +50,7 @@ void query_location(event_ptr event);
 void print_location(event_ptr event, competitor* competitor);
 void update_competitor(event_ptr event);
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes);
-time get_time(competitor* competitor);
+time get_result_time(time end_time, time start_time);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
 /*-----------------------------------------------------------------------*/

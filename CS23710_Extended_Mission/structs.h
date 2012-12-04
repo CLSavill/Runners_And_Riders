@@ -81,6 +81,7 @@ typedef struct competitor {
     int last_checkpoint_index;
     time medical_arrival_time; /* time struct used to store the time at which the competitor arrived at a medical checkpoint. */
     time medical_departure_time; /* time struct used to store the time at which the competitor departed the medical checkpoint. */
+    int medical_minutes;
     int medical_passed; /* int used to act as a boolean for if the competitor has passed a medical checkpoint. */
     enum status status; /* int used to store the current location of the competitor (#defined constant). */
     int location;

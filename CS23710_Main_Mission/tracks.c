@@ -75,16 +75,16 @@ int tracks_file_load(event_ptr event, char* file_name) {
 /* Function that finds the track that lies between two nodes and returns the corresponding track pointer. */
 
 track* get_track(track* track_head, int nodeA, int nodeB) {
-    track *current_track;
-    current_track = track_head;
+    track *track;
+    track = track_head;
 
-    while (current_track != NULL) {
-        if (current_track->nodeA->number == nodeA && current_track->nodeB->number == nodeB) {
-            return current_track;
-        } else if (current_track->nodeA->number == nodeB && current_track->nodeB->number == nodeA) {
-            return current_track;
+    while (track != NULL) {
+        if (track->nodeA->number == nodeA && track->nodeB->number == nodeB) {
+            return track;
+        } else if (track->nodeA->number == nodeB && track->nodeB->number == nodeA) {
+            return track;
         } else {
-            current_track = current_track->next_track;
+            track = track->next_track;
         }
     }
 }

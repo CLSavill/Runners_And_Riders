@@ -44,10 +44,10 @@ int menu(event_ptr event) {
         printf("\n| 1: Query competitor for current location/status.                                  |");
         printf("\n| 2: Display how many competitors have not started yet.                             |");
         printf("\n| 3: Display how many competitors are out on the courses.                           |");
-        printf("\n| 4: Display how many competitors have finished.                                    |");
+        printf("\n| 4: Display how many competitors have completed their course successfully.         |");
         printf("\n| 5: Manually supply time at which a competitor had reached a time checkpoint.      |");
         printf("\n| 6: Read in a file of times at which competitors have reached time checkpoints.    |");
-        printf("\n| 7: Display how many competitors have not started yet.                             |");
+        printf("\n| 7: Display the result times for the successfully completed.                       |");
         printf("\n| 8: Exit program.                                                                  |");
         printf("\n|                                                                                   |");
         printf("\n=====================================================================================");

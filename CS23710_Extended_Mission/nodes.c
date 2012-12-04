@@ -76,14 +76,14 @@ enum type determine_type(char* type_input) {
 /* Function that finds a node that matches a number passed in an returns the corresponding node pointer. */
 
 node* get_node(node* node_head, int number) {
-    node* current_node;
-    current_node = node_head;
+    node* node;
+    node = node_head;
 
-    while (current_node != NULL) {
-        if (current_node->number == number) {
-            return current_node;
+    while (node != NULL) {
+        if (node->number == number) {
+            return node;
         } else {
-            current_node = current_node->next_node;
+            node = node->next_node;
         }
     }
 }

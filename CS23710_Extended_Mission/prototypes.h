@@ -21,6 +21,7 @@ void print_not_started(event_ptr event);
 void print_out_on_course(event_ptr event);
 void print_finished(event_ptr event);
 void print_results(event_ptr event);
+void print_excluded(event_ptr event);
 /*-----------------------------------------------------------------------*/
 
 /* nodes.c Function Prototypes */
@@ -38,7 +39,6 @@ track* get_track(track* track_head, int node1, int node2);
 int courses_file_load(event_ptr event, char* file_name);
 node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int* load_status, int number_of_course_nodes);
 course* get_course_ptr(event_ptr event, competitor* competitor);
-int get_course_node_number(course* course_ptr, int index);
 int get_course_node_index(course* course_ptr, int node_number, int last_index);
 int get_next_checkpoint_index(course* course_ptr, int last_index);
 /*-----------------------------------------------------------------------*/
@@ -50,7 +50,8 @@ void query_location(event_ptr event);
 void print_location(event_ptr event, competitor* competitor);
 void update_competitor(event_ptr event);
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes);
-time get_time(competitor* competitor);
+time get_result_time(time end_time, time start_time, int medical_minutes);
+int get_medical_time(time arrival_time, time departure_time);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
 void evaluate_status(event_ptr event, competitor* competitor, int status, int checkpoint, int hours, int minutes);

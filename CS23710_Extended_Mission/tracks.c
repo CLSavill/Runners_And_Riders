@@ -78,7 +78,7 @@ track* get_track(track* track_head, int nodeA, int nodeB) {
     track *current_track;
     current_track = track_head;
 
-    while (current_track->next_track != NULL) {
+    while (current_track != NULL) {
         if (current_track->nodeA->number == nodeA && current_track->nodeB->number == nodeB) {
             return current_track;
         } else if (current_track->nodeA->number == nodeB && current_track->nodeB->number == nodeA) {

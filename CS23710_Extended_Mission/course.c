@@ -104,23 +104,16 @@ node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_fil
 /* Function to return a pointer to the relevant course for a competitor. */
 
 course* get_course_ptr(event_ptr event, competitor* competitor) {
-    course *current_course;
-    current_course = event->course_head;
+    course *course;
+    course = event->course_head;
 
-    while (current_course != NULL) {
-        if (competitor->course == current_course->id) {
-            return current_course;
+    while (course != NULL) {
+        if (competitor->course == course->id) {
+            return course;
         } else {
-            current_course = current_course->next_course;
+            course = course->next_course;
         }
     }
-}
-/*-----------------------------------------------------------------------*/
-
-/* Function to return the node number of the next node in the course. */
-
-int get_course_node_number(course* course_ptr, int index) {
-    return course_ptr->course_nodes[index]->number; /* Returns the course node index. */
 }
 /*-----------------------------------------------------------------------*/
 
