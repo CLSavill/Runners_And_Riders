@@ -9,7 +9,7 @@
 #include "structs.h"
 #include "prototypes.h"
 
-/* Method to load in all the nodes read from the file supplied (probably named "nodes.txt"). */
+/* Function to load in all the nodes read from the file supplied (probably named "nodes.txt"). */
 
 int nodes_file_load(event_ptr event, char* file_name) {
     FILE *nodes_file; /* File pointer. */
@@ -60,7 +60,7 @@ int nodes_file_load(event_ptr event, char* file_name) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to determine the enum type of a node. */
+/* Function to determine the enum type of a node. */
 
 enum type determine_type(char* type_input) {
     if (strcmp(type_input, "CP") == 0) { /* Evaluates input and assigns corresponding enum value. */
@@ -71,7 +71,7 @@ enum type determine_type(char* type_input) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method that finds a node that matches a number passed in an returns the corresponding node pointer. */
+/* Function that finds a node that matches a number passed in an returns the corresponding node pointer. */
 
 node* get_node(node* node_head, int number) {
     node* current_node;

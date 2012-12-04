@@ -10,7 +10,7 @@
 #include "structs.h"
 #include "prototypes.h"
 
-/* Method to load in all the competitors read from the file supplied (probably named "entrants.txt"). */
+/* Function to load in all the competitors read from the file supplied (probably named "entrants.txt"). */
 
 int competitors_file_load(event_ptr event, char* file_name) {
     FILE *competitors_file; /* File pointer. */
@@ -67,7 +67,7 @@ int competitors_file_load(event_ptr event, char* file_name) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to return a pointer to a competitor. */
+/* Function to return a pointer to a competitor. */
 
 competitor* get_competitor(event_ptr event, int number) {
     competitor *current_competitor;
@@ -83,7 +83,7 @@ competitor* get_competitor(event_ptr event, int number) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to get query the location of a competitor. */
+/* Function to get query the location of a competitor. */
 
 void query_location(event_ptr event) {
     competitor *current_competitor;
@@ -103,7 +103,7 @@ void query_location(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to print out the status and location of the competitor passed in. */
+/* Function to print out the status and location of the competitor passed in. */
 
 void print_location(event_ptr event, competitor* competitor) {
     switch (competitor->status) {
@@ -147,7 +147,7 @@ void print_location(event_ptr event, competitor* competitor) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to get a manual input for the updating of a competitor's arrival at a time checkpoint. */
+/* Function to get a manual input for the updating of a competitor's arrival at a time checkpoint. */
 
 void update_competitor(event_ptr event) {
     int hours;
@@ -207,7 +207,7 @@ void update_competitor(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to update a competitor's status and location. */
+/* Function to update a competitor's status and location. */
 
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes) {
     char* status[] = {"NS", "TC", "TN", "A", "D", "CC", "EI", "EM"};
@@ -266,7 +266,7 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to return a time for a competitor. */
+/* Function to return a time for a competitor. */
 
 time get_time(competitor* competitor) {
     time time;
@@ -285,7 +285,7 @@ time get_time(competitor* competitor) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to update the statuses of all the competitors. */
+/* Function to update the statuses of all the competitors. */
 
 void update_statuses(event_ptr event) {
     competitor *current_competitor;
@@ -308,7 +308,7 @@ void update_statuses(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to estimate the current location of a competitor. */
+/* Function to estimate the current location of a competitor. */
 
 int estimate_location(event_ptr event, competitor* competitor) {
     node* nodeA;

@@ -9,127 +9,65 @@
 #include "structs.h"
 #include "prototypes.h"
 
-/* Method to cycle through the process of calling all the loading functions. */
+/* Function to cycle through the process of calling all the loading functions. */
 
 int loader(event_ptr event) {
     int load_status;
 
     do {
-        load_status = event_read_cycle(event);
+        printf("\nPlease enter in the file path and name of the event file: ");
+        load_status = load_cycle(event, &event_file_load);
     } while (load_status != SUCCESS);
     printf("Event loading finished.\n");
     load_status = FAILURE;
 
     do {
-        load_status = nodes_read_cycle(event);
+        printf("\n\nPlease enter in the file path and name of the nodes file: ");
+        load_status = load_cycle(event, &nodes_file_load);
     } while (load_status != SUCCESS);
     printf("Node loading finished.\n");
 
     do {
-        load_status = tracks_read_cycle(event);
+        printf("\n\nPlease enter in the file path and name of the tracks file: ");
+        load_status = load_cycle(event, &tracks_file_load);
     } while (load_status != SUCCESS);
     printf("Track loading finished.\n");
 
     do {
-        load_status = courses_read_cycle(event);
+        printf("\n\nPlease enter in the file path and name of the courses file: ");
+        load_status = load_cycle(event, &courses_file_load);
     } while (load_status != SUCCESS);
     printf("Course loading finished.\n");
 
     do {
-        load_status = competitors_read_cycle(event);
+        printf("\n\nPlease enter in the file path and name of the competitors file: ");
+        load_status = load_cycle(event, &competitors_file_load);
     } while (load_status != SUCCESS);
 
     printf("Competitor loading finished.\n");
     return SUCCESS;
 }
+
 /*-----------------------------------------------------------------------*/
 
-/* Method to cycle through the process of reading in an event's details. */
+/* Function to call the relevant loading/reading function using function pointer passed in. */
 
-int event_read_cycle(event_ptr event) {
+int load_cycle(event_ptr event, int (*load_function_ptr) (event_ptr, char*)) {
     char file_name[MAX_PATH_LENGTH];
 
-    printf("\nPlease enter in the file path and name of the event file: ");
     scanf("%s", file_name);
 
-    if (event_file_load(file_name, event) == SUCCESS) {
-        printf("\n%s\n%s\n%02d:%d\n", event -> name, event -> date, event -> start_time.hours, event -> start_time.minutes);
+    if (load_function_ptr(event, file_name) == SUCCESS) {
         return SUCCESS;
     }
 
+    printf("\nError: File failed to load.\n");
     return FAILURE;
 }
+
 /*-----------------------------------------------------------------------*/
 
-/* Method to cycle through the process of reading in the event's nodes. */
-
-int nodes_read_cycle(event_ptr event) {
-    char file_name[MAX_PATH_LENGTH];
-
-    printf("\n\nPlease enter in the file path and name of the nodes file: ");
-    scanf("%s", file_name);
-
-    if (nodes_file_load(event, file_name) == SUCCESS) {
-        return SUCCESS;
-    }
-
-    printf("\nError: File containing node details failed to load.\n");
-    return FAILURE;
-}
-/*-----------------------------------------------------------------------*/
-
-/* Method to cycle through the process of reading in the event's tracks. */
-
-int tracks_read_cycle(event_ptr event) {
-    char file_name[MAX_PATH_LENGTH];
-
-    printf("\n\nPlease enter in the file path and name of the tracks file: ");
-    scanf("%s", file_name);
-
-    if (tracks_file_load(event, file_name) == SUCCESS) {
-        return SUCCESS;
-    }
-
-    printf("\nError: File containing track details failed to load.\n");
-    return FAILURE;
-}
-/*-----------------------------------------------------------------------*/
-
-/* Method to cycle through the process of reading in the event's courses. */
-
-int courses_read_cycle(event_ptr event) {
-    char file_name[MAX_PATH_LENGTH];
-
-    printf("\n\nPlease enter in the file path and name of the courses file: ");
-    scanf("%s", file_name);
-
-    if (courses_file_load(event, file_name) == SUCCESS) {
-        return SUCCESS;
-    }
-
-    printf("\nError: File containing course details failed to load.\n");
-    return FAILURE;
-}
-/*-----------------------------------------------------------------------*/
-
-/* Method to cycle through the process of reading in the event's competitors. */
-
-int competitors_read_cycle(event_ptr event) {
-    char file_name[MAX_PATH_LENGTH];
-
-    printf("\n\nPlease enter in the file path and name of the competitors file: ");
-    scanf("%s", file_name);
-
-    if (competitors_file_load(event, file_name) == SUCCESS) {
-        return SUCCESS;
-    }
-
-    printf("\nError: File containing competitor details failed to load.\n");
-    return FAILURE;
-}
-/*-----------------------------------------------------------------------*/
-
-/* Method to read in a file of times. */
+/* Function to read in a file of times. */
 
 void read_times_file(event_ptr event) {
     FILE *times_file; /* File pointer. */

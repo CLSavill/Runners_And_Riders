@@ -9,7 +9,7 @@
 #include "structs.h"
 #include "prototypes.h"
 
-/* Method to get the number of courses from a file supplied (probably named "courses.txt"). */
+/* Function to get the number of courses from a file supplied (probably named "courses.txt"). */
 
 int courses_file_load(event_ptr event, char* file_name) {
     FILE *courses_file; /* File pointer. */
@@ -86,7 +86,7 @@ int courses_file_load(event_ptr event, char* file_name) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to read the nodes of a course and assign pointers to the nodes. */
+/* Function to read the nodes of a course and assign pointers to the nodes. */
 
 node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_file, int* load_status, int number_of_course_nodes) {
     int counter = 0;
@@ -101,7 +101,7 @@ node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_fil
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to return a pointer to the relevant course for a competitor. */
+/* Function to return a pointer to the relevant course for a competitor. */
 
 course* get_course_ptr(event_ptr event, competitor* competitor) {
     course *current_course;
@@ -117,14 +117,14 @@ course* get_course_ptr(event_ptr event, competitor* competitor) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to return the node number of the next node in the course. */
+/* Function to return the node number of the next node in the course. */
 
 int get_course_node_number(course* course_ptr, int index) {
     return course_ptr->course_nodes[index]->number; /* Returns the course node index. */
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to return the node index of a node within the array of course_nodes. */
+/* Function to return the node index of a node within the array of course_nodes. */
 
 int get_course_node_index(course* course_ptr, int node_number, int last_index) {
     if (last_index == -1) {
@@ -144,7 +144,7 @@ int get_course_node_index(course* course_ptr, int node_number, int last_index) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to return the node index of a checkpoint node within an array of course_nodes. */
+/* Function to return the node index of a checkpoint node within an array of course_nodes. */
 
 int get_next_checkpoint_index(course* course_ptr, int counter) {
     for (counter; counter < course_ptr->number_of_nodes; counter++) {

@@ -9,9 +9,9 @@
 #include "structs.h"
 #include "prototypes.h"
 
-/* Method to load in the details of the event from the file supplied (probably named "name.txt"). */
+/* Function to load in the details of the event from the file supplied (probably named "name.txt"). */
 
-int event_file_load(char* file_name, event_ptr event) {
+int event_file_load(event_ptr event, char* file_name) {
     FILE *event_file; /* File pointer. */
     int load_status;
 
@@ -44,13 +44,14 @@ int event_file_load(char* file_name, event_ptr event) {
         }
     }
 
+    printf("\n%s\n%s\n%02d:%d\n", event -> name, event -> date, event -> start_time.hours, event -> start_time.minutes);
     printf("\nEvent file loaded in successfully.\n");
     fclose(event_file);
     return SUCCESS;
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to display a table of the competitors who have not started and the number. */
+/* Function to display a table of the competitors who have not started and the number. */
 
 void print_not_started(event_ptr event) {
     competitor *current_competitor;
@@ -83,7 +84,7 @@ void print_not_started(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to display a table of the competitors who are out on their course. */
+/* Function to display a table of the competitors who are out on their course. */
 
 void print_out_on_course(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - ", "A - ", "D - ", "CC", "EI", "EM"};
@@ -117,7 +118,7 @@ void print_out_on_course(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to display a table of the competitors who have finished their course. */
+/* Function to display a table of the competitors who have finished their course. */
 
 void print_finished(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - ", "A - ", "D - ", "CC", "EI", "EM"};
@@ -149,7 +150,7 @@ void print_finished(event_ptr event) {
 }
 /*-----------------------------------------------------------------------*/
 
-/* Method to display a table of the result times for the competitors. */
+/* Function to display a table of the result times for the competitors. */
 
 void print_results(event_ptr event) {
     char* status[] = {"NS", "TC", "TN", "MC", "CC", "EI", "EM"};
