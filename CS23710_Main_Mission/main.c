@@ -10,6 +10,7 @@
 #include "prototypes.h"
 
 /* Main function that just calls the loader and menu functions. */
+
 int main(int argc, char** argv) {
     event_ptr event;
     event = malloc(sizeof (struct event)); /* Allocates memory for an event struct. */
