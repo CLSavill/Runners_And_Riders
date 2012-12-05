@@ -86,7 +86,6 @@ int menu(event_ptr event) {
             default:
                 printf("\nPlease enter in a valid option.");
         }
-
     } while (option != 9);
 
     return SUCCESS;

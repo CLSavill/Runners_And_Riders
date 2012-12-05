@@ -21,7 +21,7 @@
 enum type {
     CP, /* Timed checkpoint */
     JN, /* Junction */
-    MP /* Medical checkpoint */
+    MC /* Medical checkpoint */
 };
 /*-----------------------------------------------------------------------*/
 

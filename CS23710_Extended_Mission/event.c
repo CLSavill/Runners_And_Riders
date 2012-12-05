@@ -77,7 +77,7 @@ void print_not_started(event_ptr event) {
 
     printf("====================================================================================\n");
     printf("\nKey: NS = Not Started.\n");
-    printf("\nNumber of Competitors not started yet: %d\n", counter);
+    printf("\nNumber of Competitors not started yet: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -113,7 +113,7 @@ void print_out_on_course(event_ptr event) {
     printf("========================================================================================================================\n");
     printf("\nKey: NS = Not Started, TC = Time Checkpoint, TN = Track Number,\n"
             "A = Medical Checkpoint, D = Departed Medical Checkpoint.\n");
-    printf("\nNumber of Competitors out on course: %d\n", counter);
+    printf("\nNumber of Competitors out on course: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -143,7 +143,7 @@ void print_finished(event_ptr event) {
     }
 
     printf("====================================================================================\n");
-    printf("\nNumber of Competitors completed course successfully: %d\n", counter);
+    printf("\nNumber of Competitors completed course successfully: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -177,7 +177,7 @@ void print_results(event_ptr event) {
     }
 
     printf("====================================================================================\n");
-    printf("\nNumber of Competitors completed course successfully: %d\n", counter);
+    printf("\nNumber of Competitors completed course successfully: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -212,7 +212,7 @@ void print_excluded(event_ptr event) {
     }
 
     printf("====================================================================================\n");
-    printf("\nNumber of Competitors excluded: %d\n", counter);
+    printf("\nNumber of Competitors excluded: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/

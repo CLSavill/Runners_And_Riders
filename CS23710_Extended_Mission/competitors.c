@@ -156,6 +156,7 @@ void update_competitor(event_ptr event) {
     competitor *competitor;
     int number;
     int checkpoint;
+    char status;
 
     printf("\nPlease enter in the competitor number you wish to update (between 1 and %d): ",
             event->number_of_competitors);
@@ -167,6 +168,26 @@ void update_competitor(event_ptr event) {
     }
 
     competitor = get_competitor(event, number);
+
+    printf("\nPlease enter in the new status of the competitor (T, I, A, D, E): ");
+    scanf("%c", &status);
+
+    while (status != 'T' || status != 'I' || status != 'A' || status != 'D' || status != 'E') { /* Check to make sure a valid status is entered. */
+        ("\nPlease enter in a valid status (T, I, A, D, E): ");
+        scanf("%c", &status);
+    }
+
+    if (status == D) {
+        checkpoint = competitor->location;
+    } else {
+        printf("\nPlease enter in the new checkpoint of the competitor: ");
+        scanf("%d", &checkpoint);
+
+        while (checkpoint > event->number_of_nodes || checkpoint < event->number_of_nodes) { /* Check to make sure a valid status is entered. */
+            printf("\nPlease enter in a valid checkpoint between 1 and %d: ", event->number_of_nodes);
+            scanf("%d", &checkpoint);
+        }
+    }
 
     printf("\nPlease enter in the hour at which the competitor arrived (between 00 and 23) for a 24-hour clock: ");
     scanf("%02d", &hours);
@@ -183,28 +204,13 @@ void update_competitor(event_ptr event) {
         printf("\nPlease enter in a valid number of minutes between (00 and 60): ");
         scanf("%02d", &minutes);
     }
-    
-    
 
     if (competitor->status == NS) {
-        checkpoint = -1;
         printf("\nCompetitor %d has now started\n", competitor->number);
         checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
-    } else if (competitor->status == TC || competitor->status == TN) {
-        if (competitor->course_ptr->course_nodes[competitor->last_checkpoint_index]->type == MP) {
-            evaluate_status(event, competitor, D, competitor->location, hours, minutes);checkpoint_update(event, competitor, checkpoint, hours, minutes);
-        } else if (competitor->course_ptr->course_nodes[competitor->last_checkpoint_index +1]->type == MP) {
-            checkpoint = competitor->course_ptr->course_nodes[competitor->last_checkpoint_index+1]->number;
-            evaluate_status(event, competitor, A, checkpoint, hours, minutes);checkpoint_update(event, competitor, checkpoint, hours, minutes);
-        } else {
-            checkpoint = competitor->course_ptr->course_nodes[competitor->last_checkpoint_index+1]->number;
-            evaluate_status(event, competitor, TC, checkpoint, hours, minutes);checkpoint_update(event, competitor, checkpoint, hours, minutes);
-        }      
     } else {
-        printf("\nCompetitor unable to to be updated, may of already completed course or been excluded.\n");
-    }
-
-
+        evaluate_status(event, competitor, status, checkpoint, hours, minutes);
+    } 
 }
 /*-----------------------------------------------------------------------*/
 
@@ -217,15 +223,8 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
         competitor->start_time.hours = hours;
         competitor->start_time.minutes = minutes;
         competitor->status = TC;
-
-        if (checkpoint == -1) {
-            competitor->location = competitor->course_ptr->course_nodes[0]->number;
-            competitor->last_checkpoint_index = 0;
-        } else {
-            competitor->location = checkpoint;
-            competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
-        }
-
+        competitor->location = checkpoint;
+        competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
     } else if (competitor->status == TC || competitor->status == TN) {
@@ -271,7 +270,7 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 
 time get_result_time(time end_time, time start_time, int medical_minutes) {
     time time;
-    
+
     time.hours = end_time.hours - start_time.hours;
     time.minutes = end_time.minutes - start_time.minutes - medical_minutes;
 
@@ -290,7 +289,7 @@ time get_result_time(time end_time, time start_time, int medical_minutes) {
 
 int get_medical_time(time arrival_time, time departure_time) {
     int minutes;
-    
+
     minutes = (arrival_time.hours * 60) - (departure_time.hours * 60);
     minutes += arrival_time.minutes - departure_time.minutes;
     return minutes;

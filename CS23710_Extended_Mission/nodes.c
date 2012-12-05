@@ -68,7 +68,7 @@ enum type determine_type(char* type_input) {
     } else if (strcmp(type_input, "JN") == 0) { /* Evaluates input and assigns corresponding enum value. */
         return JN;
     } else if (strcmp(type_input, "MP") == 0) { /* Evaluates input and assigns corresponding enum value. */
-        return MP;
+        return MC;
     }
 }
 /*-----------------------------------------------------------------------*/
