@@ -93,16 +93,14 @@ void query_location(event_ptr event) {
     competitor *competitor;
     int number;
 
-    printf("\nPlease enter in the competitor number you wish to query the location of (between 1 and %d): ",
-            event->number_of_competitors);
+    printf("\nPlease enter in the competitor number you wish to query the location of: ");
     scanf("%d", &number);
 
-    while (number < 1 || number > event->number_of_competitors) {
-        printf("\nPlease enter in a valid competitor number between 1 and %d: ", event->number_of_competitors);
+     while ((competitor = get_competitor(event, number)) == NULL) { /* Check to make sure a valid competitor is entered. */
+        printf("\nPlease enter in a valid competitor number: ");
         scanf("%d", &number);
     }
 
-    competitor = get_competitor(event, number);
     print_location(event, competitor);
 }
 /*-----------------------------------------------------------------------*/
