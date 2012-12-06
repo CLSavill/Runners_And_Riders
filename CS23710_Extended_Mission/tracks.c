@@ -10,7 +10,6 @@
 #include "prototypes.h"
 
 /* Function to get the number of tracks from a file supplied (probably named "tracks.txt"). */
-
 int tracks_file_load(event_ptr event, char* file_name) {
     FILE *tracks_file; /* File pointer. */
     int load_status;
@@ -78,7 +77,6 @@ int tracks_file_load(event_ptr event, char* file_name) {
 /*-----------------------------------------------------------------------*/
 
 /* Function that finds the track that lies between two nodes and returns the corresponding track pointer. */
-
 track* get_track(track* track_head, int nodeA, int nodeB) {
     track *current_track;
     current_track = track_head;

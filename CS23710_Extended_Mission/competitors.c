@@ -11,7 +11,6 @@
 #include "prototypes.h"
 
 /* Function to load in all the competitors read from the file supplied (probably named "entrants.txt"). */
-
 int competitors_file_load(event_ptr event, char* file_name) {
     FILE *competitors_file; /* File pointer. */
     int load_status;
@@ -76,7 +75,6 @@ int competitors_file_load(event_ptr event, char* file_name) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to return a pointer to a competitor. */
-
 competitor* get_competitor(event_ptr event, int number) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -94,7 +92,6 @@ competitor* get_competitor(event_ptr event, int number) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to get query the location of a competitor. */
-
 void query_location(event_ptr event) {
     competitor *competitor;
     int number;
@@ -112,7 +109,6 @@ void query_location(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to print out the status and location of the competitor passed in. */
-
 void print_location(event_ptr event, competitor* competitor) {
     switch (competitor->status) {
         case NS:
@@ -162,7 +158,6 @@ void print_location(event_ptr event, competitor* competitor) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to get a manual input for the updating of a competitor's arrival at a time checkpoint. */
-
 void update_competitor(event_ptr event) {
     int hours;
     int minutes;
@@ -180,7 +175,6 @@ void update_competitor(event_ptr event) {
     }
 
     getchar();
-
     printf("\nPlease enter in the new status of the competitor (T, I, A, D, E): ");
     scanf("%c", &status);
 
@@ -217,17 +211,11 @@ void update_competitor(event_ptr event) {
         scanf("%02d", &minutes);
     }
 
-    if (competitor->status == NS) {
-        printf("\nCompetitor %d has now started\n", competitor->number);
-        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
-    } else {
-        evaluate_status(event, competitor, status, checkpoint, hours, minutes);
-    }
+    evaluate_status(event, competitor, status, checkpoint, hours, minutes);
 }
 /*-----------------------------------------------------------------------*/
 
 /* Function to update a competitor's status and location. */
-
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes) {
     char* status[] = {"NS", "TC", "TN", "A", "D", "CC", "EI", "EM"};
 
@@ -263,13 +251,7 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
     event->current_time.hours = hours;
     event->current_time.minutes = minutes;
 
-    printf("Last Recording of Competitor %d- %s at %s %d with time %02d:%02d.\n",
-            competitor->number,
-            competitor->name,
-            status[competitor->status],
-            competitor->location,
-            competitor->last_time_recored.hours = hours,
-            competitor->last_time_recored.minutes = minutes);
+    print_location(event, competitor);
     printf("Current event time updated to %02d:%02d.\n\n",
             event->current_time.hours,
             event->current_time.minutes);
@@ -279,7 +261,6 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 /*-----------------------------------------------------------------------*/
 
 /* Function to return a time for a competitor. */
-
 time get_result_time(time end_time, time start_time, int medical_minutes) {
     time time;
 
@@ -298,7 +279,6 @@ time get_result_time(time end_time, time start_time, int medical_minutes) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to return the time spent at a medical checkpoint in minutes. */
-
 int get_medical_time(time departure_time, time arrival_time) {
     int minutes;
 
@@ -309,7 +289,6 @@ int get_medical_time(time departure_time, time arrival_time) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to update the statuses of all the competitors. */
-
 void update_statuses(event_ptr event) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -332,7 +311,6 @@ void update_statuses(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to estimate the location of a competitor. */
-
 int estimate_location(event_ptr event, competitor* competitor) {
     node* nodeA;
     node* nodeB;
@@ -416,7 +394,7 @@ void evaluate_status(event_ptr event, competitor* competitor, int status, int ch
         competitor->last_time_recored.minutes = minutes;
         printf("Competitor %d- %s, excluded for medical safety reasons.\n", competitor->number, competitor->name);
         update_statuses(event);
-    } else {
+    } else if (status == 'T') {
         checkpoint_update(event, competitor, checkpoint, hours, minutes);
     }
 }

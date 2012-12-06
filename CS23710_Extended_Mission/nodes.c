@@ -10,16 +10,13 @@
 #include "prototypes.h"
 
 /* Function to load in all the nodes read from the file supplied (probably named "nodes.txt"). */
-
 int nodes_file_load(event_ptr event, char* file_name) {
     FILE *nodes_file; /* File pointer. */
     int load_status;
     char type_input[3];
     int number;
     node *new_node;
-
     event->node_head = NULL;
-
 
     if ((nodes_file = fopen(file_name, "r")) == NULL) { /* Open file with read permissions only and check file opened. */
         printf("Please enter in a valid file path and name.\n");
@@ -63,13 +60,10 @@ int nodes_file_load(event_ptr event, char* file_name) {
         fclose(nodes_file); /* Closes file as no longer needed. */
         return FAILURE;
     }
-
-
 }
 /*-----------------------------------------------------------------------*/
 
 /* Function to determine the enum type of a node. */
-
 enum type determine_type(char* type_input) {
     if (strcmp(type_input, "CP") == 0) { /* Evaluates input and assigns corresponding enum value. */
         return CP;
@@ -82,7 +76,6 @@ enum type determine_type(char* type_input) {
 /*-----------------------------------------------------------------------*/
 
 /* Function that finds a node that matches a number passed in an returns the corresponding node pointer. */
-
 node* get_node(node* node_head, int number) {
     node* node;
     node = node_head;

@@ -38,7 +38,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/loader.o \
 	${OBJECTDIR}/course.o \
 	${OBJECTDIR}/competitors.o \
-	${OBJECTDIR}/test.o \
 	${OBJECTDIR}/nodes.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/event.o \
@@ -83,11 +82,6 @@ ${OBJECTDIR}/competitors.o: competitors.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/competitors.o competitors.c
-
-${OBJECTDIR}/test.o: test.c 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/test.o test.c
 
 ${OBJECTDIR}/nodes.o: nodes.c 
 	${MKDIR} -p ${OBJECTDIR}

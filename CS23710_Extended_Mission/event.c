@@ -10,7 +10,6 @@
 #include "prototypes.h"
 
 /* Function to load in the details of the event from the file supplied (probably named "name.txt"). */
-
 int event_file_load(event_ptr event, char* file_name) {
     FILE *event_file; /* File pointer. */
     int load_status;
@@ -21,7 +20,6 @@ int event_file_load(event_ptr event, char* file_name) {
     }
 
     load_status = fscanf(event_file, "%[a-zA-Z -]", event->name);
-
     event->start_time.hours = NOT_SET;
     event->start_time.minutes = NOT_SET;
 
@@ -52,7 +50,6 @@ int event_file_load(event_ptr event, char* file_name) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to display a table of the competitors who have not started and the number. */
-
 void print_not_started(event_ptr event) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -83,7 +80,6 @@ void print_not_started(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to display a table of the competitors who are out on their course. */
-
 void print_out_on_course(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - ", "A - ", "D - "};
     competitor *competitor;
@@ -119,7 +115,6 @@ void print_out_on_course(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to display a table of the competitors who have finished their course. */
-
 void print_finished(event_ptr event) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -149,7 +144,6 @@ void print_finished(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to display a table of the result times for the competitors. */
-
 void print_results(event_ptr event) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -183,7 +177,6 @@ void print_results(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to display a table of the result times for the competitors. */
-
 void print_excluded(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - ", "A - ", "D - ", "CC", "EI", "EM"};
     competitor *competitor;

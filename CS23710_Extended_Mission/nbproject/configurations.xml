@@ -21,7 +21,6 @@
       <itemPath>loader.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>nodes.c</itemPath>
-      <itemPath>test.c</itemPath>
       <itemPath>tracks.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"

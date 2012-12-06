@@ -17,7 +17,6 @@
 /*-----------------------------------------------------------------------*/
 
 /* Enumeration Definition */
-
 enum type {
     CP, /* Timed checkpoint */
     JN, /* Junction */
@@ -26,7 +25,6 @@ enum type {
 /*-----------------------------------------------------------------------*/
 
 /* Enumeration Definition */
-
 enum status {
     NS, /* Not yet started */
     TC, /* Time checkpoint */
@@ -40,7 +38,6 @@ enum status {
 /*-----------------------------------------------------------------------*/
 
 /* Structure used to encapsulate attributes of a 24-hour clock. */
-
 typedef struct time {
     int hours; /* int used to store the hours of the clock. */
     int minutes; /* int used to store the minutes of the clock. */
@@ -48,7 +45,6 @@ typedef struct time {
 /*-----------------------------------------------------------------------*/
 
 /* Structure used to encapsulate attributes for a node. */
-
 typedef struct node {
     struct node *next_node;
     int number; /* int used to store the node number. */
@@ -57,7 +53,6 @@ typedef struct node {
 /*-----------------------------------------------------------------------*/
 
 /* Structure used to encapsulate attributes for a track. */
-
 typedef struct track {
     struct track *next_track;
     int number; /* int used to store the track number. */
@@ -68,7 +63,6 @@ typedef struct track {
 /*-----------------------------------------------------------------------*/
 
 /* Structure used to encapsulate attributes for an entrant. */
-
 typedef struct competitor {
     struct competitor *next_competitor;
     int number; /* int used to store the competitor's number. */
@@ -88,7 +82,6 @@ typedef struct competitor {
 /*-----------------------------------------------------------------------*/
 
 /* Structure used to encapsulate attributes for  a course. */
-
 typedef struct course {
     char id;
     int number_of_nodes; /* int used to store the number of nodes in the course. */
@@ -98,7 +91,6 @@ typedef struct course {
 /*-----------------------------------------------------------------------*/
 
 /* Structure used to encapsulate attributes for an event. */
-
 typedef struct event {
     char name[MAX_EVENT_LENGTH]; /* char array used to store the name of the event. */
     char date[MAX_DATE_LENGTH]; /* char array used to store the date of the event. */

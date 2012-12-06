@@ -10,7 +10,6 @@
 #include "prototypes.h"
 
 /* Function to cycle through the process of calling all the loading functions. */
-
 int loader(event_ptr event) {
     int load_status;
 
@@ -47,11 +46,9 @@ int loader(event_ptr event) {
     printf("Competitor loading finished.\n");
     return SUCCESS;
 }
-
 /*-----------------------------------------------------------------------*/
 
 /* Function to call the relevant loading/reading function using function pointer passed in. */
-
 int load_cycle(event_ptr event, int (*load_function_ptr) (event_ptr, char*)) {
     char file_name[MAX_PATH_LENGTH];
 
@@ -67,7 +64,6 @@ int load_cycle(event_ptr event, int (*load_function_ptr) (event_ptr, char*)) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to read in a file of times. */
-
 void read_times_file(event_ptr event) {
     FILE *times_file; /* File pointer. */
     char file_name[MAX_PATH_LENGTH];

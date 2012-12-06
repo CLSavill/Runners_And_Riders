@@ -21,6 +21,7 @@ void print_not_started(event_ptr event);
 void print_out_on_course(event_ptr event);
 void print_finished(event_ptr event);
 void print_results(event_ptr event);
+int chronological_check(time current_time, int hours, int minutes);
 /*-----------------------------------------------------------------------*/
 
 /* nodes.c Function Prototypes */

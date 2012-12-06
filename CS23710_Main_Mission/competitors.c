@@ -11,7 +11,6 @@
 #include "prototypes.h"
 
 /* Function to load in all the competitors read from the file supplied (probably named "entrants.txt"). */
-
 int competitors_file_load(event_ptr event, char* file_name) {
     FILE *competitors_file; /* File pointer. */
     int load_status;
@@ -26,7 +25,7 @@ int competitors_file_load(event_ptr event, char* file_name) {
         return FAILURE;
     }
 
-    while ((load_status = fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name)) != EOF) {
+    while ((load_status = fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name)) != EOF && load_status == 3) {
         if (event->number_of_competitors == 0) {
             new_competitor = malloc(sizeof (struct competitor));
         } else {
@@ -61,14 +60,20 @@ int competitors_file_load(event_ptr event, char* file_name) {
         event->number_of_competitors++;
     }
 
-    printf("\nCompetitors file loaded in successfully.\n");
-    fclose(competitors_file); /* Closes file as no longer needed. */
-    return SUCCESS;
+    if (load_status == EOF) {
+        printf("\nCompetitors file loaded in successfully.\n");
+        fclose(competitors_file); /* Closes file as no longer needed. */
+        return SUCCESS;
+    } else if (load_status != 3) { /* Expected 3 inputs. */
+        printf("Error loading in file, possible pattern mismatch.\n");
+        fclose(competitors_file); /* Closes file as no longer needed. */
+        return FAILURE;
+    }
+
 }
 /*-----------------------------------------------------------------------*/
 
 /* Function to return a pointer to a competitor. */
-
 competitor* get_competitor(event_ptr event, int number) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -84,7 +89,6 @@ competitor* get_competitor(event_ptr event, int number) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to get query the location of a competitor. */
-
 void query_location(event_ptr event) {
     competitor *competitor;
     int number;
@@ -104,7 +108,6 @@ void query_location(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to print out the status and location of the competitor passed in. */
-
 void print_location(event_ptr event, competitor* competitor) {
     switch (competitor->status) {
         case NS:
@@ -132,7 +135,6 @@ void print_location(event_ptr event, competitor* competitor) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to get a manual input for the updating of a competitor's arrival at a time checkpoint. */
-
 void update_competitor(event_ptr event) {
     int hours;
     int minutes;
@@ -140,16 +142,21 @@ void update_competitor(event_ptr event) {
     int number;
     int checkpoint;
 
-    printf("\nPlease enter in the competitor number you wish to update (between 1 and %d): ",
-            event->number_of_competitors);
+    printf("\nPlease enter in the competitor number you wish to update: ");
     scanf("%d", &number);
 
-    while (number < 1 || number > event->number_of_competitors) { /* Check to make sure a valid competitor is entered. */
-        ("\nPlease enter in a valid competitor number between 1 and %d", event->number_of_competitors);
+    while ((competitor = get_competitor(event, number)) == NULL) { /* Check to make sure a valid competitor is entered. */
+        printf("\nPlease enter in a valid competitor number: ");
         scanf("%d", &number);
     }
 
-    competitor = get_competitor(event, number);
+    printf("\nPlease enter in the new checkpoint of the competitor: ");
+    scanf("%d", &checkpoint);
+
+    while (checkpoint > event->number_of_nodes || checkpoint < 1) { /* Check to make sure a valid status is entered. */
+        printf("\nPlease enter in a valid checkpoint between 1 and %d: ", event->number_of_nodes);
+        scanf("%d", &checkpoint);
+    }
 
     printf("\nPlease enter in the hour at which the competitor arrived (between 00 and 23) for a 24-hour clock: ");
     scanf("%02d", &hours);
@@ -168,39 +175,23 @@ void update_competitor(event_ptr event) {
     }
 
     if (competitor->status == NS) {
-        checkpoint = -1;
         printf("\nCompetitor %d has now started\n", competitor->number);
-        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
-    } else if (competitor->status == TC || competitor->status == TN) {
-        checkpoint = competitor->course_ptr->course_nodes[competitor->last_checkpoint_index+1]->number;
-        checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
-    } else {
-        printf("\nCompetitor unable to to be updated, may of already completed course or been excluded.\n");
     }
 
-
+    checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
 }
 /*-----------------------------------------------------------------------*/
 
 /* Function to update a competitor's status and location. */
-
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes) {
     char* status[] = {"NS", "TC", "TN", "CC"};
 
     if (competitor->status == NS) {
         competitor->start_time.hours = hours;
-        checkpoint;
         competitor->start_time.minutes = minutes;
         competitor->status = TC;
-
-        if (checkpoint == -1) {
-            competitor->location = competitor->course_ptr->course_nodes[0]->number;
-            competitor->last_checkpoint_index = 0;
-        } else {
-            competitor->location = checkpoint;
-            competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
-        }
-
+        competitor->last_checkpoint_index = get_course_node_index(competitor->course_ptr, checkpoint, competitor->last_checkpoint_index);
+        competitor->location = competitor->course_ptr->course_nodes[competitor->last_checkpoint_index]->number; /* Gets node number of the next node on the course. */
         competitor->last_time_recored.hours = hours;
         competitor->last_time_recored.minutes = minutes;
     } else if (competitor->status == TC || competitor->status == TN) {
@@ -227,13 +218,7 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
     event->current_time.hours = hours;
     event->current_time.minutes = minutes;
 
-    printf("Last Recording of Competitor %d- %s at %s %d with time %02d:%02d.\n",
-            competitor->number,
-            competitor->name,
-            status[competitor->status],
-            competitor->location,
-            competitor->last_time_recored.hours = hours,
-            competitor->last_time_recored.minutes = minutes);
+    print_location(event, competitor);
     printf("Current event time updated to %02d:%02d.\n\n",
             event->current_time.hours,
             event->current_time.minutes);
@@ -243,7 +228,6 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 /*-----------------------------------------------------------------------*/
 
 /* Function to return a time for a competitor. */
-
 time get_result_time(time end_time, time start_time) {
     time time;
 
@@ -262,7 +246,6 @@ time get_result_time(time end_time, time start_time) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to update the statuses of all the competitors. */
-
 void update_statuses(event_ptr event) {
     competitor *competitor;
     competitor = event->competitor_head;
@@ -285,7 +268,6 @@ void update_statuses(event_ptr event) {
 /*-----------------------------------------------------------------------*/
 
 /* Function to estimate the location of a competitor. */
-
 int estimate_location(event_ptr event, competitor* competitor) {
     node* nodeA;
     node* nodeB;
@@ -334,4 +316,3 @@ int estimate_location(event_ptr event, competitor* competitor) {
     }
 }
 /*-----------------------------------------------------------------------*/
-
