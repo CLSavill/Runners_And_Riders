@@ -28,8 +28,7 @@ int tracks_file_load(event_ptr event, char* file_name) {
     }
 
     while ((load_status = fscanf(tracks_file, " %d %d %d %d", &track_number, &track_start_number,
-            &track_end_number, &track_max_time)) != EOF) {
-
+            &track_end_number, &track_max_time)) != EOF && load_status == 4) {
 
         if (event->number_of_tracks == 0) {
             new_track = malloc(sizeof (struct track));
@@ -66,9 +65,15 @@ int tracks_file_load(event_ptr event, char* file_name) {
         event->number_of_tracks++;
     }
 
-    printf("\nTracks file loaded in successfully.\n");
-    fclose(tracks_file); /* Closes file as no longer needed. */
-    return SUCCESS;
+    if (load_status == EOF) {
+        printf("\nTracks file loaded in successfully.\n");
+        fclose(tracks_file); /* Closes file as no longer needed. */
+        return SUCCESS;
+    } else if (load_status != 4) { /* Expected 4 inputs. */
+        printf("Error loading in file, possible pattern mismatch.\n");
+        fclose(tracks_file); /* Closes file as no longer needed. */
+        return FAILURE;
+    }
 }
 /*-----------------------------------------------------------------------*/
 

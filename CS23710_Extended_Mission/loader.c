@@ -64,7 +64,6 @@ int load_cycle(event_ptr event, int (*load_function_ptr) (event_ptr, char*)) {
     printf("\nError: File failed to load.\n");
     return FAILURE;
 }
-
 /*-----------------------------------------------------------------------*/
 
 /* Function to read in a file of times. */
@@ -90,16 +89,31 @@ void read_times_file(event_ptr event) {
     } while (times_file == NULL);
 
     do {
-        if (load_status = fscanf(times_file, " %c %d %d %d:%d", &status, &checkpoint, &competitor_number, &hours, &minutes) == EOF) {
-            load_status = EOF;
-            printf("\nEnd of file reached.");
-        } else {
-            competitor = get_competitor(event, competitor_number);
-            evaluate_status(event, competitor, status, checkpoint, hours, minutes);
-        }
-    } while (load_status != EOF);
+        load_status = fscanf(times_file, " %c %d %d %d:%d", &status, &checkpoint, &competitor_number, &hours, &minutes);
 
-    fclose(times_file);
-    printf("\nLoading of times files complete.\n");
+        if (load_status == EOF) {
+            printf("\nEnd of file reached.");
+        } else if (load_status == 5) {
+            if ((chronological_check(event->current_time, hours, minutes)) == SUCCESS) {
+                competitor = get_competitor(event, competitor_number);
+                evaluate_status(event, competitor, status, checkpoint, hours, minutes);
+            } else {
+                load_status = FAILURE;
+            }
+        } else {
+            printf("Error reading in time file, possible pattern mismatch.\n");
+        }
+    } while (load_status != EOF && load_status == 5 && load_status != FAILURE);
+
+    if (load_status == EOF) {
+        fclose(times_file);
+        printf("\nLoading of times files complete.\n");
+    } else if (load_status == FAILURE) {
+        printf("\nFile has not arrived in chronological order, permission to read in file denied.\n");
+        fclose(times_file);
+    } else if (load_status != 5) {
+        printf("Error reading in time file, possible pattern mismatch.\n");
+        fclose(times_file);
+    }
 }
 /*-----------------------------------------------------------------------*/

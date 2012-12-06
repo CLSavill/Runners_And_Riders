@@ -22,6 +22,7 @@ void print_out_on_course(event_ptr event);
 void print_finished(event_ptr event);
 void print_results(event_ptr event);
 void print_excluded(event_ptr event);
+int chronological_check(time current_time, int hours, int minutes);
 /*-----------------------------------------------------------------------*/
 
 /* nodes.c Function Prototypes */
@@ -51,7 +52,7 @@ void print_location(event_ptr event, competitor* competitor);
 void update_competitor(event_ptr event);
 void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes);
 time get_result_time(time end_time, time start_time, int medical_minutes);
-int get_medical_time(time arrival_time, time departure_time);
+int get_medical_time(time departure_time, time arrival_time);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
 void evaluate_status(event_ptr event, competitor* competitor, int status, int checkpoint, int hours, int minutes);

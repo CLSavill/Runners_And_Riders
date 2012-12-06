@@ -26,7 +26,7 @@ int competitors_file_load(event_ptr event, char* file_name) {
         return FAILURE;
     }
 
-    while ((load_status = fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name)) != EOF) {
+    while ((load_status = fscanf(competitors_file, " %d %c %[a-zA-Z ]", &number, &course, name)) != EOF && load_status == 3) {
         if (event->number_of_competitors == 0) {
             new_competitor = malloc(sizeof (struct competitor));
         } else {
@@ -62,9 +62,16 @@ int competitors_file_load(event_ptr event, char* file_name) {
         event->number_of_competitors++;
     }
 
-    printf("\nCompetitors file loaded in successfully.\n");
-    fclose(competitors_file); /* Closes file as no longer needed. */
-    return SUCCESS;
+    if (load_status == EOF) {
+        printf("\nCompetitors file loaded in successfully.\n");
+        fclose(competitors_file); /* Closes file as no longer needed. */
+        return SUCCESS;
+    } else if (load_status != 3) { /* Expected 3 inputs. */
+        printf("Error loading in file, possible pattern mismatch.\n");
+        fclose(competitors_file); /* Closes file as no longer needed. */
+        return FAILURE;
+    }
+
 }
 /*-----------------------------------------------------------------------*/
 
@@ -81,6 +88,8 @@ competitor* get_competitor(event_ptr event, int number) {
             competitor = competitor->next_competitor;
         }
     }
+
+    return NULL;
 }
 /*-----------------------------------------------------------------------*/
 
@@ -90,16 +99,14 @@ void query_location(event_ptr event) {
     competitor *competitor;
     int number;
 
-    printf("\nPlease enter in the competitor number you wish to query the location of (between 1 and %d): ",
-            event->number_of_competitors);
+    printf("\nPlease enter in the competitor number you wish to query the location of: ");
     scanf("%d", &number);
 
-    while (number < 1 || number > event->number_of_competitors) {
-        printf("\nPlease enter in a valid competitor number between 1 and %d: ", event->number_of_competitors);
+    while ((competitor = get_competitor(event, number)) == NULL) {
+        printf("\nPlease enter in a valid competitor number: ");
         scanf("%d", &number);
     }
 
-    competitor = get_competitor(event, number);
     print_location(event, competitor);
 }
 /*-----------------------------------------------------------------------*/
@@ -125,6 +132,12 @@ void print_location(event_ptr event, competitor* competitor) {
             break;
         case A:
             printf("\nCompetitor: %d, Name: %s, Location: Medical Checkpoint %d.\n",
+                    competitor->number,
+                    competitor->name,
+                    competitor->location);
+            break;
+        case D:
+            printf("\nCompetitor: %d, Name: %s, Passed Medical Check and just departed Checkpoint %d.\n",
                     competitor->number,
                     competitor->name,
                     competitor->location);
@@ -158,22 +171,21 @@ void update_competitor(event_ptr event) {
     int checkpoint;
     char status;
 
-    printf("\nPlease enter in the competitor number you wish to update (between 1 and %d): ",
-            event->number_of_competitors);
+    printf("\nPlease enter in the competitor number you wish to update: ");
     scanf("%d", &number);
 
-    while (number < 1 || number > event->number_of_competitors) { /* Check to make sure a valid competitor is entered. */
-        ("\nPlease enter in a valid competitor number between 1 and %d", event->number_of_competitors);
+    while ((competitor = get_competitor(event, number)) == NULL) { /* Check to make sure a valid competitor is entered. */
+        printf("\nPlease enter in a valid competitor number: ");
         scanf("%d", &number);
     }
 
-    competitor = get_competitor(event, number);
+    getchar();
 
     printf("\nPlease enter in the new status of the competitor (T, I, A, D, E): ");
     scanf("%c", &status);
 
-    while (status != 'T' || status != 'I' || status != 'A' || status != 'D' || status != 'E') { /* Check to make sure a valid status is entered. */
-        ("\nPlease enter in a valid status (T, I, A, D, E): ");
+    while (status != 'T' && status != 'I' && status != 'A' && status != 'D' && status != 'E') { /* Check to make sure a valid status is entered. */
+        printf("\nPlease enter in a valid status (T, I, A, D, E): ");
         scanf("%c", &status);
     }
 
@@ -183,7 +195,7 @@ void update_competitor(event_ptr event) {
         printf("\nPlease enter in the new checkpoint of the competitor: ");
         scanf("%d", &checkpoint);
 
-        while (checkpoint > event->number_of_nodes || checkpoint < event->number_of_nodes) { /* Check to make sure a valid status is entered. */
+        while (checkpoint > event->number_of_nodes || checkpoint < 1) { /* Check to make sure a valid status is entered. */
             printf("\nPlease enter in a valid checkpoint between 1 and %d: ", event->number_of_nodes);
             scanf("%d", &checkpoint);
         }
@@ -210,7 +222,7 @@ void update_competitor(event_ptr event) {
         checkpoint_update(event, competitor, checkpoint, hours, minutes); /* Call to function that does the updating. */
     } else {
         evaluate_status(event, competitor, status, checkpoint, hours, minutes);
-    } 
+    }
 }
 /*-----------------------------------------------------------------------*/
 
@@ -287,11 +299,11 @@ time get_result_time(time end_time, time start_time, int medical_minutes) {
 
 /* Function to return the time spent at a medical checkpoint in minutes. */
 
-int get_medical_time(time arrival_time, time departure_time) {
+int get_medical_time(time departure_time, time arrival_time) {
     int minutes;
 
-    minutes = (arrival_time.hours * 60) - (departure_time.hours * 60);
-    minutes += arrival_time.minutes - departure_time.minutes;
+    minutes = (departure_time.hours * 60) - (arrival_time.hours * 60);
+    minutes += departure_time.minutes - arrival_time.minutes;
     return minutes;
 }
 /*-----------------------------------------------------------------------*/
@@ -395,8 +407,7 @@ void evaluate_status(event_ptr event, competitor* competitor, int status, int ch
         competitor->last_time_recored.minutes = minutes;
         competitor->medical_departure_time.hours = hours;
         competitor->medical_departure_time.minutes = minutes;
-        competitor->medical_minutes += get_medical_time(competitor->medical_arrival_time, competitor->medical_departure_time);
-        competitor->medical_passed = TRUE;
+        competitor->medical_minutes += get_medical_time(competitor->medical_departure_time, competitor->medical_arrival_time);
         printf("Competitor %d- %s, passed medical exam and just departed medical checkpoint.\n", competitor->number, competitor->name);
         update_statuses(event);
     } else if (status == 'E') {
@@ -409,5 +420,3 @@ void evaluate_status(event_ptr event, competitor* competitor, int status, int ch
         checkpoint_update(event, competitor, checkpoint, hours, minutes);
     }
 }
-
-

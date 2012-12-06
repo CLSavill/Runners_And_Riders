@@ -191,7 +191,7 @@ void print_excluded(event_ptr event) {
     time time;
     int counter = 0;
 
-    printf("\n Printing results...\n\n");
+    printf("\n Printing excluded...\n\n");
     printf("====================================================================================\n");
     printf("| Number  |                        Name                        | Status |  At Time |\n");
     printf("====================================================================================\n");
@@ -213,6 +213,21 @@ void print_excluded(event_ptr event) {
 
     printf("====================================================================================\n");
     printf("\nNumber of Competitors excluded: %d out of %d\n", counter, event->number_of_competitors);
+    printf("\nKey: EI = Excluded for taking an Incorrect Route, EM = Excluded for Medical Safety Reasons.\n");
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
+}
+/*-----------------------------------------------------------------------*/
+
+/* Function to check if the new time passed in is later than the current event time. */
+int chronological_check(time current_time, int hours, int minutes) {
+    if (hours < current_time.hours) { /* Check if time file has arrived in chronological order */
+        return FAILURE;
+    } else if (hours == current_time.hours) {
+        if (minutes < current_time.minutes) {
+            return FAILURE;
+        }
+    }
+
+    return SUCCESS;
 }
 /*-----------------------------------------------------------------------*/
