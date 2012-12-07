@@ -6,7 +6,6 @@
                    projectFiles="true">
       <itemPath>prototypes.h</itemPath>
       <itemPath>structs.h</itemPath>
-      <itemPath>test.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"

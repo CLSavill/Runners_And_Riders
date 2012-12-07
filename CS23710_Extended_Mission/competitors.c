@@ -211,7 +211,11 @@ void update_competitor(event_ptr event) {
         scanf("%02d", &minutes);
     }
 
-    evaluate_status(event, competitor, status, checkpoint, hours, minutes);
+    if ((chronological_check(event->current_time, hours, minutes)) == SUCCESS) {
+        evaluate_status(event, competitor, status, checkpoint, hours, minutes);
+    } else {
+        printf("\n\nSorry but the manual update you are attempting is not in chronological order, updating process aborted.\n");
+    }
 }
 /*-----------------------------------------------------------------------*/
 
@@ -336,29 +340,39 @@ int estimate_location(event_ptr event, competitor* competitor) {
         event_time = (event->current_time.hours * 60) + event->current_time.minutes;
         est_arrival_time = current_competitor_time;
 
-        while (nodeB->type == JN) { /* While the second node is a junction node. */
-            track = get_track(event->track_head, nodeA->number, nodeB->number); /* Obtain track. */
-            est_arrival_time += track->max_time; /* Increase estimated arrival time for competitor at end of track. */
-
-            if (event_time > est_arrival_time) {
-                node_index += 1;
-                next_node_number = competitor->course_ptr->course_nodes[node_index]->number;
-                next_node = get_node(event->node_head, next_node_number);
-                nodeA = nodeB;
-                nodeB = next_node;
-
-                if (nodeB->type != JN) { /* If the new nodeB is not a junction node. */
-                    track = get_track(event->track_head, nodeA->number, nodeB->number);
-                    return track->number;
-                }
-            } else {
-                return track->number;
-            }
+        if (nodeB->type == JN) { /* While the second node is a junction node. */
+            track = track_estimation(event, competitor, nodeA, nodeB, node_index, next_node_number, event_time, est_arrival_time);
         }
         return track->number;
     }
 }
+/*-----------------------------------------------------------------------*/
 
+/* Recursive function that estimates what track the competitor could currently be on.
+ * Recursively calls if the next node is a junction node and the time difference allows for the next track to be considered. */
+track* track_estimation(event_ptr event, competitor* competitor, node* nodeA, node* nodeB, int node_index, int next_node_number, int event_time, int est_arrival_time) {
+    node* next_node;
+    track* track;
+
+    track = get_track(event->track_head, nodeA->number, nodeB->number); /* Obtain track. */
+    est_arrival_time += track->max_time; /* Increase estimated arrival time for competitor at end of track. */
+
+    if (event_time > est_arrival_time) {
+        node_index += 1;
+        next_node_number = competitor->course_ptr->course_nodes[node_index]->number; /* Gets node number of the next node on the course. */
+        next_node = get_node(event->node_head, next_node_number);
+        nodeA = nodeB;
+        nodeB = next_node;
+
+        if (nodeB->type == JN) {
+            track = track_estimation(event, competitor, nodeA, nodeB, node_index, next_node_number, event_time, est_arrival_time);
+        } else { /* If the new nodeB is not a junction node. */
+            track = get_track(event->track_head, nodeA->number, nodeB->number);
+        }
+    }
+
+    return track;
+}
 /*-----------------------------------------------------------------------*/
 
 void evaluate_status(event_ptr event, competitor* competitor, int status, int checkpoint, int hours, int minutes) {

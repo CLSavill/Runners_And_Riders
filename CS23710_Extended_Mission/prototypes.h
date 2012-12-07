@@ -55,5 +55,6 @@ time get_result_time(time end_time, time start_time, int medical_minutes);
 int get_medical_time(time departure_time, time arrival_time);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
+track* track_estimation(event_ptr event, competitor* competitor, node* nodeA, node* nodeB, int node_index, int next_node_number, int event_time, int est_arrival_time);
 void evaluate_status(event_ptr event, competitor* competitor, int status, int checkpoint, int hours, int minutes);
 /*-----------------------------------------------------------------------*/

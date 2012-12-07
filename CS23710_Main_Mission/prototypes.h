@@ -54,4 +54,5 @@ void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, 
 time get_result_time(time end_time, time start_time);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
+track* track_estimation(event_ptr event, competitor* competitor, node* nodeA, node* nodeB, int node_index, int next_node_number, int event_time, int est_arrival_time);
 /*-----------------------------------------------------------------------*/
