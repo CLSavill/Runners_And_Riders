@@ -75,7 +75,7 @@ void print_not_started(event_ptr event) {
 
     printf("====================================================================================\n");
     printf("\nKey: NS = Not Started.\n");
-    printf("\nNumber of Competitors not started yet: %d\n", counter);
+    printf("\nNumber of Competitors not started yet: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -85,6 +85,7 @@ void print_out_on_course(event_ptr event) {
     char* status[] = {"NS", "TC - ", "TN - "};
     competitor *competitor;
     competitor = event->competitor_head;
+    int counter = 0;
 
     printf("\n Printing competitors that are out on a course...\n\n");
     printf("========================================================================================================================\n");
@@ -100,14 +101,15 @@ void print_out_on_course(event_ptr event) {
                     competitor->course_ptr->course_nodes[competitor->last_checkpoint_index]->number,
                     status[competitor->status],
                     competitor->location);
+            counter++;
         }
 
         competitor = competitor->next_competitor;
     }
 
     printf("========================================================================================================================\n");
-
     printf("\nKey: NS = Not Started, TC = Time Checkpoint, TN = Track Number.\n");
+    printf("\nNumber of Competitors out on course: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -138,7 +140,7 @@ void print_finished(event_ptr event) {
 
     printf("====================================================================================\n");
     printf("\nKey: CC = Course Completed.\n");
-    printf("\nNumber of Competitors completed course successfully: %d\n", counter);
+    printf("\nNumber of Competitors completed course successfully: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/
@@ -172,7 +174,7 @@ void print_results(event_ptr event) {
 
     printf("====================================================================================\n");
     printf("\nKey: CC = Course Completed.\n");
-    printf("\nNumber of Competitors completed course successfully: %d\n", counter);
+    printf("\nNumber of Competitors completed course successfully: %d out of %d\n", counter, event->number_of_competitors);
     printf("\nCurrent Event Time: %d:%d.\n", event->current_time.hours, event->current_time.minutes);
 }
 /*-----------------------------------------------------------------------*/

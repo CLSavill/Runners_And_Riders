@@ -412,3 +412,4 @@ void evaluate_status(event_ptr event, competitor* competitor, int status, int ch
         checkpoint_update(event, competitor, checkpoint, hours, minutes);
     }
 }
+/*-----------------------------------------------------------------------*/
