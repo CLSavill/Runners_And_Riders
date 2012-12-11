@@ -4,8 +4,6 @@
  * Description: File that contains methods related to handling an event's tracks.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "structs.h"
 #include "prototypes.h"
 

@@ -4,8 +4,6 @@
  * Description: Main file for event monitoring program (menu).
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "structs.h"
 #include "prototypes.h"
 

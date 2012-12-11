@@ -4,8 +4,6 @@
  * Description: File that contains methods related to handling the loading of files.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "structs.h"
 #include "prototypes.h"
 
@@ -111,5 +109,19 @@ void read_times_file(event_ptr event) {
         printf("Error reading in time file, possible pattern mismatch.\n");
         fclose(times_file);
     }
+}
+/*-----------------------------------------------------------------------*/
+
+/* Function to check if the new time passed in is later than the current event time. */
+int chronological_check(time current_time, int hours, int minutes) {
+    if (hours < current_time.hours) { /* Check if time file has arrived in chronological order */
+        return FAILURE;
+    } else if (hours == current_time.hours) {
+        if (minutes < current_time.minutes) {
+            return FAILURE;
+        }
+    }
+
+    return SUCCESS;
 }
 /*-----------------------------------------------------------------------*/

@@ -4,8 +4,6 @@
  * Description: File that contains methods related to handling an event's courses.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "structs.h"
 #include "prototypes.h"
 
@@ -25,13 +23,7 @@ int courses_file_load(event_ptr event, char* file_name) {
         return FAILURE;
     }
 
-    while ((load_status = fscanf(courses_file, " %c %d", &course_id, &number_of_course_nodes)) != EOF && load_status == 2) {
-        if (load_status != 2) {
-            printf("Error reading in course, possible pattern mismatch.");
-            fclose(courses_file); /* Closes file as no longer needed. */
-            return FAILURE;
-        }
-
+    while ((load_status = fscanf(courses_file, " %c %d", &course_id, &number_of_course_nodes)) != EOF) {
         if (event->number_of_courses == 0) {
             new_course = malloc(sizeof (struct course)); /* Allocates memory for a course struct. */
         } else {
@@ -43,13 +35,7 @@ int courses_file_load(event_ptr event, char* file_name) {
         new_course->course_nodes = malloc(number_of_course_nodes * (sizeof (node*))); /* Allocation memory for an array of node pointers. */
         new_course->id = course_id;
         new_course->number_of_nodes = number_of_course_nodes;
-
-        if ((new_course->course_nodes = read_course_nodes(event, new_course->course_nodes, courses_file, &load_status, number_of_course_nodes)) == NULL) {
-            printf("Error reading in course nodes, possible pattern mismatch.");
-            fclose(courses_file); /* Closes file as no longer needed. */
-            return FAILURE;
-        }
-
+        new_course->course_nodes = read_course_nodes(event, new_course->course_nodes, courses_file, &load_status, number_of_course_nodes);
         new_course->next_course = NULL;
         /*-----------------------------------------------------------------------*/
 
@@ -104,11 +90,6 @@ node** read_course_nodes(event_ptr event, node** course_nodes, FILE* courses_fil
 
     for (counter; counter < number_of_course_nodes; counter++) {
         *load_status = fscanf(courses_file, " %d", &node_number);
-
-        if (*load_status != 1) {
-            return NULL;
-        }
-
         course_nodes[counter] = get_node(event->node_head, node_number);
     }
 
