@@ -1,0 +1,55 @@
+dmake: defaulting to parallel mode.
+See the man page dmake(1) for more information on setting up the .dmakerc file.
+wiked --> 1 job
+wiked --> 2 jobs
+"/opt/SUNWspro/bin/dmake" -f nbproject/Makefile-Debug.mk QMAKE= SUBPROJECTS= .clean-conf
+wiked --> 1 job
+rm -f -r build/Debug
+rm -f dist/Debug/OracleSolarisStudio-Solaris-Sparc/cs23710_main_mission
+
+
+CLEAN SUCCESSFUL (total time: 757ms)
+
+dmake: defaulting to parallel mode.
+See the man page dmake(1) for more information on setting up the .dmakerc file.
+"/opt/SUNWspro/bin/dmake" -f nbproject/Makefile-Debug.mk QMAKE= SUBPROJECTS= .build-conf
+"/opt/SUNWspro/bin/dmake"  -f nbproject/Makefile-Debug.mk dist/Debug/OracleSolarisStudio-Solaris-Sparc/cs23710_main_mission
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/loader.o loader.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/updater.o updater.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/updater.o updater.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/courses.o courses.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/loader.o loader.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/competitors.o competitors.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/courses.o courses.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/nodes.o nodes.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/competitors.o competitors.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/main.o main.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/nodes.o nodes.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/event.o event.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/main.o main.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/tracks.o tracks.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/tracks.o tracks.c
+mkdir -p build/Debug/OracleSolarisStudio-Solaris-Sparc
+cc   -c -g -o build/Debug/OracleSolarisStudio-Solaris-Sparc/event.o event.c
+mkdir -p dist/Debug/OracleSolarisStudio-Solaris-Sparc
+cc    -o dist/Debug/OracleSolarisStudio-Solaris-Sparc/cs23710_main_mission build/Debug/OracleSolarisStudio-Solaris-Sparc/loader.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/updater.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/courses.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/competitors.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/nodes.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/main.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/event.o  build/Debug/OracleSolarisStudio-Solaris-Sparc/tracks.o  
+
+
+BUILD SUCCESSFUL (total time: 2s)
+
+ 

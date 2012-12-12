@@ -1,0 +1,1106 @@
+Event Monitoring Program Launching...
+
+Please enter in the file path and name of the event file: /dcs/dap/CS23710_DATA/event_3/name.txt
+
+Endurance Horse Race - The Main Event
+27th June 2012
+07:30
+
+Event file loaded in successfully.
+Event loading finished.
+
+
+Please enter in the file path and name of the nodes file: /dcs/dap/CS23710_DATA/event_3/nodes.txt
+Head Node: Number: 1, Type: 0 = CP
+Node: Number: 2, Type: 1 = JN
+Node: Number: 3, Type: 1 = JN
+Node: Number: 4, Type: 0 = CP
+Node: Number: 5, Type: 0 = CP
+Node: Number: 6, Type: 1 = JN
+Node: Number: 7, Type: 0 = CP
+Node: Number: 8, Type: 1 = JN
+Node: Number: 9, Type: 0 = CP
+Node: Number: 10, Type: 1 = JN
+Node: Number: 11, Type: 1 = JN
+Node: Number: 12, Type: 1 = JN
+Node: Number: 13, Type: 0 = CP
+Node: Number: 14, Type: 0 = MC
+Node: Number: 15, Type: 1 = JN
+Node: Number: 16, Type: 1 = JN
+Node: Number: 17, Type: 0 = CP
+Node: Number: 18, Type: 1 = JN
+
+Nodes file loaded in successfully.
+Node loading finished.
+
+
+Please enter in the file path and name of the tracks file: /dcs/dap/CS23710_DATA/event_3/tracks.txt
+Head Track: Number: 1, Start: 1, End: 2, Max Time: 20
+Track: Number: 2, Start: 2, End: 3, Max Time: 10
+Track: Number: 3, Start: 3, End: 4, Max Time: 11
+Track: Number: 4, Start: 4, End: 5, Max Time: 15
+Track: Number: 5, Start: 5, End: 6, Max Time: 12
+Track: Number: 6, Start: 6, End: 8, Max Time: 10
+Track: Number: 7, Start: 6, End: 7, Max Time: 8
+Track: Number: 8, Start: 7, End: 10, Max Time: 12
+Track: Number: 9, Start: 8, End: 10, Max Time: 10
+Track: Number: 10, Start: 8, End: 9, Max Time: 5
+Track: Number: 11, Start: 3, End: 9, Max Time: 18
+Track: Number: 12, Start: 9, End: 12, Max Time: 20
+Track: Number: 13, Start: 2, End: 13, Max Time: 30
+Track: Number: 14, Start: 12, End: 13, Max Time: 5
+Track: Number: 15, Start: 10, End: 11, Max Time: 15
+Track: Number: 16, Start: 11, End: 12, Max Time: 5
+Track: Number: 17, Start: 11, End: 14, Max Time: 12
+Track: Number: 18, Start: 14, End: 15, Max Time: 15
+Track: Number: 19, Start: 15, End: 16, Max Time: 8
+Track: Number: 20, Start: 16, End: 17, Max Time: 8
+Track: Number: 21, Start: 17, End: 18, Max Time: 7
+Track: Number: 22, Start: 15, End: 18, Max Time: 5
+
+Tracks file loaded in successfully.
+Track loading finished.
+
+
+Please enter in the file path and name of the courses file: /dcs/dap/CS23710_DATA/event_3/courses.txt
+
+Head Course: ID: A, Number of Nodes: 21,  Nodes: [1,2,3,4,5,6,7,10,11,14,15,16,17,18,15,14,11,12,13,2,1]
+
+Course: ID: B, Number of Nodes: 15, Nodes: [1,2,3,4,5,6,7,10,11,14,11,12,13,2,1]
+
+Course: ID: C, Number of Nodes: 13, Nodes: [1,2,3,4,5,6,7,10,11,12,13,2,1]
+
+Course: ID: D, Number of Nodes: 11, Nodes: [1,2,3,4,5,6,8,9,3,2,1]
+
+Course: ID: E, Number of Nodes: 11, Nodes: [1,2,3,9,8,10,11,12,13,2,1]
+
+Course: ID: F, Number of Nodes: 8, Nodes: [1,2,3,9,12,13,2,1]
+
+Courses file loaded in successfully.
+Course loading finished.
+
+
+Please enter in the file path and name of the competitors file: /dcs/dap/CS23710_DATA/event_3/entrants.txt
+Head Competitor: Number: 1, Course: E, Name: Ace Abbey
+Competitor: Number: 3, Course: A, Name: Ace Fudge
+Competitor: Number: 4, Course: C, Name: Amber Abbey
+Competitor: Number: 5, Course: E, Name: Amber Fudge
+Competitor: Number: 6, Course: D, Name: April Abbey
+Competitor: Number: 7, Course: B, Name: April Fudge
+Competitor: Number: 8, Course: F, Name: Ash Abbey
+Competitor: Number: 9, Course: D, Name: Ash Fudge
+Competitor: Number: 10, Course: A, Name: Asti Abbey
+Competitor: Number: 11, Course: A, Name: Asti Fudge
+Competitor: Number: 12, Course: C, Name: Autumn Abbey
+Competitor: Number: 13, Course: B, Name: Autumn Fudge
+Competitor: Number: 14, Course: A, Name: Barfields Marco Abbey
+Competitor: Number: 16, Course: F, Name: Barfields Marco Fudge
+Competitor: Number: 17, Course: B, Name: Basil Abbey
+Competitor: Number: 18, Course: A, Name: Basil Fudge
+Competitor: Number: 19, Course: C, Name: Beatrice Abbey
+Competitor: Number: 20, Course: A, Name: Beatrice Fudge
+Competitor: Number: 22, Course: D, Name: Beau Abbey
+Competitor: Number: 23, Course: C, Name: Beau Fudge
+Competitor: Number: 24, Course: B, Name: Bella Abbey
+Competitor: Number: 26, Course: F, Name: Bella Fudge
+Competitor: Number: 27, Course: F, Name: Black Jack Abbey
+Competitor: Number: 28, Course: A, Name: Black Jack Fudge
+Competitor: Number: 30, Course: B, Name: Blue Abbey
+Competitor: Number: 31, Course: B, Name: Blue Fudge
+Competitor: Number: 32, Course: A, Name: Bobby Abbey
+Competitor: Number: 34, Course: E, Name: Bobby Fudge
+Competitor: Number: 35, Course: C, Name: Bubbles Abbey
+Competitor: Number: 36, Course: D, Name: Bubbles Fudge
+Competitor: Number: 38, Course: A, Name: Captain Abbey
+Competitor: Number: 39, Course: B, Name: Captain Fudge
+Competitor: Number: 40, Course: D, Name: Chalkie Abbey
+Competitor: Number: 41, Course: F, Name: Chalkie Fudge
+Competitor: Number: 42, Course: E, Name: Copper Abbey
+Competitor: Number: 44, Course: B, Name: Copper Fudge
+Competitor: Number: 45, Course: C, Name: Diamond Abbey
+Competitor: Number: 46, Course: B, Name: Diamond Fudge
+Competitor: Number: 47, Course: E, Name: Dinky Abbey
+Competitor: Number: 48, Course: F, Name: Dinky Fudge
+Competitor: Number: 49, Course: B, Name: Ebony Abbey
+Competitor: Number: 50, Course: C, Name: Ebony Fudge
+Competitor: Number: 51, Course: C, Name: Ginger Abbey
+Competitor: Number: 52, Course: F, Name: Ginger Fudge
+Competitor: Number: 53, Course: A, Name: Goldie Abbey
+Competitor: Number: 55, Course: E, Name: Goldie Fudge
+Competitor: Number: 56, Course: F, Name: Honey Abbey
+Competitor: Number: 57, Course: C, Name: Honey Fudge
+Competitor: Number: 58, Course: A, Name: Izzy Abbey
+Competitor: Number: 59, Course: A, Name: Izzy Fudge
+Competitor: Number: 60, Course: A, Name: Jasmine Abbey
+Competitor: Number: 61, Course: F, Name: Jasmine Fudge
+Competitor: Number: 62, Course: D, Name: Lady Abbey
+Competitor: Number: 64, Course: B, Name: Lady Fudge
+Competitor: Number: 65, Course: C, Name: Lady Tara Abbey
+Competitor: Number: 66, Course: B, Name: Lady Tara Fudge
+Competitor: Number: 67, Course: B, Name: Lemon Abbey
+Competitor: Number: 68, Course: E, Name: Lemon Fudge
+Competitor: Number: 69, Course: F, Name: Lord Abbey
+Competitor: Number: 70, Course: E, Name: Lord Fudge
+Competitor: Number: 71, Course: A, Name: Lucky Abbey
+Competitor: Number: 74, Course: E, Name: Lucky Fudge
+Competitor: Number: 76, Course: D, Name: Lord Abbey
+Competitor: Number: 77, Course: B, Name: Lord Fudge
+Competitor: Number: 78, Course: F, Name: Maddy Abbey
+Competitor: Number: 79, Course: A, Name: Maddy Fudge
+Competitor: Number: 80, Course: D, Name: Magic Abbey
+Competitor: Number: 81, Course: D, Name: Magic Fudge
+Competitor: Number: 83, Course: A, Name: Major Abbey
+Competitor: Number: 85, Course: A, Name: Major Fudge
+Competitor: Number: 86, Course: B, Name: Mattie Abbey
+Competitor: Number: 87, Course: A, Name: Mattie Fudge
+Competitor: Number: 89, Course: B, Name: Prince Abbey
+Competitor: Number: 90, Course: A, Name: Prince Fudge
+Competitor: Number: 91, Course: B, Name: Princess Abbey
+Competitor: Number: 92, Course: B, Name: Princess Fudge
+Competitor: Number: 93, Course: D, Name: Rosie Abbey
+Competitor: Number: 94, Course: B, Name: Rosie Fudge
+Competitor: Number: 95, Course: F, Name: Ruby Abbey
+Competitor: Number: 97, Course: C, Name: Ruby Fudge
+Competitor: Number: 98, Course: C, Name: Sapphire Abbey
+Competitor: Number: 100, Course: F, Name: Sapphire Fudge
+Competitor: Number: 101, Course: C, Name: Scarlet Abbey
+Competitor: Number: 102, Course: F, Name: Scarlet Fudge
+Competitor: Number: 103, Course: D, Name: sienna Abbey
+Competitor: Number: 106, Course: B, Name: sienna Fudge
+Competitor: Number: 107, Course: F, Name: Silver Abbey
+Competitor: Number: 108, Course: A, Name: Silver Fudge
+Competitor: Number: 109, Course: A, Name: Smokey Abbey
+Competitor: Number: 110, Course: D, Name: Smokey Fudge
+Competitor: Number: 111, Course: E, Name: Snowy Abbey
+Competitor: Number: 113, Course: C, Name: Snowy Fudge
+Competitor: Number: 114, Course: A, Name: sonic Abbey
+Competitor: Number: 115, Course: D, Name: sonic Fudge
+Competitor: Number: 117, Course: A, Name: Summer Abbey
+Competitor: Number: 118, Course: E, Name: Summer Fudge
+Competitor: Number: 121, Course: B, Name: Tango Abbey
+Competitor: Number: 122, Course: A, Name: Tango Fudge
+Competitor: Number: 123, Course: B, Name: Topaz Abbey
+Competitor: Number: 124, Course: F, Name: Topaz Fudge
+Competitor: Number: 126, Course: D, Name: Zizou Abbey
+Competitor: Number: 127, Course: F, Name: Zizou Fudge
+
+Competitors file loaded in successfully.
+Competitor loading finished.
+Loading Cycle Finished.
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 2
+
+ Printing competitors that have not yet started...
+
+====================================================================================
+| Number  |                        Name                        | Course | Location |
+====================================================================================
+|   001   | Ace Abbey                                          |   E    |    NS    |
+|   003   | Ace Fudge                                          |   A    |    NS    |
+|   004   | Amber Abbey                                        |   C    |    NS    |
+|   005   | Amber Fudge                                        |   E    |    NS    |
+|   006   | April Abbey                                        |   D    |    NS    |
+|   007   | April Fudge                                        |   B    |    NS    |
+|   008   | Ash Abbey                                          |   F    |    NS    |
+|   009   | Ash Fudge                                          |   D    |    NS    |
+|   010   | Asti Abbey                                         |   A    |    NS    |
+|   011   | Asti Fudge                                         |   A    |    NS    |
+|   012   | Autumn Abbey                                       |   C    |    NS    |
+|   013   | Autumn Fudge                                       |   B    |    NS    |
+|   014   | Barfields Marco Abbey                              |   A    |    NS    |
+|   016   | Barfields Marco Fudge                              |   F    |    NS    |
+|   017   | Basil Abbey                                        |   B    |    NS    |
+|   018   | Basil Fudge                                        |   A    |    NS    |
+|   019   | Beatrice Abbey                                     |   C    |    NS    |
+|   020   | Beatrice Fudge                                     |   A    |    NS    |
+|   022   | Beau Abbey                                         |   D    |    NS    |
+|   023   | Beau Fudge                                         |   C    |    NS    |
+|   024   | Bella Abbey                                        |   B    |    NS    |
+|   026   | Bella Fudge                                        |   F    |    NS    |
+|   027   | Black Jack Abbey                                   |   F    |    NS    |
+|   028   | Black Jack Fudge                                   |   A    |    NS    |
+|   030   | Blue Abbey                                         |   B    |    NS    |
+|   031   | Blue Fudge                                         |   B    |    NS    |
+|   032   | Bobby Abbey                                        |   A    |    NS    |
+|   034   | Bobby Fudge                                        |   E    |    NS    |
+|   035   | Bubbles Abbey                                      |   C    |    NS    |
+|   036   | Bubbles Fudge                                      |   D    |    NS    |
+|   038   | Captain Abbey                                      |   A    |    NS    |
+|   039   | Captain Fudge                                      |   B    |    NS    |
+|   040   | Chalkie Abbey                                      |   D    |    NS    |
+|   041   | Chalkie Fudge                                      |   F    |    NS    |
+|   042   | Copper Abbey                                       |   E    |    NS    |
+|   044   | Copper Fudge                                       |   B    |    NS    |
+|   045   | Diamond Abbey                                      |   C    |    NS    |
+|   046   | Diamond Fudge                                      |   B    |    NS    |
+|   047   | Dinky Abbey                                        |   E    |    NS    |
+|   048   | Dinky Fudge                                        |   F    |    NS    |
+|   049   | Ebony Abbey                                        |   B    |    NS    |
+|   050   | Ebony Fudge                                        |   C    |    NS    |
+|   051   | Ginger Abbey                                       |   C    |    NS    |
+|   052   | Ginger Fudge                                       |   F    |    NS    |
+|   053   | Goldie Abbey                                       |   A    |    NS    |
+|   055   | Goldie Fudge                                       |   E    |    NS    |
+|   056   | Honey Abbey                                        |   F    |    NS    |
+|   057   | Honey Fudge                                        |   C    |    NS    |
+|   058   | Izzy Abbey                                         |   A    |    NS    |
+|   059   | Izzy Fudge                                         |   A    |    NS    |
+|   060   | Jasmine Abbey                                      |   A    |    NS    |
+|   061   | Jasmine Fudge                                      |   F    |    NS    |
+|   062   | Lady Abbey                                         |   D    |    NS    |
+|   064   | Lady Fudge                                         |   B    |    NS    |
+|   065   | Lady Tara Abbey                                    |   C    |    NS    |
+|   066   | Lady Tara Fudge                                    |   B    |    NS    |
+|   067   | Lemon Abbey                                        |   B    |    NS    |
+|   068   | Lemon Fudge                                        |   E    |    NS    |
+|   069   | Lord Abbey                                         |   F    |    NS    |
+|   070   | Lord Fudge                                         |   E    |    NS    |
+|   071   | Lucky Abbey                                        |   A    |    NS    |
+|   074   | Lucky Fudge                                        |   E    |    NS    |
+|   076   | Lord Abbey                                         |   D    |    NS    |
+|   077   | Lord Fudge                                         |   B    |    NS    |
+|   078   | Maddy Abbey                                        |   F    |    NS    |
+|   079   | Maddy Fudge                                        |   A    |    NS    |
+|   080   | Magic Abbey                                        |   D    |    NS    |
+|   081   | Magic Fudge                                        |   D    |    NS    |
+|   083   | Major Abbey                                        |   A    |    NS    |
+|   085   | Major Fudge                                        |   A    |    NS    |
+|   086   | Mattie Abbey                                       |   B    |    NS    |
+|   087   | Mattie Fudge                                       |   A    |    NS    |
+|   089   | Prince Abbey                                       |   B    |    NS    |
+|   090   | Prince Fudge                                       |   A    |    NS    |
+|   091   | Princess Abbey                                     |   B    |    NS    |
+|   092   | Princess Fudge                                     |   B    |    NS    |
+|   093   | Rosie Abbey                                        |   D    |    NS    |
+|   094   | Rosie Fudge                                        |   B    |    NS    |
+|   095   | Ruby Abbey                                         |   F    |    NS    |
+|   097   | Ruby Fudge                                         |   C    |    NS    |
+|   098   | Sapphire Abbey                                     |   C    |    NS    |
+|   100   | Sapphire Fudge                                     |   F    |    NS    |
+|   101   | Scarlet Abbey                                      |   C    |    NS    |
+|   102   | Scarlet Fudge                                      |   F    |    NS    |
+|   103   | sienna Abbey                                       |   D    |    NS    |
+|   106   | sienna Fudge                                       |   B    |    NS    |
+|   107   | Silver Abbey                                       |   F    |    NS    |
+|   108   | Silver Fudge                                       |   A    |    NS    |
+|   109   | Smokey Abbey                                       |   A    |    NS    |
+|   110   | Smokey Fudge                                       |   D    |    NS    |
+|   111   | Snowy Abbey                                        |   E    |    NS    |
+|   113   | Snowy Fudge                                        |   C    |    NS    |
+|   114   | sonic Abbey                                        |   A    |    NS    |
+|   115   | sonic Fudge                                        |   D    |    NS    |
+|   117   | Summer Abbey                                       |   A    |    NS    |
+|   118   | Summer Fudge                                       |   E    |    NS    |
+|   121   | Tango Abbey                                        |   B    |    NS    |
+|   122   | Tango Fudge                                        |   A    |    NS    |
+|   123   | Topaz Abbey                                        |   B    |    NS    |
+|   124   | Topaz Fudge                                        |   F    |    NS    |
+|   126   | Zizou Abbey                                        |   D    |    NS    |
+|   127   | Zizou Fudge                                        |   F    |    NS    |
+====================================================================================
+
+Key: NS = Not Started.
+
+Number of Competitors not started yet: 102 out of 102
+
+Current Event Time: 7:30.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 6
+
+
+Please enter in the file path and name of the time file to be loaded: /dcs/dap/CS23710_DATA/event_3/cp_times_1.txt
+
+End of file reached.
+Loading of times files complete.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 6
+
+
+Please enter in the file path and name of the time file to be loaded: /dcs/dap/CS23710_DATA/event_3/cp_times_2.txt
+
+End of file reached.
+Loading of times files complete.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 2
+
+ Printing competitors that have not yet started...
+
+====================================================================================
+| Number  |                        Name                        | Course | Location |
+====================================================================================
+|   067   | Lemon Abbey                                        |   B    |    NS    |
+|   068   | Lemon Fudge                                        |   E    |    NS    |
+|   069   | Lord Abbey                                         |   F    |    NS    |
+|   070   | Lord Fudge                                         |   E    |    NS    |
+|   071   | Lucky Abbey                                        |   A    |    NS    |
+|   074   | Lucky Fudge                                        |   E    |    NS    |
+|   076   | Lord Abbey                                         |   D    |    NS    |
+|   077   | Lord Fudge                                         |   B    |    NS    |
+|   078   | Maddy Abbey                                        |   F    |    NS    |
+|   079   | Maddy Fudge                                        |   A    |    NS    |
+|   080   | Magic Abbey                                        |   D    |    NS    |
+|   081   | Magic Fudge                                        |   D    |    NS    |
+|   083   | Major Abbey                                        |   A    |    NS    |
+|   085   | Major Fudge                                        |   A    |    NS    |
+|   086   | Mattie Abbey                                       |   B    |    NS    |
+|   087   | Mattie Fudge                                       |   A    |    NS    |
+|   089   | Prince Abbey                                       |   B    |    NS    |
+|   090   | Prince Fudge                                       |   A    |    NS    |
+|   091   | Princess Abbey                                     |   B    |    NS    |
+|   092   | Princess Fudge                                     |   B    |    NS    |
+|   093   | Rosie Abbey                                        |   D    |    NS    |
+|   094   | Rosie Fudge                                        |   B    |    NS    |
+|   095   | Ruby Abbey                                         |   F    |    NS    |
+|   097   | Ruby Fudge                                         |   C    |    NS    |
+|   098   | Sapphire Abbey                                     |   C    |    NS    |
+|   100   | Sapphire Fudge                                     |   F    |    NS    |
+|   101   | Scarlet Abbey                                      |   C    |    NS    |
+|   102   | Scarlet Fudge                                      |   F    |    NS    |
+|   103   | sienna Abbey                                       |   D    |    NS    |
+|   106   | sienna Fudge                                       |   B    |    NS    |
+|   107   | Silver Abbey                                       |   F    |    NS    |
+|   108   | Silver Fudge                                       |   A    |    NS    |
+|   109   | Smokey Abbey                                       |   A    |    NS    |
+|   110   | Smokey Fudge                                       |   D    |    NS    |
+|   111   | Snowy Abbey                                        |   E    |    NS    |
+|   113   | Snowy Fudge                                        |   C    |    NS    |
+|   114   | sonic Abbey                                        |   A    |    NS    |
+|   115   | sonic Fudge                                        |   D    |    NS    |
+|   117   | Summer Abbey                                       |   A    |    NS    |
+|   118   | Summer Fudge                                       |   E    |    NS    |
+|   121   | Tango Abbey                                        |   B    |    NS    |
+|   122   | Tango Fudge                                        |   A    |    NS    |
+|   123   | Topaz Abbey                                        |   B    |    NS    |
+|   124   | Topaz Fudge                                        |   F    |    NS    |
+|   126   | Zizou Abbey                                        |   D    |    NS    |
+|   127   | Zizou Fudge                                        |   F    |    NS    |
+====================================================================================
+
+Key: NS = Not Started.
+
+Number of Competitors not started yet: 46 out of 102
+
+Current Event Time: 10:24.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 3
+
+ Printing competitors that are out on a course...
+
+========================================================================================================================
+| Number  |                        Name                        | Course | Last Recorded Checkpoint | Presumed Location |
+========================================================================================================================
+|   003   | Ace Fudge                                          |   A    |          14              |      A - 14       |
+|   007   | April Fudge                                        |   B    |          13              |     TN - 01       |
+|   010   | Asti Abbey                                         |   A    |          17              |     TN - 22       |
+|   011   | Asti Fudge                                         |   A    |          17              |     TN - 22       |
+|   012   | Autumn Abbey                                       |   C    |          13              |     TN - 01       |
+|   013   | Autumn Fudge                                       |   B    |          13              |     TN - 13       |
+|   014   | Barfields Marco Abbey                              |   A    |          14              |     TN - 20       |
+|   017   | Basil Abbey                                        |   B    |          13              |     TN - 13       |
+|   018   | Basil Fudge                                        |   A    |          14              |     TN - 18       |
+|   019   | Beatrice Abbey                                     |   C    |          13              |     TN - 13       |
+|   020   | Beatrice Fudge                                     |   A    |          14              |     TN - 18       |
+|   022   | Beau Abbey                                         |   D    |          09              |     TN - 01       |
+|   027   | Black Jack Abbey                                   |   F    |          13              |     TN - 01       |
+|   028   | Black Jack Fudge                                   |   A    |          14              |      A - 14       |
+|   030   | Blue Abbey                                         |   B    |          14              |      A - 14       |
+|   031   | Blue Fudge                                         |   B    |          07              |     TN - 15       |
+|   032   | Bobby Abbey                                        |   A    |          07              |     TN - 15       |
+|   034   | Bobby Fudge                                        |   E    |          13              |     TN - 13       |
+|   035   | Bubbles Abbey                                      |   C    |          07              |     TN - 15       |
+|   038   | Captain Abbey                                      |   A    |          07              |     TN - 08       |
+|   039   | Captain Fudge                                      |   B    |          07              |     TN - 08       |
+|   040   | Chalkie Abbey                                      |   D    |          05              |     TN - 10       |
+|   041   | Chalkie Fudge                                      |   F    |          09              |     TN - 14       |
+|   042   | Copper Abbey                                       |   E    |          09              |     TN - 15       |
+|   044   | Copper Fudge                                       |   B    |          05              |     TN - 07       |
+|   045   | Diamond Abbey                                      |   C    |          05              |     TN - 07       |
+|   046   | Diamond Fudge                                      |   B    |          01              |     TN - 03       |
+|   047   | Dinky Abbey                                        |   E    |          09              |     TN - 09       |
+|   048   | Dinky Fudge                                        |   F    |          09              |     TN - 12       |
+|   049   | Ebony Abbey                                        |   B    |          04              |     TN - 04       |
+|   050   | Ebony Fudge                                        |   C    |          04              |     TN - 04       |
+|   051   | Ginger Abbey                                       |   C    |          04              |     TN - 04       |
+|   052   | Ginger Fudge                                       |   F    |          01              |     TN - 11       |
+|   053   | Goldie Abbey                                       |   A    |          04              |     TC - 04       |
+|   055   | Goldie Fudge                                       |   E    |          01              |     TN - 11       |
+|   056   | Honey Abbey                                        |   F    |          01              |     TN - 11       |
+|   057   | Honey Fudge                                        |   C    |          01              |     TN - 02       |
+|   058   | Izzy Abbey                                         |   A    |          01              |     TN - 02       |
+|   059   | Izzy Fudge                                         |   A    |          01              |     TN - 02       |
+|   060   | Jasmine Abbey                                      |   A    |          01              |     TN - 01       |
+|   061   | Jasmine Fudge                                      |   F    |          01              |     TN - 01       |
+|   062   | Lady Abbey                                         |   D    |          01              |     TN - 01       |
+|   064   | Lady Fudge                                         |   B    |          01              |     TN - 01       |
+|   065   | Lady Tara Abbey                                    |   C    |          01              |     TN - 01       |
+|   066   | Lady Tara Fudge                                    |   B    |          01              |     TN - 01       |
+========================================================================================================================
+
+Key: NS = Not Started, TC = Time Checkpoint, TN = Track Number,
+A = Medical Checkpoint, D = Departed Medical Checkpoint.
+
+Number of Competitors out on course: 45 out of 102
+
+Current Event Time: 10:24.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 4
+
+ Printing competitors that have finished...
+
+====================================================================================
+| Number  |                        Name                        | Course | Location |
+====================================================================================
+|   001   | Ace Abbey                                          |   E    |    CC    |
+|   004   | Amber Abbey                                        |   C    |    CC    |
+|   005   | Amber Fudge                                        |   E    |    CC    |
+|   006   | April Abbey                                        |   D    |    CC    |
+|   008   | Ash Abbey                                          |   F    |    CC    |
+|   009   | Ash Fudge                                          |   D    |    CC    |
+|   016   | Barfields Marco Fudge                              |   F    |    CC    |
+|   026   | Bella Fudge                                        |   F    |    CC    |
+====================================================================================
+
+Number of Competitors completed course successfully: 8 out of 102
+
+Current Event Time: 10:24.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 7
+
+ Printing results...
+
+====================================================================================
+| Number  |                        Name                        | Status |   Time   |
+====================================================================================
+|   001   | Ace Abbey                                          |   CC   |   02:04  |
+|   004   | Amber Abbey                                        |   CC   |   02:37  |
+|   005   | Amber Fudge                                        |   CC   |   02:11  |
+|   006   | April Abbey                                        |   CC   |   02:03  |
+|   008   | Ash Abbey                                          |   CC   |   01:56  |
+|   009   | Ash Fudge                                          |   CC   |   01:58  |
+|   016   | Barfields Marco Fudge                              |   CC   |   01:55  |
+|   026   | Bella Fudge                                        |   CC   |   01:49  |
+====================================================================================
+
+Number of Competitors completed course successfully: 8 out of 102
+
+Current Event Time: 10:24.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 8
+
+ Printing excluded...
+
+====================================================================================
+| Number  |                        Name                        | Status |  At Time |
+====================================================================================
+|   023   | Beau Fudge                                         |   EI   |   09:49  |
+|   036   | Bubbles Fudge                                      |   EI   |   09:57  |
+====================================================================================
+
+Number of Competitors excluded: 2 out of 102
+
+Key: EI = Excluded for taking an Incorrect Route, EM = Excluded for Medical Safety Reasons.
+
+Current Event Time: 10:24.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 6
+
+
+Please enter in the file path and name of the time file to be loaded: /dcs/dap/CS23710_DATA/event_3/cp_times_3.txt
+
+End of file reached.
+Loading of times files complete.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 6
+
+
+Please enter in the file path and name of the time file to be loaded: /dcs/dap/CS23710_DATA/event_3/cp_times_4.txt
+
+End of file reached.
+Loading of times files complete.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 1
+
+Please enter in the competitor number you wish to query the location of: 91
+Last Recorded Location: Time Checkpoint 6.
+Assumed To Be On Track Number 8.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 6
+
+
+Please enter in the file path and name of the time file to be loaded: /dcs/dap/CS23710_DATA/event_3/cp_times_5.txt
+
+End of file reached.
+Loading of times files complete.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 2
+
+ Printing competitors that have not yet started...
+
+====================================================================================
+| Number  |                        Name                        | Course | Location |
+====================================================================================
+====================================================================================
+
+Key: NS = Not Started.
+
+Number of Competitors not started yet: 0 out of 102
+
+Current Event Time: 16:48.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 3
+
+ Printing competitors that are out on a course...
+
+========================================================================================================================
+| Number  |                        Name                        | Course | Last Recorded Checkpoint | Presumed Location |
+========================================================================================================================
+========================================================================================================================
+
+Key: NS = Not Started, TC = Time Checkpoint, TN = Track Number,
+A = Medical Checkpoint, D = Departed Medical Checkpoint.
+
+Number of Competitors out on course: 0 out of 102
+
+Current Event Time: 16:48.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 4
+
+ Printing competitors that have finished...
+
+====================================================================================
+| Number  |                        Name                        | Course | Location |
+====================================================================================
+|   001   | Ace Abbey                                          |   E    |    CC    |
+|   003   | Ace Fudge                                          |   A    |    CC    |
+|   004   | Amber Abbey                                        |   C    |    CC    |
+|   005   | Amber Fudge                                        |   E    |    CC    |
+|   006   | April Abbey                                        |   D    |    CC    |
+|   007   | April Fudge                                        |   B    |    CC    |
+|   008   | Ash Abbey                                          |   F    |    CC    |
+|   009   | Ash Fudge                                          |   D    |    CC    |
+|   010   | Asti Abbey                                         |   A    |    CC    |
+|   011   | Asti Fudge                                         |   A    |    CC    |
+|   012   | Autumn Abbey                                       |   C    |    CC    |
+|   013   | Autumn Fudge                                       |   B    |    CC    |
+|   014   | Barfields Marco Abbey                              |   A    |    CC    |
+|   016   | Barfields Marco Fudge                              |   F    |    CC    |
+|   017   | Basil Abbey                                        |   B    |    CC    |
+|   018   | Basil Fudge                                        |   A    |    CC    |
+|   019   | Beatrice Abbey                                     |   C    |    CC    |
+|   020   | Beatrice Fudge                                     |   A    |    CC    |
+|   022   | Beau Abbey                                         |   D    |    CC    |
+|   024   | Bella Abbey                                        |   B    |    CC    |
+|   026   | Bella Fudge                                        |   F    |    CC    |
+|   027   | Black Jack Abbey                                   |   F    |    CC    |
+|   030   | Blue Abbey                                         |   B    |    CC    |
+|   031   | Blue Fudge                                         |   B    |    CC    |
+|   032   | Bobby Abbey                                        |   A    |    CC    |
+|   034   | Bobby Fudge                                        |   E    |    CC    |
+|   035   | Bubbles Abbey                                      |   C    |    CC    |
+|   038   | Captain Abbey                                      |   A    |    CC    |
+|   039   | Captain Fudge                                      |   B    |    CC    |
+|   040   | Chalkie Abbey                                      |   D    |    CC    |
+|   042   | Copper Abbey                                       |   E    |    CC    |
+|   045   | Diamond Abbey                                      |   C    |    CC    |
+|   047   | Dinky Abbey                                        |   E    |    CC    |
+|   048   | Dinky Fudge                                        |   F    |    CC    |
+|   049   | Ebony Abbey                                        |   B    |    CC    |
+|   050   | Ebony Fudge                                        |   C    |    CC    |
+|   051   | Ginger Abbey                                       |   C    |    CC    |
+|   052   | Ginger Fudge                                       |   F    |    CC    |
+|   055   | Goldie Fudge                                       |   E    |    CC    |
+|   056   | Honey Abbey                                        |   F    |    CC    |
+|   057   | Honey Fudge                                        |   C    |    CC    |
+|   058   | Izzy Abbey                                         |   A    |    CC    |
+|   060   | Jasmine Abbey                                      |   A    |    CC    |
+|   061   | Jasmine Fudge                                      |   F    |    CC    |
+|   064   | Lady Fudge                                         |   B    |    CC    |
+|   065   | Lady Tara Abbey                                    |   C    |    CC    |
+|   066   | Lady Tara Fudge                                    |   B    |    CC    |
+|   067   | Lemon Abbey                                        |   B    |    CC    |
+|   069   | Lord Abbey                                         |   F    |    CC    |
+|   070   | Lord Fudge                                         |   E    |    CC    |
+|   074   | Lucky Fudge                                        |   E    |    CC    |
+|   076   | Lord Abbey                                         |   D    |    CC    |
+|   077   | Lord Fudge                                         |   B    |    CC    |
+|   079   | Maddy Fudge                                        |   A    |    CC    |
+|   080   | Magic Abbey                                        |   D    |    CC    |
+|   081   | Magic Fudge                                        |   D    |    CC    |
+|   083   | Major Abbey                                        |   A    |    CC    |
+|   086   | Mattie Abbey                                       |   B    |    CC    |
+|   087   | Mattie Fudge                                       |   A    |    CC    |
+|   089   | Prince Abbey                                       |   B    |    CC    |
+|   090   | Prince Fudge                                       |   A    |    CC    |
+|   091   | Princess Abbey                                     |   B    |    CC    |
+|   092   | Princess Fudge                                     |   B    |    CC    |
+|   093   | Rosie Abbey                                        |   D    |    CC    |
+|   094   | Rosie Fudge                                        |   B    |    CC    |
+|   095   | Ruby Abbey                                         |   F    |    CC    |
+|   097   | Ruby Fudge                                         |   C    |    CC    |
+|   098   | Sapphire Abbey                                     |   C    |    CC    |
+|   100   | Sapphire Fudge                                     |   F    |    CC    |
+|   101   | Scarlet Abbey                                      |   C    |    CC    |
+|   102   | Scarlet Fudge                                      |   F    |    CC    |
+|   103   | sienna Abbey                                       |   D    |    CC    |
+|   107   | Silver Abbey                                       |   F    |    CC    |
+|   108   | Silver Fudge                                       |   A    |    CC    |
+|   109   | Smokey Abbey                                       |   A    |    CC    |
+|   110   | Smokey Fudge                                       |   D    |    CC    |
+|   113   | Snowy Fudge                                        |   C    |    CC    |
+|   114   | sonic Abbey                                        |   A    |    CC    |
+|   115   | sonic Fudge                                        |   D    |    CC    |
+|   117   | Summer Abbey                                       |   A    |    CC    |
+|   118   | Summer Fudge                                       |   E    |    CC    |
+|   121   | Tango Abbey                                        |   B    |    CC    |
+|   122   | Tango Fudge                                        |   A    |    CC    |
+|   123   | Topaz Abbey                                        |   B    |    CC    |
+|   124   | Topaz Fudge                                        |   F    |    CC    |
+|   126   | Zizou Abbey                                        |   D    |    CC    |
+|   127   | Zizou Fudge                                        |   F    |    CC    |
+====================================================================================
+
+Number of Competitors completed course successfully: 87 out of 102
+
+Current Event Time: 16:48.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 7
+
+ Printing results...
+
+====================================================================================
+| Number  |                        Name                        | Status |   Time   |
+====================================================================================
+|   001   | Ace Abbey                                          |   CC   |   02:04  |
+|   003   | Ace Fudge                                          |   CC   |   03:52  |
+|   004   | Amber Abbey                                        |   CC   |   02:37  |
+|   005   | Amber Fudge                                        |   CC   |   02:11  |
+|   006   | April Abbey                                        |   CC   |   02:03  |
+|   007   | April Fudge                                        |   CC   |   02:46  |
+|   008   | Ash Abbey                                          |   CC   |   01:56  |
+|   009   | Ash Fudge                                          |   CC   |   01:58  |
+|   010   | Asti Abbey                                         |   CC   |   03:49  |
+|   011   | Asti Fudge                                         |   CC   |   03:51  |
+|   012   | Autumn Abbey                                       |   CC   |   02:30  |
+|   013   | Autumn Fudge                                       |   CC   |   02:53  |
+|   014   | Barfields Marco Abbey                              |   CC   |   03:49  |
+|   016   | Barfields Marco Fudge                              |   CC   |   01:55  |
+|   017   | Basil Abbey                                        |   CC   |   02:49  |
+|   018   | Basil Fudge                                        |   CC   |   03:50  |
+|   019   | Beatrice Abbey                                     |   CC   |   02:27  |
+|   020   | Beatrice Fudge                                     |   CC   |   03:50  |
+|   022   | Beau Abbey                                         |   CC   |   02:02  |
+|   024   | Bella Abbey                                        |   CC   |   02:54  |
+|   026   | Bella Fudge                                        |   CC   |   01:49  |
+|   027   | Black Jack Abbey                                   |   CC   |   01:49  |
+|   030   | Blue Abbey                                         |   CC   |   02:43  |
+|   031   | Blue Fudge                                         |   CC   |   02:44  |
+|   032   | Bobby Abbey                                        |   CC   |   03:52  |
+|   034   | Bobby Fudge                                        |   CC   |   02:03  |
+|   035   | Bubbles Abbey                                      |   CC   |   02:32  |
+|   038   | Captain Abbey                                      |   CC   |   03:52  |
+|   039   | Captain Fudge                                      |   CC   |   02:51  |
+|   040   | Chalkie Abbey                                      |   CC   |   02:03  |
+|   042   | Copper Abbey                                       |   CC   |   02:05  |
+|   045   | Diamond Abbey                                      |   CC   |   02:29  |
+|   047   | Dinky Abbey                                        |   CC   |   02:10  |
+|   048   | Dinky Fudge                                        |   CC   |   01:54  |
+|   049   | Ebony Abbey                                        |   CC   |   03:04  |
+|   050   | Ebony Fudge                                        |   CC   |   02:35  |
+|   051   | Ginger Abbey                                       |   CC   |   02:32  |
+|   052   | Ginger Fudge                                       |   CC   |   01:58  |
+|   055   | Goldie Fudge                                       |   CC   |   02:12  |
+|   056   | Honey Abbey                                        |   CC   |   01:54  |
+|   057   | Honey Fudge                                        |   CC   |   02:36  |
+|   058   | Izzy Abbey                                         |   CC   |   03:53  |
+|   060   | Jasmine Abbey                                      |   CC   |   03:50  |
+|   061   | Jasmine Fudge                                      |   CC   |   01:55  |
+|   064   | Lady Fudge                                         |   CC   |   02:59  |
+|   065   | Lady Tara Abbey                                    |   CC   |   02:29  |
+|   066   | Lady Tara Fudge                                    |   CC   |   02:50  |
+|   067   | Lemon Abbey                                        |   CC   |   03:02  |
+|   069   | Lord Abbey                                         |   CC   |   01:54  |
+|   070   | Lord Fudge                                         |   CC   |   02:14  |
+|   074   | Lucky Fudge                                        |   CC   |   02:12  |
+|   076   | Lord Abbey                                         |   CC   |   02:03  |
+|   077   | Lord Fudge                                         |   CC   |   02:56  |
+|   079   | Maddy Fudge                                        |   CC   |   03:54  |
+|   080   | Magic Abbey                                        |   CC   |   02:04  |
+|   081   | Magic Fudge                                        |   CC   |   02:02  |
+|   083   | Major Abbey                                        |   CC   |   03:43  |
+|   086   | Mattie Abbey                                       |   CC   |   02:52  |
+|   087   | Mattie Fudge                                       |   CC   |   03:52  |
+|   089   | Prince Abbey                                       |   CC   |   02:59  |
+|   090   | Prince Fudge                                       |   CC   |   04:00  |
+|   091   | Princess Abbey                                     |   CC   |   03:01  |
+|   092   | Princess Fudge                                     |   CC   |   03:02  |
+|   093   | Rosie Abbey                                        |   CC   |   01:59  |
+|   094   | Rosie Fudge                                        |   CC   |   02:45  |
+|   095   | Ruby Abbey                                         |   CC   |   01:59  |
+|   097   | Ruby Fudge                                         |   CC   |   02:36  |
+|   098   | Sapphire Abbey                                     |   CC   |   02:30  |
+|   100   | Sapphire Fudge                                     |   CC   |   01:57  |
+|   101   | Scarlet Abbey                                      |   CC   |   02:35  |
+|   102   | Scarlet Fudge                                      |   CC   |   01:56  |
+|   103   | sienna Abbey                                       |   CC   |   02:02  |
+|   107   | Silver Abbey                                       |   CC   |   01:56  |
+|   108   | Silver Fudge                                       |   CC   |   03:43  |
+|   109   | Smokey Abbey                                       |   CC   |   03:55  |
+|   110   | Smokey Fudge                                       |   CC   |   02:03  |
+|   113   | Snowy Fudge                                        |   CC   |   02:28  |
+|   114   | sonic Abbey                                        |   CC   |   03:47  |
+|   115   | sonic Fudge                                        |   CC   |   02:03  |
+|   117   | Summer Abbey                                       |   CC   |   03:58  |
+|   118   | Summer Fudge                                       |   CC   |   02:10  |
+|   121   | Tango Abbey                                        |   CC   |   02:57  |
+|   122   | Tango Fudge                                        |   CC   |   04:02  |
+|   123   | Topaz Abbey                                        |   CC   |   02:54  |
+|   124   | Topaz Fudge                                        |   CC   |   01:53  |
+|   126   | Zizou Abbey                                        |   CC   |   02:03  |
+|   127   | Zizou Fudge                                        |   CC   |   01:55  |
+====================================================================================
+
+Number of Competitors completed course successfully: 87 out of 102
+
+Current Event Time: 16:48.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 8
+
+ Printing excluded...
+
+====================================================================================
+| Number  |                        Name                        | Status |  At Time |
+====================================================================================
+|   023   | Beau Fudge                                         |   EI   |   09:49  |
+|   028   | Black Jack Fudge                                   |   EI   |   11:46  |
+|   036   | Bubbles Fudge                                      |   EI   |   09:57  |
+|   041   | Chalkie Fudge                                      |   EI   |   11:05  |
+|   044   | Copper Fudge                                       |   EI   |   11:47  |
+|   046   | Diamond Fudge                                      |   EI   |   11:13  |
+|   053   | Goldie Abbey                                       |   EI   |   12:57  |
+|   059   | Izzy Fudge                                         |   EI   |   11:10  |
+|   062   | Lady Abbey                                         |   EI   |   13:01  |
+|   068   | Lemon Fudge                                        |   EI   |   12:54  |
+|   071   | Lucky Abbey                                        |   EI   |   13:56  |
+|   078   | Maddy Abbey                                        |   EI   |   12:55  |
+|   085   | Major Fudge                                        |   EI   |   14:23  |
+|   106   | sienna Fudge                                       |   EI   |   14:53  |
+|   111   | Snowy Abbey                                        |   EI   |   13:36  |
+====================================================================================
+
+Number of Competitors excluded: 15 out of 102
+
+Key: EI = Excluded for taking an Incorrect Route, EM = Excluded for Medical Safety Reasons.
+
+Current Event Time: 16:48.
+
+Press enter to continue.
+
+
+===================================== MAIN MENU =====================================
+|                                                                                   |
+| 1: Query competitor for current location/status.                                  |
+| 2: Display how many competitors have not started yet.                             |
+| 3: Display how many competitors are out on the courses.                           |
+| 4: Display how many competitors have completed their course successfully.         |
+| 5: Manually supply time at which a competitor had reached a time checkpoint.      |
+| 6: Read in a file of times at which competitors have reached time checkpoints.    |
+| 7: Display the result times for the successfully completed.                       |
+| 8: Display the competitors who have been excluded.                                |
+| 9: Exit program.                                                                  |
+|                                                                                   |
+=====================================================================================
+
+Please select from one of the options above (number): 9
+
+
+
+
+Exiting Program...
