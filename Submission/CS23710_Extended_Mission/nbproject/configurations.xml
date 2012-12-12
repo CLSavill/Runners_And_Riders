@@ -15,12 +15,13 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>competitors.c</itemPath>
-      <itemPath>course.c</itemPath>
+      <itemPath>courses.c</itemPath>
       <itemPath>event.c</itemPath>
       <itemPath>loader.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>nodes.c</itemPath>
       <itemPath>tracks.c</itemPath>
+      <itemPath>updater.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -39,8 +40,7 @@
     <conf name="Debug" type="1">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
-        <compilerSet>GNU|GNU</compilerSet>
-        <rebuildPropChanged>true</rebuildPropChanged>
+        <compilerSet>default</compilerSet>
       </toolsSet>
       <compileType>
       </compileType>

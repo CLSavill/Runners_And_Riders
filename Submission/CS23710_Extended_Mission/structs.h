@@ -4,6 +4,10 @@
  * Description: File that defines the structures used in the event monitoring program.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 /* Define integer constants */
 #define MAX_PATH_LENGTH 51      /* Max length of file path. */
 #define MAX_EVENT_LENGTH 80     /* Max length of event name string including \0. */

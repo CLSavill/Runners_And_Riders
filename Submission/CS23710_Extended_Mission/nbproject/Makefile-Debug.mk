@@ -14,14 +14,14 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=gcc
-CCC=g++
-CXX=g++
-FC=gfortran
-AS=gas
+CC=cc
+CCC=CC
+CXX=CC
+FC=f95
+AS=as
 
 # Macros
-CND_PLATFORM=GNU-Solaris-Sparc
+CND_PLATFORM=OracleSolarisStudio-Solaris-Sparc
 CND_DLIB_EXT=so
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -36,7 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/loader.o \
-	${OBJECTDIR}/course.o \
+	${OBJECTDIR}/updater.o \
+	${OBJECTDIR}/courses.o \
 	${OBJECTDIR}/competitors.o \
 	${OBJECTDIR}/nodes.o \
 	${OBJECTDIR}/main.o \
@@ -68,40 +69,37 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cs23710_extended_mission: ${OBJECTFIL
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cs23710_extended_mission ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
-${OBJECTDIR}/loader.o: nbproject/Makefile-${CND_CONF}.mk loader.c 
+${OBJECTDIR}/loader.o: loader.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/loader.o loader.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/loader.o loader.c
 
-${OBJECTDIR}/course.o: nbproject/Makefile-${CND_CONF}.mk course.c 
+${OBJECTDIR}/updater.o: updater.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/course.o course.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/updater.o updater.c
 
-${OBJECTDIR}/competitors.o: nbproject/Makefile-${CND_CONF}.mk competitors.c 
+${OBJECTDIR}/courses.o: courses.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/competitors.o competitors.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/courses.o courses.c
 
-${OBJECTDIR}/nodes.o: nbproject/Makefile-${CND_CONF}.mk nodes.c 
+${OBJECTDIR}/competitors.o: competitors.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/nodes.o nodes.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/competitors.o competitors.c
 
-${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.c 
+${OBJECTDIR}/nodes.o: nodes.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/nodes.o nodes.c
 
-${OBJECTDIR}/event.o: nbproject/Makefile-${CND_CONF}.mk event.c 
+${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/event.o event.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/main.o main.c
 
-${OBJECTDIR}/tracks.o: nbproject/Makefile-${CND_CONF}.mk tracks.c 
+${OBJECTDIR}/event.o: event.c 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/tracks.o tracks.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/event.o event.c
+
+${OBJECTDIR}/tracks.o: tracks.c 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.c) -g -o ${OBJECTDIR}/tracks.o tracks.c
 
 # Subprojects
 .build-subprojects:

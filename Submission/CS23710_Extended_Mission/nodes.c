@@ -4,9 +4,6 @@
  * Description: File that contains methods related to handling an event's nodes.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "structs.h"
 #include "prototypes.h"
 

@@ -6,7 +6,7 @@
 
 # Macros
 TOP=`pwd`
-CND_PLATFORM=GNU-Solaris-Sparc
+CND_PLATFORM=OracleSolarisStudio-Solaris-Sparc
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build

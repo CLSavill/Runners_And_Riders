@@ -13,6 +13,7 @@ int menu(event_ptr event);
 int loader(event_ptr event);
 int load_cycle(event_ptr event, int (*load_function_ptr) (event_ptr, char*));
 void read_times_file(event_ptr event);
+int chronological_check(time current_time, int hours, int minutes);
 /*-----------------------------------------------------------------------*/
 
 /* event.c Function Prototypes */
@@ -22,7 +23,6 @@ void print_out_on_course(event_ptr event);
 void print_finished(event_ptr event);
 void print_results(event_ptr event);
 void print_excluded(event_ptr event);
-int chronological_check(time current_time, int hours, int minutes);
 /*-----------------------------------------------------------------------*/
 
 /* nodes.c Function Prototypes */
@@ -50,9 +50,13 @@ competitor* get_competitor(event_ptr event, int number);
 void query_location(event_ptr event);
 void print_location(event_ptr event, competitor* competitor);
 void update_competitor(event_ptr event);
-void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes);
 time get_result_time(time end_time, time start_time, int medical_minutes);
 int get_medical_time(time departure_time, time arrival_time);
+
+/*-----------------------------------------------------------------------*/
+
+/* updater.c Function Prototypes */
+void checkpoint_update(event_ptr event, competitor* competitor, int checkpoint, int hours, int minutes);
 void update_statuses(event_ptr event);
 int estimate_location(event_ptr event, competitor* competitor);
 track* track_estimation(event_ptr event, competitor* competitor, node* nodeA, node* nodeB, int node_index, int next_node_number, int event_time, int est_arrival_time);

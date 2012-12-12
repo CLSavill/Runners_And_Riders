@@ -7,13 +7,13 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=GNU-Solaris-Sparc
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Solaris-Sparc
+CND_PLATFORM_Debug=OracleSolarisStudio-Solaris-Sparc
+CND_ARTIFACT_DIR_Debug=dist/Debug/OracleSolarisStudio-Solaris-Sparc
 CND_ARTIFACT_NAME_Debug=cs23710_extended_mission
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Solaris-Sparc/cs23710_extended_mission
-CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Solaris-Sparc/package
+CND_ARTIFACT_PATH_Debug=dist/Debug/OracleSolarisStudio-Solaris-Sparc/cs23710_extended_mission
+CND_PACKAGE_DIR_Debug=dist/Debug/OracleSolarisStudio-Solaris-Sparc/package
 CND_PACKAGE_NAME_Debug=cs23710extendedmission.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Solaris-Sparc/package/cs23710extendedmission.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/OracleSolarisStudio-Solaris-Sparc/package/cs23710extendedmission.tar
 # Release configuration
 CND_PLATFORM_Release=OracleSolarisStudio-Solaris-Sparc
 CND_ARTIFACT_DIR_Release=dist/Release/OracleSolarisStudio-Solaris-Sparc
