@@ -1,7 +1,7 @@
 /* 
  * File: event.c
  * Author: Chris Savill - chs17
- * Description: File that contains methods related to the handling of events.
+ * Description: File that contains functions related to the handling of events.
  */
 
 #include "structs.h"

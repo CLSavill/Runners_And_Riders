@@ -21,7 +21,6 @@ int main(int argc, char** argv) {
             printf("\n\nExiting Program...\n");
         }
     }
-
     return EXIT_SUCCESS;
 }
 /*-----------------------------------------------------------------------*/

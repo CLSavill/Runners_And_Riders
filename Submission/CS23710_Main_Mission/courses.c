@@ -1,7 +1,7 @@
 /* 
  * File: courses.c
  * Author: Chris Savill - chs17
- * Description: File that contains methods related to handling an event's courses.
+ * Description: File that contains functions related to handling an event's courses.
  */
 
 #include "structs.h"

@@ -476,6 +476,3 @@ Please select from one of the options above (number): 8
 
 
 Exiting Program...
-
-Exiting Program...
-

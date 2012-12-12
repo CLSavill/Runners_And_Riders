@@ -1,7 +1,7 @@
 /* 
  * File: updater.c
  * Author: Chris Savill - chs17
- * Description: File that contains methods related to updating competitors.
+ * Description: File that contains functions related to updating competitors.
  */
 
 #include "structs.h"

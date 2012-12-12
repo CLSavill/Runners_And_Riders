@@ -1,7 +1,7 @@
 /* 
  * File: competitors.c
  * Author: Chris Savill - chs17
- * Description: File that contains methods related to handling an event's competitors.
+ * Description: File that contains functions related to handling an event's competitors.
  */
 
 #include "structs.h"

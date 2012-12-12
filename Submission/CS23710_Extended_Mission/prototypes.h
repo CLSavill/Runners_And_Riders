@@ -1,7 +1,7 @@
 /* 
  * File: prototypes.h
  * Author: Chris Savill - chs17
- * Description: File that defines the method prototypes used in the event monitoring program.
+ * Description: File that defines the function prototypes used in the event monitoring program.
  */
 
 /* main.c Function Prototypes */
